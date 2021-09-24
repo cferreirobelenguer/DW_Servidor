@@ -1,0 +1,193 @@
+
+/* CLIENTE SERVIDOR – PARA ELIZA.
+
+Tenemos que realizar un versión el programa Eliza que actué como un servidor contestando a los mensaje que reciba por red con los texto asignado como respuesta:
+
+Versión de ELIZA de escritorio.
+
+ELIZA es un programa informático diseñado en el MIT entre 1964 y 1966 que intentaba mantener una conversación de texto coherente con el usuario. ELIZA funciona buscando palabras clave en la frase escrita  por el usuario y responde con una frase modelo registrada en su base de datos. A veces, las respuestas de este  bot conversacional resultaban tan convincentes que al conversar por primera vez con él, algunas personas creyeron que en verdad estaban dialogando con un interlocutor humano.
+
+Se pide desarrollar un método que realice una aproximación muy sencilla a la funcionalidad que
+proporcionaba ELIZA. En concreto, el método debe realizar lo siguiente:
+
+
+    • Recibir frases tecleadas por un humano desde el ordenador (bucle infinito).
+
+    • Comprobar para cada frase que teclea el humano si existen en la misma una serie de palabras clave.
+
+    • Responder con un texto por pantalla a cada frase del humano en función de que la misma contuviera o no una determinada palabra clave.
+
+    • En la siguiente tabla se resumen las palabras claves posibles y la frase de respuesta del ordenador:
+
+
+
+Palabras claves
+Frase de Respuesta
+Hola
+Encantado
+Adiós
+Hora
+Nombre
+
+“Hola, ¿qué tal?”
+“Encantado de conocerte yo también”
+“Adiós, espero volverte a ver pronto”
+“Lo siento, no llevo reloj”
+“Mi nombre es Eliza”
+
+
+En caso de que la frase introducida por el humano no contenga ninguna de las palabras clave indicadas, el ordenador ha de escribir por pantalla “Lo siento, no te comprendo”.
+
+Puede resultar de utilidad el método de la clase String “public boolean contains(String s)”, que devuelve true si la cadena original contiene la cadena s que se le pasa como parámetro al método. */
+
+
+
+package ecoClienteServidor;
+
+
+import java.io.*;
+import java.net.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Scanner;
+import java.util.Set;
+
+
+/**
+ * Servidor Multihilo TCP, hace eco de lo que recibe
+ */
+
+public class ServerMTCP{
+
+    public static void main(String args[]){
+
+        // Establecemos el número de puerto a utilizar.
+        int serverPort = 4444;
+        
+        // Creamos una instancia para esperar las peticiones de los clientes.
+        ServerSocket listenSocket;
+        
+        // Socket para conexión.
+        Socket clientSocket;
+
+        // Usamos la clase conection.
+        Connection c;
+
+        try{
+            
+            // Creamos el objeto para esperar peticiones de los clientes.
+            listenSocket = new ServerSocket(serverPort);
+
+            // CICLO DEL SERVIDOR 
+            while (true){
+                
+                // Dejamos invocado el servidor esperando haste que un cliente
+                //se conecte. clientSocket = Socket nuevo para comunicaciones.
+                clientSocket = listenSocket.accept();
+                System.out.println(" NUEVO CLIENTE: " + clientSocket.getInetAddress()+
+                		" PUERTO:"+clientSocket.getPort());                  
+                // Se establece la conexión, y se vuelve a esperar un nuevo cliente.
+                c = new Connection(clientSocket);
+               
+            }
+            
+        // Control de excepciones.
+        }catch(IOException e){
+            System.out.println("Error en socket: " + e.getMessage());
+        }
+    }
+}
+
+/**
+*
+* @author Iván Durango
+* Hilo de ejecución que procesa cada una de la peticiones
+*/
+class Connection extends Thread{
+
+   // Instanciamos los flujos de datos de entrada y salida,y el socket para
+   // conexión.
+   Socket clientSocket;
+   BufferedReader entrada = null;
+   PrintWriter salida = null;
+
+   // No hace nada
+   public static String procesarMensaje ( String cadena) {
+   	
+	   return cadena;
+   }
+   
+   // Constructor.
+   public Connection(Socket aSocket){
+       
+       // Asocia el Socket(this) con el del cliente que conecta.
+       clientSocket = aSocket;
+       
+       try {
+           
+           // Creamos los flujos de entrada y salida de datos, y lo se los 
+           // asociamos al socket cliente.
+	   // Establece canal de entrada
+           entrada = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+	   // Establece canal de salida
+           salida = new PrintWriter(new BufferedWriter(new OutputStreamWriter(clientSocket.getOutputStream())),true);
+       
+       } catch (IOException ex) {
+           System.out.println("Error en conexion: " + ex.getMessage());
+       }
+       
+       // Lanzamos el método run.
+       try {
+                       
+           
+           while (true){
+           // Recibe los datos mandados por el cliente.
+           String msg = entrada.readLine();     
+	   System.out.println("Cliente: " + msg);
+           // Si el mensaje es de terminar	   
+	   if (msg.equals("Adios")) break;
+           // Realiza la réplica de los datos 
+            salida.println(">>" + responderEliza(msg));
+           }
+           
+       // Control de excepciones.
+       } catch (Exception ex) {
+           System.err.println(" Fin / Error de conexión." + clientSocket.getInetAddress() +"\n" );
+       		}
+   		}
+  
+
+   public static String responderEliza(String msg) {
+	
+	String clave_;
+	String resultado="";
+	Boolean encontrado=false;
+	
+
+	HashMap<String,String>Eliza=new HashMap<>();
+	Eliza.put("Hola", "Hola,¿qué tal?");
+	Eliza.put("Encantado", "Encantado de conocerte yo también");
+	Eliza.put("Adiós", "Adiós,espero volverte a ver pronto");
+	Eliza.put("Hora", "Lo siento, no llevo reloj");
+	Eliza.put("Nombre", "Mi nombre es Eliza");
+	Set<Map.Entry<String,String>>entries=Eliza.entrySet();
+	Iterator<Map.Entry<String, String>>conver=entries.iterator();
+	while(conver.hasNext()) {
+		Map.Entry<String, String>next=conver.next();
+		clave_=next.getKey();
+		if(msg.equals(clave_)) {
+		encontrado=true;
+		return(next.getValue());
+		}
+	}
+		if (!encontrado){
+			return ("Lo siento no te entiendo");
+		}
+		
+	
+		return("Fin de la conexión");
+	}
+}
