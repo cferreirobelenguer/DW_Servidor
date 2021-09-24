@@ -1,0 +1,39 @@
+
+/* 4.- Generar números al azar entre 1 y 10 hasta que se generen 3 veces el valor 6 de forma consecutiva en ese caso se mostrará cuantos número se han generado.
+
+Han salido tres 6 seguidos tras genera 1343 números en 1.002 milisegundos
+
+Para obtener los segundos utilizamos la función microtime(true)  para obtener la fecha actual en segundos.
+
+ */
+
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ejercicio 04</title>
+</head>
+
+<body>
+	
+		<?php
+$contadorSeis = 0;
+$contador= 0;
+$tiempoInicial = microtime(true);
+$numAnterior = 0;
+while($contadorSeis!=3){
+    $num1 = random_int(1, 10);
+    $contador ++;
+    if ($num1 == 6) {
+      $contadorSeis++;
+    }
+    
+}
+
+$tiempoFinal= microtime(true);
+$tiempoTotal=$tiempoFinal-tiempoInicial;
+
+echo "Han salido tres 6 seguidos tras generar ".$contador." números en ".
+        ($tiempoTotal* 1000) . " milisegundos.";
+?>
+</body>
+</html>
