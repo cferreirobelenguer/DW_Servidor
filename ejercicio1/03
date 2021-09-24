@@ -1,0 +1,27 @@
+
+
+<?php
+
+//Crear triángulo
+
+
+$num1=random_int(1,10);
+$numeroDeseado=6;
+$contadorSeis=0;
+$contador=0;
+$tiempoInicio=microtime(true);
+echo "Escribe números".'</br>';
+
+while($contadorSeis!=3){
+    $num1=random_int(1,10);
+    $contador++;
+    if($num1==6){
+       $contadorSeis++;
+    }
+    
+}
+$tiempoFinal=microtime(true);
+$tiempoTotal=$tiempoFinal-$tiempoInicio;
+echo "Han salido tres 6 seguidos tras generar ".$contador." números en ".($tiempoTotal*1000)." milisegundos";
+
+?>
