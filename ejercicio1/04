@@ -15,11 +15,11 @@ Para obtener los segundos utilizamos la función microtime(true)  para obtener l
 
 <body>
 	
-		<?php
+<?php
 $contadorSeis = 0;
 $contador= 0;
 $tiempoInicial = microtime(true);
-$numAnterior = 0;
+
 while($contadorSeis!=3){
     $num1 = random_int(1, 10);
     $contador ++;
