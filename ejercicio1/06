@@ -1,0 +1,43 @@
+
+
+<!--6.- Generar la  tabla de multiplicar de un número elegido al azar entre 1 y 10 -->
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ejercicio 6</title>
+    <style>
+        h1{
+            background-color:blue;
+            color:white;
+            margin:50px;
+            padding:50px;
+            text-align:center;
+        }
+    </style>
+</head>
+<body>
+    <h1>TABLA DE MULTIPLICAR</H1>
+    
+    <table border='1' align=center>
+    <?php
+        $num1=random_int(1,10);?>
+        
+        <tr>
+            <th><?php echo "Tabla del ".$num1;?></th>
+            <th><?php echo" ";?></th>
+        </tr>
+        
+            <?php for($i=0;$i<$num1;$i++){
+            echo '<tr>
+                    <td>'.$num1."x".$i.'</td>
+                    <td>'.$num1*$i.'</td>
+                </tr>';
+            }
+            ?>
+    </table> 
+</body>
+</html>
