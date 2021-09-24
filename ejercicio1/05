@@ -1,0 +1,66 @@
+/* 5.- Realizar un segunda versión del primer ejercicio donde la página de resultado tiene que mostrar una tabla con el siguiente  formato utilizando estilo.
+
+1º Número : 5  
+2º Número : 2
+ 
+Operación	Resultado
+5 + 2	7
+5 - 2	3
+5 * 2	10
+5 / 2	  2.4
+5 % 2	1
+52	25
+*/
+
+
+<html>
+<body>
+<table border="1" style="background-color:#A8CBD0">
+
+<?php //Declaración de variables
+    $num1=random_int(1,10);
+    $num2=random_int(1,10);?>
+
+    <tr>
+        <th style="color:#106DA2">Operación</th>
+        <th style="color:#106DA2">Resultado</th>
+    </tr>
+    <tr>
+        <td bgcolor="white"><?php  echo $num1."+".$num2;?></td>
+        <td bgcolor="white"><?php   $resultadoSuma;
+                    $resultadoSuma=$num1+$num2;
+                    echo $resultadoSuma;?></td>
+    </tr>
+    <tr>
+        <td bgcolor="white"><?php echo $num1."-".$num2;?></td>
+        <td bgcolor="white"><?php   $resultadoResta;
+                    $resultadoResta=$num1-$num2;
+                    echo $resultadoResta;?></td>
+    </tr>
+    <tr>
+        <td bgcolor="white"><?php echo $num1."*".$num2;?></td>
+        <td bgcolor="white"><?php   $resultadoMulti;
+                    $resultadoMulti=$num1*$num2;
+                    echo $resultadoMulti;?></td>
+    </tr>
+    <tr>
+        <td bgcolor="white"><?php echo $num1."/".$num2;?></td>
+        <td bgcolor="white"><?php   $resultadoDiv;
+                    $resultadoDiv=$num1/$num2;
+                    echo $resultadoDiv;?></td>
+    </tr>
+    <tr>
+        <td bgcolor="white"><?php echo $num1."**".$num2;?></td>
+        <td bgcolor="white"><?php   $resultadoPotencia;
+                    $resultadoPotencia=$num1**$num2;
+                    echo $resultadoPotencia;?></td>
+    </tr>
+    <tr>
+        <td bgcolor="white"><?php echo $num1."%".$num2;?></td>
+        <td bgcolor="white"><?php   $resultadoResto;
+                    $resultadoResto=$num1%$num2;
+                    echo $resultadoResto;?></td>
+    </tr>
+</table>
+</body>
+</html>
