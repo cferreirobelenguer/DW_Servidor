@@ -1,40 +1,68 @@
 
-<?php
-//FUNCIONESREF
-
-function calcularSuma($num1,$num2,$operador){
-    $resu=$num1.$operador.$num2;
-
-    return $resu;
-}
-
-function calcularResta($num1,$num2,$operador){
-    $resu=$num1.$operador.$num2;
     
-    return $resu;
+<!--Definir dos variables asignándoles un valor entero aleatorio entre 1 y 10, mostrar su suma, su resta, su división, 
+su multiplicación, su módulo y su potencia (ciclo for), Crea un archivo llamado funcionesvar.php donde estén definidas las cinco operaciones: 
+    suma, resta, división, producto, módulo y potencia. Incluir ese fichero dentro de fichero principal (require_once) 
+    y llamar  a las funciones para obtener el resultado.
+
+Ejemplo
+function calSuma( $valor1, $valor2){
+  $resultado = $valor1 + valor$;
+  return $resultado;
 }
 
-function calcularMulti($num1,$num2,$operador){
-    $resu=$num1.$operador.$num2;
+Ejemplo de uso de la función:
 
-    return $resu;
+$valor = calSuma(9,10); // devolverá el valor 19
+
+1º Número : 5  
+2º Número : 2
+ 
+5+3  = 7
+5-2  = 3
+5*2  = 10
+5/ 2 = 2.5
+5%2  = 1
+5**2 = 25
+
+3. Hacer una nueva versión  del ejercicio anterior pero creando un nuevo fichero de funciones (funcionesref.php) donde cada función tenga tres parámetros los dos primeros por valor y el último por referencia. Añadir al principio dentro del programa principal (03.php) la instrucción include_once(“funcionesref.php”) para hacer referencia al las funciones definidas
+
+Ejemplo
+function calSuma( $valor1, $valor2, &$resultado){
+  $resultado = $valor1 + valor$;
 }
 
-function calcularDIvision($num1,$num2,$operador){
-    $resu=$num1.$operador.$num2;
+Ejemplo de uso de la función:
+calSuma(9,10,$valor);  // almacena en la variable valor el número 19
+-->
 
-    return $resu;
-}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejecicio 2 de funciones</title>
+    <?php include_once("funcionesRef.php");?>
+</head>
+<body>
+    <?php
 
-function calcularPotencia($num1,$num2,$operador){
-    $resu=$num1.$operador.$num2;
+    $num1=random_int(1,10);
+    $num2=random_int(1,10);
 
-    return $resu;
-}
+    echo "Numero :".$num1.'</br>';
+    echo "Numero :".$num2.'</br>';
 
-function calcularResto($num1,$num2,$operador){
-    $resu=$num1.$operador.$num2;
+    echo $num1." + ".$num2." = ".calcularSuma($num1,$num2,"+").'</br>';;
+    echo $num1." - ".$num2." = ".calcularResta($num1,$num2,"-").'</br>';;
+    echo $num1." * ".$num2." = ". calcularMulti($num1,$num2,"*").'</br>';;
+    echo $num1." / ".$num2." = ".calcularDIvision($num1,$num2,"/").'</br>';;
+    echo $num1." ** ".$num2." = ".calcularPotencia($num1,$num2,"**").'</br>';;
+    echo $num1." % ".$num2." = ".calcularResto($num1,$num2,"%").'</br>';;
 
-    return $resu;
-}
-?>
+    ?>
+</body>
+</html>
+</body>
+</html>
