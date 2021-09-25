@@ -1,0 +1,42 @@
+
+
+
+<?php
+//FUNCIONESREF
+
+function calcularSuma($num1,$num2,$operador){
+    $resu=$num1.$operador.$num2;
+
+    return $resu;
+}
+
+function calcularResta($num1,$num2,$operador){
+    $resu=$num1.$operador.$num2;
+    
+    return $resu;
+}
+
+function calcularMulti($num1,$num2,$operador){
+    $resu=$num1.$operador.$num2;
+
+    return $resu;
+}
+
+function calcularDIvision($num1,$num2,$operador){
+    $resu=$num1.$operador.$num2;
+
+    return $resu;
+}
+
+function calcularPotencia($num1,$num2,$operador){
+    $resu=$num1.$operador.$num2;
+
+    return $resu;
+}
+
+function calcularResto($num1,$num2,$operador){
+    $resu=$num1.$operador.$num2;
+
+    return $resu;
+}
+?>
