@@ -1,0 +1,66 @@
+
+<?php
+
+/*4. Realizar un programa en php que genere 50 números aleatorios en 1 y 100 y que muestre en una tabla  html el valor máximo, el mínimo y la media con el siguiente formato:
+  Nota definir los valores 50 y 100 como constantes en PHP (define)
+
+Generación de 50 valores aleatorios
+Mínimo	2
+Máximo	89
+Media	45.23
+ */
+?>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<?php
+        function MaxMin(){
+        $max=0;
+        $min=0;
+        $contador=0;
+        $num1=0;
+        $suma=0;
+        $media=0;
+
+        while($contador!=5){
+            $num1=random_int(1,100);
+            $suma+=$num1;
+            $contador++;
+            if($num1<$min){
+                $min=$num1;
+            
+            }else if($num1>$max){
+            $max=$num1;
+            }
+        }
+        $media=$suma/$contador;
+        
+    ?>
+    <table boder="1">
+
+    <tr>
+        <th bgcolor="black" style="color:white">Generación de 50 valores aleatorios</th>
+    </tr>
+    <tr>
+        <td bgcolor="white" style="color:black">Mínimo</td>
+        <td><?php echo $min?></td>
+    </tr>
+    <tr>
+        <td bgcolor="white" style="color:black">Máximo</td>
+        <td><?php echo $max?></td>
+    </tr>
+    <tr>
+        <td bgcolor="white" style="color:black">Media</td>
+        <td><?php echo $media;
+        }
+        MaxMin(); ?></td>
+    </tr>
+    </table>
+</body>
+</html>
