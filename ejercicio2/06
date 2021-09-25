@@ -1,0 +1,79 @@
+
+
+
+<!-- 6. Generar un número entre 1 y 10  y mostrar una muralla de  asteriscos con tantas almenas como indique el usuario. Nota: una almena está formada dos filas de  cuatro asterisco,  y entre almena y almena hay un  espacio.
+
+2º Versión: La muralla se genera con  imágenes de ladrillos, de piedras o algo similar.
+
+Ej.-
+El usuario introduce: 3
+El programa mostrará:
+
+**** **** ****
+**** **** ****
+**************
+
+El usuario introduce: 5
+El programa mostrará:
+
+**** **** **** **** ****
+**** **** **** **** ****
+************************
+ -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 6</title>
+</head>
+<body>
+    <?php
+
+        function murallaPintada($num1){
+            for($i=0;$i<$num1;$i++){
+                ?>
+                <img src="espacio.png" width="30px" heigth="30px"/>
+                <?php
+                for($a=0;$a<$num1;$a++){
+                    ?>
+                <img src="muralla.png" width="30px" heigth="30px"/>
+                <?php
+                }
+            }?>
+            <br>
+            <?php
+            for($i=0;$i<$num1;$i++){
+                ?>
+                <img src="espacio.png" width="30px" heigth="30px"/>
+                <?php
+                for($a=0;$a<$num1;$a++){
+                    ?>
+                    <img src="muralla.png" width="30px" heigth="30px"/>
+                    <?php
+                }
+            }?>
+            <br>
+            <?php
+            for($i=0;$i<$num1;$i++){
+                ?>
+                <img src="muralla.png" width="30px" heigth="30px"/>
+                <?php
+                for($a=0;$a<$num1;$a++){
+                    ?>
+                    <img src="muralla.png" width="30px" heigth="30px"/>
+                    <?php
+                }
+            }
+            ?>
+            <br>
+            <?php
+        }
+        
+        $num1=random_int(1,10);
+        murallaPintada($num1);
+
+    ?>
+</body>
+</html>
