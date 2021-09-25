@@ -26,6 +26,7 @@ El programa mostrará:
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="refresh" content="2"/>
     <title>Ejercicio 6</title>
 </head>
 <body>
@@ -34,11 +35,11 @@ El programa mostrará:
         function murallaPintada($num1){
             for($i=0;$i<$num1;$i++){
                 ?>
-                <img src="espacio.png" width="30px" heigth="30px"/>
+                <img src="espacio.png" width="60px" heigth="60px"/>
                 <?php
                 for($a=0;$a<$num1;$a++){
                     ?>
-                <img src="muralla.png" width="30px" heigth="30px"/>
+                <img src="muralla.png" width="60px" heigth="60px"/>
                 <?php
                 }
             }?>
@@ -46,11 +47,11 @@ El programa mostrará:
             <?php
             for($i=0;$i<$num1;$i++){
                 ?>
-                <img src="espacio.png" width="30px" heigth="30px"/>
+                <img src="espacio.png" width="60px" heigth="60px"/>
                 <?php
                 for($a=0;$a<$num1;$a++){
                     ?>
-                    <img src="muralla.png" width="30px" heigth="30px"/>
+                    <img src="muralla.png" width="60px" heigth="60px"/>
                     <?php
                 }
             }?>
@@ -58,11 +59,11 @@ El programa mostrará:
             <?php
             for($i=0;$i<$num1;$i++){
                 ?>
-                <img src="muralla.png" width="30px" heigth="30px"/>
+                <img src="muralla.png" width="60px" heigth="60px"/>
                 <?php
                 for($a=0;$a<$num1;$a++){
                     ?>
-                    <img src="muralla.png" width="30px" heigth="30px"/>
+                    <img src="muralla.png" width="60px" heigth="60px"/>
                     <?php
                 }
             }
@@ -71,7 +72,7 @@ El programa mostrará:
             <?php
         }
         
-        $num1=random_int(1,10);
+        $num1=random_int(1,4);
         murallaPintada($num1);
 
     ?>
