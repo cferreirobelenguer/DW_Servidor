@@ -14,37 +14,40 @@ una función que genera un color diferente en cada casilla.
 </head>
 <body>
     <?php
+   
     function generarColor(){
-        //Se generan colores aleatorios
     $r=random_int(0,255);
     $g=random_int(0,255);
     $b=random_int(0,255);
-    $bgcolor = 'rgb('.$r.','.$g.','.$b.')';
-    return $bgcolor;
+    $a=1;   
+        //Se generan colores aleatorios
 
-    }
     ?>
     <table border="1">
     <?php
-        $color=generarColor();
+        
         $intensidad=100;
         $longitud=10;
         for($i=0;$i<$longitud;$i++){
-        $intensidad--;
+        
             ?>
             <tr>
                 <?php
                 for($j=0;$j<$longitud;$j++){
+                    $intensidad--;
                     //Se va quitando intensidad al color para hacer el degradado a medida que se muestra en los cuadros
-                    
-                ?>
-                <td bgcolor=<?php $color." ".$intensidad?>% width="30px" height="30px"></td>
-                <?php
+                
+                
+                echo "<td style='background-color:rgba($r, $g , $b , $a)' width='30'px height='30'px </td>";
+                
+                $a=$a-0.01;
+                
                 }
-                ?>
-        <?php
+            }
         }
+        
         ?>
+        <?php generarColor();?>
     <table>
 </body>
 </html>
