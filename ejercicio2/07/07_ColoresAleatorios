@@ -1,4 +1,5 @@
 
+
 <!--7. Realizar un programa que genere una tabla html de 10x10 donde cada casilla tenga un color aleatorio obtenido mediante 
 una función que genera un color diferente en cada casilla.
 2º Versión cualquier color aleatorios-->
@@ -14,11 +15,12 @@ una función que genera un color diferente en cada casilla.
 <body>
     <?php
     function generarColor(){
-        $r = random_int(0, 255);
-        $g = random_int(0, 255);
-        $b = random_int(0, 255);
+        $r = mt_rand(0, 255);
+        $g = mt_rand(0, 255);
+        $b = mt_rand(0, 255);
+        
         $bgcolor = 'rgb('.$r.','.$g.','.$b.')';
-        echo $bgcolor;
+        return $bgcolor;
         
     }
     ?>
@@ -30,9 +32,9 @@ una función que genera un color diferente en cada casilla.
             <tr >
                 <?php
                 for($j=0;$j<$longitud;$j++){
-                    ?>
-                    <td bgcolor="<?php generarColor();?>" width=30px height=30px ></td>
-                    <?php
+                    $color=generarColor();
+                    echo "<td style='background-color:$color' width='30'px height='30'px </td>";
+                    
                 }
                 ?>
             </tr>
