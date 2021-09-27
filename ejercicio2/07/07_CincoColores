@@ -20,8 +20,7 @@
         $negro="rgb(0, 0, 0)";
         $blanco="rgb(255, 255, 255)";
         $colores=array($rojo,$verde,$azul,$blanco,$negro);
-        
-        $bgcolor = $colores[random_int(0,sizeof($colores))];
+        $bgcolor=$colores[array_rand($colores)];
         return $bgcolor;
         
     }
@@ -34,12 +33,9 @@
             <tr>
                 <?php
                 for($j=0;$j<$longitud;$j++){
-                ?>
-                <td bgcolor="<?php generarColor();?>" width="30px" height="30px"></td>
-                <?php
+                    $color=generarColor();
+                echo "<td style='background-color:$color' width='30'px height='30'px </td>";
                 }
-                ?>
-        <?php
         }
         ?>
     <table>
