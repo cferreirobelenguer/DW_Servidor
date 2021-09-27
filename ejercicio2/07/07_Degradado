@@ -30,14 +30,15 @@ una función que genera un color diferente en cada casilla.
         $intensidad=100;
         $longitud=10;
         for($i=0;$i<$longitud;$i++){
+        $intensidad--;
             ?>
             <tr>
                 <?php
                 for($j=0;$j<$longitud;$j++){
                     //Se va quitando intensidad al color para hacer el degradado a medida que se muestra en los cuadros
-                    $intensidad--;
+                    
                 ?>
-                <td bgcolor="<?php $color." ".$intensidad?>"% width="30px" height="30px"></td>
+                <td bgcolor=<?php $color." ".$intensidad?>% width="30px" height="30px"></td>
                 <?php
                 }
                 ?>
