@@ -1,0 +1,49 @@
+
+<!-- . Realizar un programa que genere una tabla html de 10x10 con casillas 
+de 30x30 px donde cada casilla tenga un color aleatorio obtenido mediante 
+una función que genera un color diferente en cada casilla.
+3º  Se elegir un color aleatorio y mostrar un degradado.
+-->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 7 Degradado</title>
+</head>
+<body>
+    <?php
+    function generarColor(){
+        //Se generan colores aleatorios
+    $r=random_int(0,255);
+    $g=random_int(0,255);
+    $b=random_int(0,255);
+    $bgcolor = 'rgb('.$r.','.$g.','.$b.')';
+    return $bgcolor;
+
+    }
+    ?>
+    <table border="1">
+    <?php
+        $color=generarColor();
+        $intensidad=100;
+        $longitud=10;
+        for($i=0;$i<$longitud;$i++){
+            ?>
+            <tr>
+                <?php
+                for($j=0;$j<$longitud;$j++){
+                    //Se va quitando intensidad al color para hacer el degradado a medida que se muestra en los cuadros
+                    $intensidad--;
+                ?>
+                <td bgcolor="<?php $color." ".$intensidad?>"% width="30px" height="30px"></td>
+                <?php
+                }
+                ?>
+        <?php
+        }
+        ?>
+    <table>
+</body>
+</html>
