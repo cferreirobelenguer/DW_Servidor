@@ -14,8 +14,12 @@
     <?php
     
     function generarColor(){
-
-        $colores=array('red','green','blue','white','black');
+        $rojo="rgb(255, 0, 0)";
+        $verde="rgb(0, 255, 76)";
+        $azul="rgb(0, 8, 255)";
+        $negro="rgb(0, 0, 0)";
+        $blanco="rgb(255, 255, 255)";
+        $colores=array($rojo,$verde,$azul,$blanco,$negro);
         
         $bgcolor = $colores[random_int(0,sizeof($colores))];
         return $bgcolor;
