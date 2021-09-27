@@ -1,3 +1,4 @@
+
 <!--7. Realizar un programa que genere una tabla html de 10x10 donde cada casilla tenga un color aleatorio obtenido mediante 
 una función que genera un color diferente en cada casilla.
 2º Versión cualquier color aleatorios-->
@@ -18,129 +19,26 @@ una función que genera un color diferente en cada casilla.
         $b = random_int(0, 255);
         $bgcolor = 'rgb('.$r.','.$g.','.$b.')';
         echo $bgcolor;
+        
     }
     ?>
-    <table width="300px" heigth="700px" border="1">
-        <tr>
-            <td bgcolor="<?php generarColor();?>">&nbsp</td>
-            <td bgcolor="<?php generarColor();?>">&nbsp</td>
-            <td bgcolor="<?php generarColor();?>">&nbsp</td>
-            <td bgcolor="<?php generarColor();?>">&nbsp</td>
-            <td bgcolor="<?php generarColor();?>">&nbsp</td>
-            <td bgcolor="<?php generarColor();?>">&nbsp</td>
-            <td bgcolor="<?php generarColor();?>">&nbsp</td>
-            <td bgcolor="<?php generarColor();?>">&nbsp</td>
-            <td bgcolor="<?php generarColor();?>">&nbsp</td>
-            <td bgcolor="<?php generarColor();?>">&nbsp</td>
-        </tr>
-        <tr>
-            <td bgcolor="<?php generarColor();?>">&nbsp</td>
-            <td bgcolor="<?php generarColor();?>">&nbsp</td>
-            <td bgcolor="<?php generarColor();?>">&nbsp</td>
-            <td bgcolor="<?php generarColor();?>">&nbsp</td>
-            <td bgcolor="<?php generarColor();?>">&nbsp</td>
-            <td bgcolor="<?php generarColor();?>">&nbsp</td>
-            <td bgcolor="<?php generarColor();?>">&nbsp</td>
-            <td bgcolor="<?php generarColor();?>">&nbsp</td>
-            <td bgcolor="<?php generarColor();?>">&nbsp</td>
-            <td bgcolor="<?php generarColor();?>">&nbsp</td>
-        </tr>
-        <tr>
-            <td bgcolor="<?php generarColor();?>">&nbsp</td>
-            <td bgcolor="<?php generarColor();?>">&nbsp</td>
-            <td bgcolor="<?php generarColor();?>">&nbsp</td>
-            <td bgcolor="<?php generarColor();?>">&nbsp</td>
-            <td bgcolor="<?php generarColor();?>">&nbsp</td>
-            <td bgcolor="<?php generarColor();?>">&nbsp</td>
-            <td bgcolor="<?php generarColor();?>">&nbsp</td>
-            <td bgcolor="<?php generarColor();?>">&nbsp</td>
-            <td bgcolor="<?php generarColor();?>">&nbsp</td>
-            <td bgcolor="<?php generarColor();?>">&nbsp</td>
-        </tr>
-        <tr>
-            <td bgcolor="<?php generarColor();?>">&nbsp</td>
-            <td bgcolor="<?php generarColor();?>">&nbsp</td>
-            <td bgcolor="<?php generarColor();?>">&nbsp</td>
-            <td bgcolor="<?php generarColor();?>">&nbsp</td>
-            <td bgcolor="<?php generarColor();?>">&nbsp</td>
-            <td bgcolor="<?php generarColor();?>">&nbsp</td>
-            <td bgcolor="<?php generarColor();?>">&nbsp</td>
-            <td bgcolor="<?php generarColor();?>">&nbsp</td>
-            <td bgcolor="<?php generarColor();?>">&nbsp</td>
-            <td bgcolor="<?php generarColor();?>">&nbsp</td>
-        </tr>
-        <tr >
-            <td bgcolor="<?php generarColor();?>">&nbsp</td>
-            <td bgcolor="<?php generarColor();?>">&nbsp</td>
-            <td bgcolor="<?php generarColor();?>">&nbsp</td>
-            <td bgcolor="<?php generarColor();?>">&nbsp</td>
-            <td bgcolor="<?php generarColor();?>">&nbsp</td>
-            <td bgcolor="<?php generarColor();?>">&nbsp</td>
-            <td bgcolor="<?php generarColor();?>">&nbsp</td>
-            <td bgcolor="<?php generarColor();?>">&nbsp</td>
-            <td bgcolor="<?php generarColor();?>">&nbsp</td>
-            <td bgcolor="<?php generarColor();?>">&nbsp</td>
-        </tr>
-        <tr >
-            <td bgcolor="<?php generarColor();?>">&nbsp</td>
-            <td bgcolor="<?php generarColor();?>">&nbsp</td>
-            <td bgcolor="<?php generarColor();?>">&nbsp</td>
-            <td bgcolor="<?php generarColor();?>">&nbsp</td>
-            <td bgcolor="<?php generarColor();?>">&nbsp</td>
-            <td bgcolor="<?php generarColor();?>">&nbsp</td>
-            <td bgcolor="<?php generarColor();?>">&nbsp</td>
-            <td bgcolor="<?php generarColor();?>">&nbsp</td>
-            <td bgcolor="<?php generarColor();?>">&nbsp</td>
-            <td bgcolor="<?php generarColor();?>">&nbsp</td>
-        </tr>
-        <tr >
-            <td bgcolor="<?php generarColor();?>">&nbsp</td>
-            <td bgcolor="<?php generarColor();?>">&nbsp</td>
-            <td bgcolor="<?php generarColor();?>">&nbsp</td>
-            <td bgcolor="<?php generarColor();?>">&nbsp</td>
-            <td bgcolor="<?php generarColor();?>">&nbsp</td>
-            <td bgcolor="<?php generarColor();?>">&nbsp</td>
-            <td bgcolor="<?php generarColor();?>">&nbsp</td>
-            <td bgcolor="<?php generarColor();?>">&nbsp</td>
-            <td bgcolor="<?php generarColor();?>">&nbsp</td>
-            <td bgcolor="<?php generarColor();?>">&nbsp</td>
-        </tr>
-        <tr >
-            <td bgcolor="<?php generarColor();?>">&nbsp</td>
-            <td bgcolor="<?php generarColor();?>">&nbsp</td>
-            <td bgcolor="<?php generarColor();?>">&nbsp</td>
-            <td bgcolor="<?php generarColor();?>">&nbsp</td>
-            <td bgcolor="<?php generarColor();?>">&nbsp</td>
-            <td bgcolor="<?php generarColor();?>">&nbsp</td>
-            <td bgcolor="<?php generarColor();?>">&nbsp</td>
-            <td bgcolor="<?php generarColor();?>">&nbsp</td>
-            <td bgcolor="<?php generarColor();?>">&nbsp</td>
-            <td bgcolor="<?php generarColor();?>">&nbsp</td>
-        </tr>
-        <tr >
-            <td bgcolor="<?php generarColor();?>">&nbsp</td>
-            <td bgcolor="<?php generarColor();?>">&nbsp</td>
-            <td bgcolor="<?php generarColor();?>">&nbsp</td>
-            <td bgcolor="<?php generarColor();?>">&nbsp</td>
-            <td bgcolor="<?php generarColor();?>">&nbsp</td>
-            <td bgcolor="<?php generarColor();?>">&nbsp</td>
-            <td bgcolor="<?php generarColor();?>">&nbsp</td>
-            <td bgcolor="<?php generarColor();?>">&nbsp</td>
-            <td bgcolor="<?php generarColor();?>">&nbsp</td>
-            <td bgcolor="<?php generarColor();?>">&nbsp</td>
-        </tr>
-        <tr>
-            <td bgcolor="<?php generarColor();?>">&nbsp</td>
-            <td bgcolor="<?php generarColor();?>">&nbsp</td>
-            <td bgcolor="<?php generarColor();?>">&nbsp</td>
-            <td bgcolor="<?php generarColor();?>">&nbsp</td>
-            <td bgcolor="<?php generarColor();?>">&nbsp</td>
-            <td bgcolor="<?php generarColor();?>">&nbsp</td>
-            <td bgcolor="<?php generarColor();?>">&nbsp</td>
-            <td bgcolor="<?php generarColor();?>">&nbsp</td>
-            <td bgcolor="<?php generarColor();?>">&nbsp</td>
-            <td bgcolor="<?php generarColor();?>">&nbsp</td>
-        </tr>
+    <table  border="1" >
+        <?php 
+        $longitud=10;
+        for ($i=0;$i<$longitud;$i++){
+            ?>
+            <tr >
+                <?php
+                for($j=0;$j<$longitud;$j++){
+                    ?>
+                    <td bgcolor="<?php generarColor();?>" width=30px height=30px ></td>
+                    <?php
+                }
+                ?>
+            </tr>
+            <?php
+        }
+        ?>
     <table>
 </body>
 </html>
