@@ -1,3 +1,7 @@
+<!-- 7. Realizar un programa que genere una tabla html de 10x10 con casillas de 30x30 px donde cada casilla tenga un color aleatorio obtenido mediante una función que genera un color diferente en cada casilla.
+
+1º Versión  elegir entre 5 posibles valores: rojo,verde, azul, blanco y negro.
+-->
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -10,139 +14,30 @@
     <?php
     
     function generarColor(){
-        $rojo = 'rgb(255,17,0)';
-        $verde='rgb(0,255,4)';
-        $azul='rgb(0,26,255)';
-        $blanco='rgb(255,255,255)';
-        $negro='rgb(0,0,0)';
-        $bgcolor="";
-        $colores=[$rojo,$verde,$azul,$negro];
+
+        $colores=array('red','green','blue','white','black');
         
-        $bgcolor = $colores[rand(0,$colores-1)];
+        $bgcolor = $colores[random_int(0,sizeof($colores))];
+        return $bgcolor;
         
     }
     ?>
-    <table width="300px" heigth="700px" border="1">
-        <tr>
-            <td bgcolor=generarColor();>&nbsp</td>
-            <td bgcolor=generarColor();>&nbsp</td>
-            <td bgcolor=generarColor();>&nbsp</td>
-            <td bgcolor=generarColor();>&nbsp</td>
-            <td bgcolor=generarColor();>&nbsp</td>
-            <td bgcolor=generarColor();>&nbsp</td>
-            <td bgcolor=generarColor();>&nbsp</td>
-            <td bgcolor=generarColor();>&nbsp</td>
-            <td bgcolor=generarColor();>&nbsp</td>
-            <td bgcolor=generarColor();>&nbsp</td>
-        </tr>
-        <tr >
-            <td>&nbsp</td>
-            <td>&nbsp</td>
-            <td>&nbsp</td>
-            <td>&nbsp</td>
-            <td>&nbsp</td>
-            <td>&nbsp</td>
-            <td>&nbsp</td>
-            <td>&nbsp</td>
-            <td>&nbsp</td>
-            <td>&nbsp</td>
-        </tr>
-        <tr>
-            <td>&nbsp</td>
-            <td>&nbsp</td>
-            <td>&nbsp</td>
-            <td>&nbsp</td>
-            <td>&nbsp</td>
-            <td>&nbsp</td>
-            <td>&nbsp</td>
-            <td>&nbsp</td>
-            <td>&nbsp</td>
-            <td>&nbsp</td>
-        </tr>
-        <tr>
-            <td>&nbsp</td>
-            <td>&nbsp</td>
-            <td>&nbsp</td>
-            <td>&nbsp</td>
-            <td>&nbsp</td>
-            <td>&nbsp</td>
-            <td>&nbsp</td>
-            <td>&nbsp</td>
-            <td>&nbsp</td>
-            <td>&nbsp</td>
-        </tr>
-        <tr>
-            <td>&nbsp</td>
-            <td>&nbsp</td>
-            <td>&nbsp</td>
-            <td>&nbsp</td>
-            <td>&nbsp</td>
-            <td>&nbsp</td>
-            <td>&nbsp</td>
-            <td>&nbsp</td>
-            <td>&nbsp</td>
-            <td>&nbsp</td>
-        </tr>
-        <tr>
-            <td>&nbsp</td>
-            <td>&nbsp</td>
-            <td>&nbsp</td>
-            <td>&nbsp</td>
-            <td>&nbsp</td>
-            <td>&nbsp</td>
-            <td>&nbsp</td>
-            <td>&nbsp</td>
-            <td>&nbsp</td>
-            <td>&nbsp</td>
-        </tr>
-        <tr>
-            <td>&nbsp</td>
-            <td>&nbsp</td>
-            <td>&nbsp</td>
-            <td>&nbsp</td>
-            <td>&nbsp</td>
-            <td>&nbsp</td>
-            <td>&nbsp</td>
-            <td>&nbsp</td>
-            <td>&nbsp</td>
-            <td>&nbsp</td>
-        </tr>
-        <tr>
-            <td>&nbsp</td>
-            <td>&nbsp</td>
-            <td>&nbsp</td>
-            <td>&nbsp</td>
-            <td>&nbsp</td>
-            <td>&nbsp</td>
-            <td>&nbsp</td>
-            <td>&nbsp</td>
-            <td>&nbsp</td>
-            <td>&nbsp</td>
-        </tr>
-        <tr>
-            <td>&nbsp</td>
-            <td>&nbsp</td>
-            <td>&nbsp</td>
-            <td>&nbsp</td>
-            <td>&nbsp</td>
-            <td>&nbsp</td>
-            <td>&nbsp</td>
-            <td>&nbsp</td>
-            <td>&nbsp</td>
-            <td>&nbsp</td>
-        </tr>
-        <tr>
-            <td>&nbsp</td>
-            <td>&nbsp</td>
-            <td>&nbsp</td>
-            <td>&nbsp</td>
-            <td>&nbsp</td>
-            <td>&nbsp</td>
-            <td>&nbsp</td>
-            <td>&nbsp</td>
-            <td>&nbsp</td>
-            <td>&nbsp</td>
-        </tr>
+    <table  border="1">
+        <?php
+        $longitud=10;
+        for($i=0;$i<$longitud;$i++){
+            ?>
+            <tr>
+                <?php
+                for($j=0;$j<$longitud;$j++){
+                ?>
+                <td bgcolor="<?php generarColor();?>" width="30px" height="30px"></td>
+                <?php
+                }
+                ?>
+        <?php
+        }
+        ?>
     <table>
 </body>
 </html>
