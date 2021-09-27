@@ -1,0 +1,175 @@
+
+
+<!-- JUEGO DE PIEDRA PAPEL Y TIJERA-->
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Piedra,papel y tijera</title>
+</head>
+<body>
+    
+    <h1 style="text-align:center">¡Piedra,papel y tijera!</h1>
+    <h2 style="text-align:center">Actualice la página para mostrar otra partida</h2>
+    <br>
+    <?php
+    
+    define ('PIEDRA1',  "&#x1F91C;");
+    define ('PIEDRA2',  "&#x1F91B;");
+    define ('TIJERAS',  "&#x1F596;");
+    define ('PAPEL',    "&#x1F91A;" );
+    
+    function eleccionUsuarios(){
+    $piedra1="&#x1F91C;";
+    $piedra2="&#x1F91B;";
+    $tijeras="&#x1F596;";
+    $papel="&#x1F91A;";
+    
+    $elecciones1=array('PIEDRA1','TIJERAS','PAPEL');
+    $usuario1=$elecciones1[array_rand($elecciones1)];;
+    $elecciones2=array('PIEDRA2','TIJERAS','PAPEL');
+    $usuario2=$elecciones2[array_rand($elecciones2)];
+        
+        
+        if(($usuario1=='PIEDRA1')&&($usuario2=='PIEDRA2')){
+            ?>
+            
+            <center>
+            <h4 style="float:left,margin-left:100px;">Jugador 1</h4>
+            
+            <h4 style="float:left,margin-left:100px;"><?php echo $piedra1?></h4>
+            
+            <h4 style="float:right,margin-right:100px;">Jugador 2</h4>
+            
+            <h4 style="float:right,margin-right:100px;"><?php echo $piedra2?></h4>
+            <br>
+        
+        
+            <h3 style="margin-left:5px;"><?php echo "¡Empate!"?></h3>
+           </center> 
+        <?php
+        }else if(($usuario1=='PIEDRA1')&&($usuario2=='TIJERAS')){
+            ?>
+            
+            <center>
+            <h4 style="float:left,margin-left:100px;">Jugador 1</h4>
+            
+            <h4 style="float:left,margin-left:100px;"><?php echo $piedra1?></h4>
+            
+            <h4 style="float:right,margin-right:100px;">Jugador 2</h4>
+            
+            <h4 style="float:right,margin-right:100px;"><?php echo $tijeras?></h4>
+            <br>
+        
+        
+            <h3 style="margin-left:5px;"><?php echo "¡Ha ganado el jugador 1"?></h3>
+           </center> 
+        <?php
+            
+        }else if(($usuario1=='PIEDRA1')&&($usuario2=='PAPEL')){?>
+            <center>
+            <h4 style="float:left,margin-left:100px;">Jugador 1</h4>
+            
+            <h4 style="float:left,margin-left:100px;"><?php echo $piedra1?></h4>
+            
+            <h4 style="float:right,margin-right:100px;">Jugador 2</h4>
+            
+            <h4 style="float:right,margin-right:100px;"><?php echo $papel?></h4>
+            <br>
+
+            <h3 style="margin-left:5px;"><?php echo "¡Ha ganado el jugador 2"?></h3>
+           </center> 
+           <?php  
+        }else if(($usuario1=='TIJERAS')&&($usuario2=='PIEDRA2')){?>
+            <center>
+            <h4 style="float:left,margin-left:100px;">Jugador 1</h4>
+            
+            <h4 style="float:left,margin-left:100px;"><?php echo $tijeras?></h4>
+            
+            <h4 style="float:right,margin-right:100px;">Jugador 2</h4>
+            
+            <h4 style="float:right,margin-right:100px;"><?php echo $piedra2?></h4>
+            <br>
+
+            <h3 style="margin-left:5px;"><?php echo "¡Ha ganado el jugador 2"?></h3>
+           </center> 
+           <?php   
+        }else if(($usuario1=='TIJERAS')&&($usuario2=='TIJERAS')){?>
+            <center>
+            <h4 style="float:left,margin-left:100px;">Jugador 1</h4>
+            
+            <h4 style="float:left,margin-left:100px;"><?php echo $tijeras?></h4>
+            
+            <h4 style="float:right,margin-right:100px;">Jugador 2</h4>
+            
+            <h4 style="float:right,margin-right:100px;"><?php echo $tijeras?></h4>
+            <br>
+
+            <h3 style="margin-left:5px;"><?php echo "¡Empate!"?></h3>
+           </center> 
+           <?php  
+        }else if(($usuario1=='TIJERAS')&&($usuario2=='PAPEL')){?>
+            <center>
+            <h4 style="float:left,margin-left:100px;">Jugador 1</h4>
+            
+            <h4 style="float:left,margin-left:100px;"><?php echo $tijeras?></h4>
+            
+            <h4 style="float:right,margin-right:100px;">Jugador 2</h4>
+            
+            <h4 style="float:right,margin-right:100px;"><?php echo $papel?></h4>
+            <br>
+
+            <h3 style="margin-left:5px;"><?php echo "¡Ha ganado el jugador 1"?></h3>
+           </center> 
+           <?php  
+        }else if(($usuario1=='PAPEL')&&($usuario2=='PAPEL')){?>
+            <center>
+            <h4 style="float:left,margin-left:100px;">Jugador 1</h4>
+            
+            <h4 style="float:left,margin-left:100px;"><?php echo $papel?></h4>
+            
+            <h4 style="float:right,margin-right:100px;">Jugador 2</h4>
+            
+            <h4 style="float:right,margin-right:100px;"><?php echo $papel?></h4>
+            <br>
+
+            <h3 style="margin-left:5px;"><?php echo "¡Empate!";?></h3>
+           </center> 
+           <?php    
+        }else if(($usuario1=='PAPEL')&&($usuario2=='TIJERAS')){?>
+            <center>
+            <h4 style="float:left,margin-left:100px;">Jugador 1</h4>
+            
+            <h4 style="float:left,margin-left:100px;"><?php echo $papel?></h4>
+            
+            <h4 style="float:right,margin-right:100px;">Jugador 2</h4>
+            
+            <h4 style="float:right,margin-right:100px;"><?php echo $tijeras?></h4>
+            <br>
+
+            <h3 style="margin-left:5px;"><?php echo "¡Ha ganado el jugador 2"?></h3>
+           </center> 
+           <?php  
+        }else if(($usuario1=='PAPEL')&&($usuario2=='PIEDRA2')){?>
+            <center>
+            <h4 style="float:left,margin-left:100px;">Jugador 1</h4>
+            
+            <h4 style="float:left,margin-left:100px;"><?php echo $papel?></h4>
+            
+            <h4 style="float:right,margin-right:100px;">Jugador 2</h4>
+            
+            <h4 style="float:right,margin-right:100px;"><?php echo $piedra2?></h4>
+            <br>
+
+            <h3 style="margin-left:5px;"><?php echo "¡Ha ganado el jugador 1"?></h3>
+           </center> 
+           <?php   
+    }
+}
+    eleccionUsuarios();
+    ?> 
+</body>
+</html>
