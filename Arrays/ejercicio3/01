@@ -1,0 +1,78 @@
+
+<!-- 1.- Rellenar un array con 20 números aleatorios entre 1 y 10 y mostrar el contenido del array  mediante una tabla de una fila en HMTL. Mostrar a continuación el valor máximo, 
+el mínimo y el  valor que mas veces se repite. (Nota definir funciones para cada caso)-->
+<html>
+<head>
+<title>Online PHP Script Execution</title>
+</head>
+<body>
+    <table border="1">
+        <th>Contenido Array</tr>
+        <?php
+        for($i=0;$i<1;$i++){
+            ?><tr>
+                <?php
+                    for($j=0;$j<1;$j++){
+                        ?><td><?php 
+                        DEFINE("array",[]);
+                        $array=range(0,20);   
+                        $num;
+                        $Numeroveces=0;
+                        
+                        foreach($array as &$i){
+                            $i=random_int(0,10);
+                            
+                        }
+                        print_r($array);?></td>
+                        </br>
+                        
+                        <?php
+                    }
+                ?>
+            </tr>
+            <?php  
+        }
+?>
+    <h2><?php echo "El valor máximo de la tabla es : "?></h2>
+    <h2><?php calcularMax($array);?></h2>
+    </br>
+    <h2><?php echo "El valor mínimo de la tabla es : "?></h2>
+    <h2><?php calcularMin($array);?></h2>
+    <br>
+    <h2><?php repeticiones($array);?></h2>
+    <?php
+
+    //Declaración de funciones
+    function calcularMax($array){
+       $max=0; 
+        foreach($array as $i){
+            if($i>$max){
+                $max=$i;
+            }
+           
+        }
+        
+        echo $max; 
+    }
+    
+    function calcularMin($array){
+        $min=0;   
+        foreach($array as $i){
+        if($i<$min){
+            $min=$i;
+            }
+        }
+        echo $min;
+    }
+
+    function repeticiones($array){
+        foreach($array as $i){
+            $contador=array_count_values($array);
+            $Numeroveces=$contador[$i];
+            echo "El número de veces que se repite ".$i." es ".$Numeroveces;
+            echo "</br>";
+        }
+    }
+    ?>
+</body>
+</html>
