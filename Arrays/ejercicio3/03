@@ -1,0 +1,46 @@
+
+
+
+<!-- 3. Elegir a azar uno de los cinco medios y  mostrar el enlace seleccionado.
+El Medio recomendado es: El MundoToday
+-->
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 2 periódicos</title>
+</head>
+<body>
+    <h1>Periódicos</h1>
+    <ul>
+    <?php
+    //Definimos la variable estática para que se pueda ver en la función
+
+    DEFINE("prensa",[]);
+
+    $prensa=["El pais"=>"https://elpais.com/","El Mundo"=>"https://www.elmundo.es/","El abc"=>"https://www.abc.es/?ref=https%3A%2F%2Fwww.google.com%2F"];
+    
+    function crearEnlaces($prensa){
+        //for each para saber la clave y el valor
+        foreach($prensa as $key => $valor){
+            ?><li><a href="<?php echo $valor?>">Periódico<?php echo $key?></a></li>
+        <?php 
+            
+        }
+    }
+
+    function periodicoRecomendado($prensa){
+
+        //Genera una clave aleatoria de las claves del array de periódicos
+        $valorAleatorio=array_rand($prensa);
+        echo "El Medio recomendado es <a href=".$prensa[$valorAleatorio].'">Periódico '.$valorAleatorio.' </a>';
+    }
+    crearEnlaces($prensa);
+    periodicoRecomendado($prensa);
+    ?>
+    </ul>
+</body>
+</html>
