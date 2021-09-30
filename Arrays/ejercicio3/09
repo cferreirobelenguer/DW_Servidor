@@ -1,0 +1,52 @@
+
+<!-- 9. Realiza un programa que utilice el siguiente array con las temperatura medias que ha hecho en cada mes de un determinado año y otro array con el nombre de los meses del año. Crea un nuevo array asociativo con el nombre de mes como clave y la temperatura como valor. Muestra a continuación un diagrama de barras horizontales con esos datos. Las barras del diagrama se pueden dibujar a base de la concatenación de una imagen.
+
+ $temperaturas =  [ 6, 10, 12, 14,16 ,20 ,25 , 30, 18, 15, 14, 8];
+ $meses = ['enero','febrero',  . . .
+
+//El array a crear de forma automática tendrá los valores
+$mestemperatura = [ 'enero' => 6, 'febrero' => 10 ...
+ -->
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 9</title>
+    <style>
+        body{
+            background-color:rgb(212, 239, 252);
+        }
+    </style>
+</head>
+<body>
+  <?php
+    DEFINE("mestemperatura",[]);
+    DEFINE("valor",null);
+    $mestemperatura=['enero'=>6,'febrero'=>10,'marzo'=>12,'abril'=>14,'mayo'=>16,'junio'=>20,'julio'=>25,'agosto'=>30,'septiembre'=>18,'octubre'=>15,'noviembre'=>14,'diciembre'=>8];
+        function imagenValor($valor){
+            for($i=0;$i<$valor;$i++){
+                $imagen='<img src="verde.jpg" width="30px" height="30px"/>';
+                echo $imagen;
+            }
+        }
+    ?>  
+<table border="1">
+    
+    <th>Mes</th>
+    <th>Temperatura</th>
+    <?php
+     foreach($mestemperatura as $key=>$valor){
+    ?>
+    <tr>
+           <td><?php echo $key;?></td>
+           <td><?php echo imagenValor($valor)." ".$valor.' °C';?></td>
+    </tr>
+        <?php
+     }
+     ?>
+</table>
+</body>
+</html>
