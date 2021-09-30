@@ -1,4 +1,5 @@
 
+
 <!-- 1.- Rellenar un array con 20 números aleatorios entre 1 y 10 y mostrar el contenido del array  mediante una tabla de una fila en HMTL. Mostrar a continuación el valor máximo, 
 el mínimo y el  valor que mas veces se repite. (Nota definir funciones para cada caso)-->
 <html>
@@ -15,13 +16,19 @@ el mínimo y el  valor que mas veces se repite. (Nota definir funciones para cad
                     for($j=0;$j<1;$j++){
                         ?><td><?php 
                         DEFINE("array",[]);
+                        DEFINE("suma",null);
+                        DEFINE("contador",null);
                         $array=range(0,20);   
                         $num;
                         $Numeroveces=0;
+                        $suma=0;
+                        $contador=0;
+                        
                         
                         foreach($array as &$i){
                             $i=random_int(0,10);
-                            
+                            $suma+=$i;
+                            $contador++;
                         }
                         print_r($array);?></td>
                         </br>
@@ -40,6 +47,7 @@ el mínimo y el  valor que mas veces se repite. (Nota definir funciones para cad
     <h2><?php calcularMin($array);?></h2>
     <br>
     <h2><?php repeticiones($array);?></h2>
+    <h2><?php echo "La media es ".$suma/$contador;?></h2>
     <?php
 
     //Declaración de funciones
@@ -66,12 +74,21 @@ el mínimo y el  valor que mas veces se repite. (Nota definir funciones para cad
     }
 
     function repeticiones($array){
-        foreach($array as $i){
-            $contador=array_count_values($array);
-            $Numeroveces=$contador[$i];
-            echo "El número de veces que se repite ".$i." es ".$Numeroveces;
-            echo "</br>";
+       
+        $contador=array_count_values($array);
+        print_r($contador);
+        $maximo=0;
+        $numeroRepetido;
+        foreach($contador as $key=>$valor){
+            if($valor >$maximo){
+                $maximo=$valor;
+                $numeroRepetido=$key;
+            }
         }
+        echo '<br>';
+        echo '<br>';
+        echo "El número que mayor veces se repite ".$numeroRepetido;
+
     }
     ?>
 </body>
