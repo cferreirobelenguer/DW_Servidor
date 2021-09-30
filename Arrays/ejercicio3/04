@@ -1,0 +1,56 @@
+
+<!-- 4. Crear una carpeta que se llame img y copiar en ella 5 ficheros de imágenes que muestre
+el logo de un deporte. Crear una array asociativo que almacene como clave el nombre del
+deporte y como valor la dirección de la imagen.
+Mostrar una tabla HTML donde con el siguiente formato:-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio deportes</title>
+</head>
+<body>
+    <?php
+    DEFINE("deportes",[]);
+    
+    $deportes=["Fútbol"=>"img/futbol.png","Baloncesto"=>"img/baloncesto.jpeg","Karate"=>"img/karate.jpeg","Natación"=>"img/natacion.png","Atletismo"=>"img/atletismo.jpeg"];
+
+    function recorrerDeportes($deportes){
+        ?>
+        <table border="1">
+        <th>Deportes</th>
+        <th>Imagen</th>  
+        <?php
+        
+            foreach($deportes as $clave => $valor){
+            ?>
+            
+            <tr>
+
+                
+                    <td>
+                        <?php
+                    
+                        echo $clave;
+                        ?>
+                    </td>
+            
+            
+                    <td>
+                        <?php
+                        echo '<img src="'.$valor.'" wigth="100x" height="100px"/>';
+                        }
+                    ?>
+                    </td>
+                    <?php
+            ?>
+            </tr>
+            <?php
+    }
+    recorrerDeportes($deportes);
+    ?>
+</body>
+</html>
