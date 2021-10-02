@@ -1,5 +1,6 @@
 
 
+
 <!-- 5.  Realizar un programa en PHP que muestre un posible resultado de la bonoloto:
 Se presentarán 6 números obtenidos aleatoriamente en el rango de 1 a 49 (ambos inclusives) Los 5 primeros forman la jugada ganadora y deberán presentar ordenados de menor a mayor en una tabla html; el sexto es el número complementario.  Por supuesto los números no pueden repetirse.
 3	8	23	34	45	Complementario  15
@@ -34,7 +35,11 @@ $ultimaPosicion2=[];
     $numerosAleatorios=array_rand($array,6);
     shuffle($numerosAleatorios); //Se barajea el array
     $ultimaPosicion2=$numerosAleatorios;
-    $ultimaPosicion=end($ultimaPosicion2);
+
+    //movemos el puntero a la última posición para almacenar esta en ultimaPosicion
+    end($ultimaPosicion2);
+    //Mostramos la posición actual del puntero que es la última posición
+    $ultimaPosicion=current($ultimaPosicion2);
     //Los 5 primeros forman la jugada ganadora y deben de estar presentados de menor a mayor
     //con lo cual se elimina la última posición de $numerosAleatorios
     array_pop($numerosAleatorios);
@@ -59,3 +64,4 @@ function crearTabla($numerosAleatorios){
 </table>
 </body>
 </html>
+
