@@ -1,0 +1,72 @@
+
+
+<!-- 6. Incluir el archivo infopaises.php en un programa php 06.php
+que me muestre el país que tiene mas población y el nombre de sus ciudades. 
+El programa debe buscar en las tablas.
+-->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 6</title>
+</head>
+<body>
+    <?php
+
+    DEFINE("paises",[]);
+    DEFINE("ciudades",[]);
+    $paises = array(
+        'Francia' => array("Capital" => "París", "Poblacion" => "50000000"),
+        'España' => array("Capital" => "Madrid", "Poblacion" => "42000000"),
+        'Italia' => array("Capital" => "Roma", "Poblacion"   => "46000000"),
+        'Argentina' => array("Capital" => "Buenos Aires", "Poblacion" => "40000000"),
+        'Colombia' => array("Capital" => "Bogotá", "Poblacion"  => "36000000"),
+        'Chile' => array("Capital" => "Santiago", "Poblacion"   => "36000000"),
+        'Suecia' => array("Capital" => "Estocolmo", "Poblacion" => "25000000"),
+    );
+    $ciudades = [
+        'Francia' =>    ["París","Burdeos","Niza","Lille","Nantes"],
+        'España' =>     ["Madrid", "Barcelona","León","Sevilla", "Valencia", "Málaga"],
+        'Italia' =>     ["Roma", "Venecia","Florencia","Pisa", "Génova", "Milán", "Turín", "Nápoles"],
+        'Argentina' =>  ["Buenos Aires", "Córdoba","Parana","Rosario"],
+        'Colombia' =>   ["Bogotá", "Medellín","Cali","Barranquilla", "Bucaramanga"],
+        'Chile' =>      ["Santiago", "Arica","Iquique","Osorno", "Viña del Mar"],
+        'Suecia' =>   ["Estocolmo", "Upsala","Gotemburgo","Lund"],
+    ];
+    
+    function compararPaises(&$paises,&$ciudades){
+        $max=0;
+        $indice="";
+        foreach($paises as $key=>$valor){
+            if($paises[$key]["Poblacion"]>$max){
+                $max=$paises[$key]["Poblacion"];
+                $indice=$key;
+            }
+            
+        }
+        
+        ?>
+        <table border="1">
+            <th>País con más población</th>
+            <th>Población</th>
+            <th>Ciudades</th>
+            <tr>
+                <td><?php echo($max);?></td>
+                <td><?php echo($indice); ?></td>
+                <td><?php echo ("Las ciudades son: ");
+                $ciudades_;
+                foreach($ciudades[$indice] as $valor2){
+                $ciudades_=$valor2." ";
+                echo $ciudades_; 
+                }?></td>
+            </tr>
+            </table>
+<?php
+    }
+    compararPaises($paises,$ciudades);
+        
+    ?>
+</body>
+</html>
