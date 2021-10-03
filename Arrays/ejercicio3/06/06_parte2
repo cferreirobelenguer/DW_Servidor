@@ -1,4 +1,6 @@
 
+
+
 <!--Hacer otra versión 06v2.php
 que ordene el array de países usando funciones de la librería y me 
 muestre directamente la última posición, donde debe estar el máximo.
@@ -47,15 +49,10 @@ muestre directamente la última posición, donde debe estar el máximo.
     echo '<br><br>';
     $poblacionFinal=end($paises);
     echo "Última posición con valor máximo: ";
+    echo $poblacionFinal['Capital']." ";
     echo $poblacionFinal['Poblacion'];
     
     }
     verFinalArray($paises);
     
     ?>
-
-
-
-
-    </body>
-    </html>
