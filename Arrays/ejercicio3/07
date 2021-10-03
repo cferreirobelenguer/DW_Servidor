@@ -1,0 +1,85 @@
+
+
+<!-- 7. Crear otro programa que use estos datos  y elija dos paises al azar indicando sus datos 
+y el  nombre de sus ciudades y un enlace generado a google map: 
+‘https://www.google.es/maps/place/’.$paiselegido -->
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 7</title>
+</head>
+<body>
+    <?php
+    DEFINE("array",[]);
+    DEFINE("ciudades",[]);
+    $paises = array(
+        'Francia' => array("Capital" => "París", "Poblacion" => "50000000"),
+        'España' => array("Capital" => "Madrid", "Poblacion" => "42000000"),
+        'Italia' => array("Capital" => "Roma", "Poblacion"   => "46000000"),
+        'Argentina' => array("Capital" => "Buenos Aires", "Poblacion" => "40000000"),
+        'Colombia' => array("Capital" => "Bogotá", "Poblacion"  => "36000000"),
+        'Chile' => array("Capital" => "Santiago", "Poblacion"   => "36000000"),
+        'Suecia' => array("Capital" => "Estocolmo", "Poblacion" => "25000000"),
+    );
+    $ciudades = [
+        'Francia' =>    ["París","Burdeos","Niza","Lille","Nantes"],
+        'España' =>     ["Madrid", "Barcelona","León","Sevilla", "Valencia", "Málaga"],
+        'Italia' =>     ["Roma", "Venecia","Florencia","Pisa", "Génova", "Milán", "Turín", "Nápoles"],
+        'Argentina' =>  ["Buenos Aires", "Córdoba","Parana","Rosario"],
+        'Colombia' =>   ["Bogotá", "Medellín","Cali","Barranquilla", "Bucaramanga"],
+        'Chile' =>      ["Santiago", "Arica","Iquique","Osorno", "Viña del Mar"],
+        'Suecia' =>   ["Estocolmo", "Upsala","Gotemburgo","Lund"],
+    ];
+    function paisesCiudadesAleatorios(&$paises,&$ciudades){
+        echo ("<h1>Primer país aleatorio: </h1><br><br>");
+        $clave_Aleatoria=array_rand($paises); //Esto es la clave del array paises
+        $pais1= $paises[$clave_Aleatoria];
+        foreach($pais1 as $key=>$valor){
+            echo $key." ".$valor." ";
+        }
+        echo '<br>';
+        echo '<br>';
+        echo ("<h1>Ciudades del país: </h1><br><br>");
+        foreach($ciudades[$clave_Aleatoria] as $valor){
+           echo $valor.",";
+       }
+       
+       ?>
+       <br>
+       <br>
+       <a href="https://www.google.es/maps/place/<?php echo  $clave_Aleatoria?>">Enlace a google de primer país</a>
+       <br>
+       <?php
+       echo '<br>';
+       echo '<br>';
+       echo ("<h1>Segundo país aleatorio: </h1><br><br>");
+        $clave_Aleatoria2=array_rand($paises); //Esto es la clave del array paises
+        $pais2= $paises[$clave_Aleatoria2];
+        foreach($pais2 as $key=>$valor){
+            
+        echo $key." ".$valor." ";
+        }
+        ?>
+        
+        <?php
+        echo ("<h1>Ciudades del país: </h1><br><br>");
+        foreach($ciudades[$clave_Aleatoria2] as $valor){
+           echo $valor.",";
+       }
+       
+       ?>
+       <br>
+       <br>
+       <a href="https://www.google.es/maps/place/<?php echo  $clave_Aleatoria2?>">Enlace a google del segundo país</a>
+       <br>
+       <?php
+      
+    } 
+    paisesCiudadesAleatorios($paises,$ciudades);
+    ?>
+</body>
+</html>
