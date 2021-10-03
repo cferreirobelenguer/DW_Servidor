@@ -1,0 +1,61 @@
+
+<!--Hacer otra versión 06v2.php
+que ordene el array de países usando funciones de la librería y me 
+muestre directamente la última posición, donde debe estar el máximo.
+-->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 6</title>
+</head>
+<body>
+    <?php
+
+    DEFINE("paises",[]);
+    DEFINE("ciudades",[]);
+    $paises = array(
+        'Francia' => array("Capital" => "París", "Poblacion" => "50000000"),
+        'España' => array("Capital" => "Madrid", "Poblacion" => "42000000"),
+        'Italia' => array("Capital" => "Roma", "Poblacion"   => "46000000"),
+        'Argentina' => array("Capital" => "Buenos Aires", "Poblacion" => "40000000"),
+        'Colombia' => array("Capital" => "Bogotá", "Poblacion"  => "36000000"),
+        'Chile' => array("Capital" => "Santiago", "Poblacion"   => "36000000"),
+        'Suecia' => array("Capital" => "Estocolmo", "Poblacion" => "25000000"),
+    );
+    $ciudades = [
+        'Francia' =>    ["París","Burdeos","Niza","Lille","Nantes"],
+        'España' =>     ["Madrid", "Barcelona","León","Sevilla", "Valencia", "Málaga"],
+        'Italia' =>     ["Roma", "Venecia","Florencia","Pisa", "Génova", "Milán", "Turín", "Nápoles"],
+        'Argentina' =>  ["Buenos Aires", "Córdoba","Parana","Rosario"],
+        'Colombia' =>   ["Bogotá", "Medellín","Cali","Barranquilla", "Bucaramanga"],
+        'Chile' =>      ["Santiago", "Arica","Iquique","Osorno", "Viña del Mar"],
+        'Suecia' =>   ["Estocolmo", "Upsala","Gotemburgo","Lund"],
+    ];
+
+    
+    usort($paises, 'sort_by_orden');
+
+    function sort_by_orden ($a, $b) {
+    return $a['Poblacion'] - $b['Poblacion'];
+    }
+    function verFinalArray(&$paises){
+    echo "Paises ordenados de menor a mayor población: <br><br>";
+    print_r($paises);
+    echo '<br><br>';
+    $poblacionFinal=end($paises);
+    echo "Última posición con valor máximo: ";
+    echo $poblacionFinal['Poblacion'];
+    
+    }
+    verFinalArray($paises);
+    
+    ?>
+
+
+
+
+    </body>
+    </html>
