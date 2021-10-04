@@ -1,0 +1,184 @@
+
+
+
+<!--El juego simula la partida entre dos jugadores el rojo y el azul, 
+cada jugador realiza una tirada de 6 datos, ganando el jugador que más puntos tiene, 
+eliminado la puntuación de dos datos: un dado con el valor más alto y otro dado con el 
+valor más bajo.
+Ver el siguiente ejemplo de ejecución. -->
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juego de los dados</title>
+</head>
+<body>
+    
+
+<?php
+
+//Variables estáticas de iconos de dados
+DEFINE("dado1","&#9856;");
+DEFINE("dado2","&#9857;");
+DEFINE("dado3","&#9858;");
+DEFINE("dado4","&#9859;");
+DEFINE("dado5","&#9860;");
+DEFINE("dado6","&#9861;");
+//Variable estática de array con dados posibles de tiradas
+DEFINE("dadosDisponibles",[]);
+//Variables estáticas de suma de cada uno de los jugadores
+DEFINE("totalJugador1",0);
+DEFINE("totalJugador2",0);
+
+$totalJugador1=0;
+$totalJugador2=0;
+
+
+function tirada1(&$totalJugador1){
+$dado1="&#9856;";
+$dado2="&#9857;";
+$dado3="&#9858;";
+$dado4="&#9859;";
+$dado5="&#9860;";
+$dado6="&#9861;";
+$max=0;
+$min=0;
+    
+    $jugador1=[];
+    $tirada1=[];
+    $tirada1_=[];
+    //tirada de jugador 1 aleatoria
+    for($i=0;$i<5;$i++){
+        $tirada1[$i]=random_int(1,6);
+    }
+    //Se calcula el valor máximo y mínimo de la tirada del jugador
+    $max_=max($tirada1);
+    $min_=min($tirada1);
+    
+    
+    foreach($tirada1 as $key=>$valor){
+        $totalJugador1+=$valor;
+       
+        switch($valor){
+            case 1:
+                $tirada1[$key]=$dado1;
+                
+            break;
+            case 2:
+                $tirada1[$key]=$dado2;
+            break;
+            case 3:
+                $tirada1[$key]=$dado3;
+            break;
+            case 4:
+                $tirada1[$key]=$dado4;
+            break;
+            case 5:
+                $tirada1[$key]=$dado5;
+            break;
+            case 6:
+                $tirada1[$key]=$dado6;
+                
+            break;
+        }
+    }
+    
+  foreach($tirada1 as $key =>$valor){
+        echo $valor;    
+    }
+    //Se descuenta el valor máximo y mínimo de la tirada
+    $totalJugador1=$totalJugador1-$max_-$min_;
+}
+
+?>
+<hr>
+<?php
+function tirada2(&$totalJugador2){
+$dado1="&#9856;";
+$dado2="&#9857;";
+$dado3="&#9858;";
+$dado4="&#9859;";
+$dado5="&#9860;";
+$dado6="&#9861;";
+$max=1;
+$min=1;
+    $jugador2=[];
+    $tirada2=[];
+    //tirada de jugador 2 aleatoria
+    for($i=0;$i<5;$i++){
+        $tirada2[$i]=random_int(1,6);
+    }
+    //Se calcula el valor máximo y mínimo de la tirada del jugador
+    $max_=max($tirada2);
+    $min_=min($tirada2);
+    
+    foreach($tirada2 as $key=>$valor){
+        $totalJugador2+=$valor;
+        
+        switch($valor){
+            case 1:
+                $tirada2[$key]=$dado1;
+                
+            break;
+            case 2:
+                $tirada2[$key]=$dado2;
+                
+            break;
+            case 3:
+                $tirada2[$key]=$dado3;
+                
+            break;
+            case 4:
+                $tirada2[$key]=$dado4;
+                
+            break;
+            case 5:
+                $tirada2[$key]=$dado5;
+            break;
+            case 6:
+                $tirada2[$key]=$dado6;
+                
+            break;
+        }
+        
+    }
+    
+    foreach($tirada2 as $key=>$valor){
+        echo $valor;    
+    }
+    //Se descuenta el valor máximo y mínimo de la tirada
+    $totalJugador2=$totalJugador2-$max_-$min_;
+}
+function compararTiradas(&$totalJugador1,&$totalJugador2){
+    if($totalJugador1>$totalJugador2){
+        echo "<h1>Resultado: Ha ganado el jugador 1</h1>";
+    }else{
+        echo "<h1>Resultado: Ha ganado el jugador 2</h1>";
+    }
+}
+
+
+?>
+<center>
+<table border="1" >
+    <tr >
+        <th><h1>Jugador 1 </h1></th>
+        <td bgcolor="blue"><h1 style="font-size:100px;"><?php tirada1($totalJugador1);?></h1></td>
+        <td><?php echo "<h1>$totalJugador1 puntos</td>"?></td>
+    </tr>
+    <tr>
+        <th><h1>Jugador 2</h1></th>
+        <td bgcolor="red" ><h1 style="font-size:100px;"><?php tirada2($totalJugador2);?></h1></td>
+        <td ><?php echo "<h1>$totalJugador2 puntos</td>"?></td>
+    </tr>
+
+</table>
+</center>
+<center>
+<h1><?php compararTiradas($totalJugador1,$totalJugador2);?></h1>
+</center>
+</body>
+</html>
