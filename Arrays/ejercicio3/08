@@ -1,0 +1,63 @@
+<!-- Generar una tabla HTML a partir del contenido de los datos del ejercicio 6.-->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 8</title>
+</head>
+<body>
+    <?php
+
+    DEFINE("paises",[]);
+    DEFINE("ciudades",[]);
+    $paises = array(
+        'Francia' => array("Capital" => "París", "Poblacion" => "50000000"),
+        'España' => array("Capital" => "Madrid", "Poblacion" => "42000000"),
+        'Italia' => array("Capital" => "Roma", "Poblacion"   => "46000000"),
+        'Argentina' => array("Capital" => "Buenos Aires", "Poblacion" => "40000000"),
+        'Colombia' => array("Capital" => "Bogotá", "Poblacion"  => "36000000"),
+        'Chile' => array("Capital" => "Santiago", "Poblacion"   => "36000000"),
+        'Suecia' => array("Capital" => "Estocolmo", "Poblacion" => "25000000"),
+    );
+    $ciudades = [
+        'Francia' =>    ["París","Burdeos","Niza","Lille","Nantes"],
+        'España' =>     ["Madrid", "Barcelona","León","Sevilla", "Valencia", "Málaga"],
+        'Italia' =>     ["Roma", "Venecia","Florencia","Pisa", "Génova", "Milán", "Turín", "Nápoles"],
+        'Argentina' =>  ["Buenos Aires", "Córdoba","Parana","Rosario"],
+        'Colombia' =>   ["Bogotá", "Medellín","Cali","Barranquilla", "Bucaramanga"],
+        'Chile' =>      ["Santiago", "Arica","Iquique","Osorno", "Viña del Mar"],
+        'Suecia' =>   ["Estocolmo", "Upsala","Gotemburgo","Lund"],
+    ];
+    
+    ?>
+    <table border="1">
+        <tr>
+        <th>País</th>   
+        <th>Capital</th>
+        <th>Población</th>
+        <th>Ciudades</th>
+        </tr>
+        <?php
+        foreach($paises as $key=>$valor){
+        ?>
+        <tr>
+        <?php $pais=$key;
+        echo '<td>'.$pais.'</td>';
+        echo '<td>'.$paises[$key]['Capital'].'</td>';
+        echo '<td>'.$paises[$key]['Poblacion'].'</td>';
+        ;?>
+        <td><?php foreach ($ciudades[$pais] as $ciudad){
+            echo $ciudad.",";
+        }?>
+        </td>
+        <?php
+        }
+        ?>
+        </tr>
+        
+
+    </table>
+</body>
+</html>
