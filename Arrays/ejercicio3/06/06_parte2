@@ -38,7 +38,7 @@ muestre directamente la última posición, donde debe estar el máximo.
     ];
 
     
-    usort($paises, 'sort_by_orden');
+    uasort($paises, 'sort_by_orden');
 
     function sort_by_orden ($a, $b) {
     return $a['Poblacion'] - $b['Poblacion'];
@@ -49,6 +49,7 @@ muestre directamente la última posición, donde debe estar el máximo.
     echo '<br><br>';
     $poblacionFinal=end($paises);
     echo "Última posición con valor máximo: ";
+    echo "El país con mayor población es: ".array_key_last($paises);
     echo $poblacionFinal['Capital']." ";
     echo $poblacionFinal['Poblacion'];
     
