@@ -49,7 +49,7 @@ muestre directamente la última posición, donde debe estar el máximo.
     echo '<br><br>';
     $poblacionFinal=end($paises);
     echo "Última posición con valor máximo: ";
-    echo "El país con mayor población es: ".array_key_last($paises);
+    echo "El país con mayor población es: ".end(array_keys($paises));
     echo $poblacionFinal['Capital']." ";
     echo $poblacionFinal['Poblacion'];
     
