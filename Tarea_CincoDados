@@ -1,6 +1,4 @@
 
-
-
 <!--El juego simula la partida entre dos jugadores el rojo y el azul, 
 cada jugador realiza una tirada de 6 datos, ganando el jugador que más puntos tiene, 
 eliminado la puntuación de dos datos: un dado con el valor más alto y otro dado con el 
