@@ -1,0 +1,69 @@
+
+
+<!-- Crea un mini-diccionario español-inglés que contenga, al menos, 20 palabras 
+con su traducción.
+Utiliza un array asociativo para almacenar las parejas de palabras. 
+El programa pedirá una palabra
+en español y dará la correspondiente traducción en inglés
+-->
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mini diccionario</title>
+</head>
+<body>
+    <?php
+        DEFINE("español",[]);
+        DEFINE("ingles",[]);
+        DEFINE("miniDiccionario",[]);
+        $español=["blanco","negro","gris","verde","azul","rosa","rojo","amarillo"];
+        $ingles=["white","black","grey","green","blue","pink","red","yellow"];
+        $miniDiccionario=[];
+
+        //array asociativo formado por los dos arrays
+        for($i=0;$i<count($español);$i++){
+            $miniDiccionario[$español[$i]]=$ingles[$i];
+        }
+        
+        ?>
+        <table border="1">
+            <tr>
+                <th>Español</th>
+                <th>Palabra traducida a inglés</th>
+                <th>Inglés</th>
+                <th>Palabra traducida a español</th>
+            </tr>
+            <tr>
+        <?php
+        function palabraEspañol(&$español,&$ingles,&$miniDiccionario){
+            
+            $posicionEspañol=0;
+            $posicionEspañol=array_rand($español,1);
+            
+            
+            echo '<td><h1>'.$español[$posicionEspañol].'</h1></td>';
+            echo '<td><h1>'.$ingles[$posicionEspañol].'</h1></td>';
+
+        }
+        function palabraInglés(&$ingles,&$español,&$miniDiccionario){
+            
+            $posicionIngles=0;
+            $posicionIngles=array_rand($ingles,1);
+
+            echo '<td><h1>'.$ingles[$posicionIngles].'</h1></td>';
+            echo '<td><h1>'.$español[$posicionIngles].'</h1></td>';
+
+        }
+        palabraEspañol($español,$ingles,$miniDiccionario);
+        palabraInglés($ingles,$español,$miniDiccionario);
+        ?>
+        </tr>
+    </table>
+        
+        
+</body>
+</html>
