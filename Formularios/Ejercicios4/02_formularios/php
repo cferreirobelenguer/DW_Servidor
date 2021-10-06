@@ -1,0 +1,70 @@
+
+
+<?php
+
+$numero1=$_GET["numero1"];
+$numero2=$_GET["numero2"];
+echo "El número que ha introducido es ".$numero1;
+echo '<br>';
+echo "El número que ha introducido ".$numero2;
+$resultado;
+
+function sumarNumeros(&$numero1,&$numero2,&$resultado){
+    $resultado=$numero1+$numero2;
+    $_GET["botonSuma"]=$resultado;
+    echo "La suma es ".$resultado;
+}
+function restarNumeros(&$numero1,&$numero2,&$resultado){
+    $resultado=$numero1-$numero2;
+    $_GET["botonResta"]=$resultado;
+    echo "La resta es ".$resultado;
+}
+function multiplicarNumeros(&$numero1,&$numero2,&$resultado){
+    $resultado=$numero1*$numero2;
+    $_GET["botonMulti"]=$resultado;
+    echo "La multiplicación es ".$resultado;
+}
+function dividirNumeros(&$numero1,&$numero2,&$resultado){
+    $resultado=$numero1/$numero2;
+    $_GET["botonDivi"]=$resultado;
+    echo "La división es ".$resultado;
+}
+function calcularDecimal(&$resultado){
+        echo "El resultado en decimal es ".$resultado;
+}
+function calcularHexa(&$resultado){
+    $resultado=dechex($resultado);
+    echo "El resultado en hexadecimal es ".$resultado;
+}
+function calcularBinario(&$resultado){
+    $resultado=decbin($resultado);
+    echo "El resultado en binario es ".$resultado;
+}
+
+if(isset($_GET["botonSuma"])){
+    echo '<br>';
+    sumarNumeros($numero1,$numero2,$resultado);
+}elseif(isset($_GET["botonResta"])){
+    echo '<br>';
+    restarNumeros($numero1,$numero2,$resultado); 
+}elseif(isset($_GET["botonMulti"])){
+    echo '<br>';
+    multiplicarNumeros($numero1,$numero2,$resultado); 
+}elseif(isset($_GET["botonDivi"])){
+    echo '<br>';
+    dividirNumeros($numero1,$numero2,$resultado);
+}
+
+if(isset($_GET["decimal"])){
+    echo '<br>';
+    calcularDecimal($resultado);
+}elseif(isset($_GET["hexadecimal"])){
+    echo '<br>';
+    calcularHexa($resultado);
+}elseif(isset($_GET["binario"])){
+    echo '<br>';
+    calcularBinario($resultado);
+}
+
+
+?>
