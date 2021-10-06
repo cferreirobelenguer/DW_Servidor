@@ -1,0 +1,37 @@
+
+
+<?php
+
+DEFINE("datos",[]);
+$datos=["usuario1"=>545,"usuario2"=>554,"usuario3"=>564];
+$validacion=false;
+function validarDatos(&$datos,&$validacion){
+    
+    $nombre=$_GET["nombre"];
+    $contra=$_GET["contraseña"];
+    
+    foreach($datos as $key=>$valor){
+        if(($nombre==$key)&&($contra==$valor)){
+            
+            $validacion=true;
+            break;
+            
+        }
+    }
+    
+    if(!$validacion){
+            echo "Acceso denegado";
+            echo "Por favor, vuelva a intentarlo";
+        }else{
+            echo "Acceso permitido";
+            echo '<br>';
+            echo "El nombre con el que se ha identificado es ".$nombre;
+            echo '<br>';
+            echo "La contraseña con la que se ha identificado es ".$contra;
+            echo '<br>';
+        }
+
+}
+validarDatos($datos,$validacion);
+
+?>
