@@ -1,0 +1,42 @@
+
+<!--EJEMPLO FORMULARIO CON GET-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="ejeformularioClase.php" method="get">
+        NOMBRE:<input type="text" name="nombre">
+        <br>
+        EDAD:<input type="number" name="valor">
+        <br>
+        Marca o no marca <input type="checkbox" name="marca">
+        <br>
+        Botón radios:
+
+        Uno<input type="radio" name="opcion" value="1">
+        Dos <input type="radio" name="opcion" value="2">
+        Tres<input type="radio" name="opcion" value="3">
+        <br>
+
+        UN COLOR:<select name="color">
+                        <option>rojo</option>
+                        <option>verde</option>
+                        <option>azul</option>
+                </select>
+        COLORES:<select name="colores[]" multiple size=3>
+                    <option>rojo</option>
+                    <option>verde</option>
+                    <option selected="selected">azul</option>
+                    <option>amarillo</option>
+                    <option>marron</option>
+                </select>
+        <input type="submit" value="Enviar">
+        <input type="reset" value="Borrar">
+    </form>
+</body>
+</html>
