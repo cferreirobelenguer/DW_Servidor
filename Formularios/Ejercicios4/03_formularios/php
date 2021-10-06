@@ -1,0 +1,93 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 3 php</title>
+</head>
+<body>
+<br>
+<h1 style="background-color:blue;color:white;padding:10px;text-align:center"> RESULTADOS DEL FORMULARIO</h1>
+<br>
+<center>
+<?php
+
+function procesarNumero1(){
+    if(isset ($_REQUEST["numero1"])){
+        echo '<br>';
+        echo "Has elegido el número ".$_REQUEST["numero1"];
+    }
+}
+function procesarNumero2(){
+    if(isset ($_REQUEST["numero2"])){
+        echo '<br>';
+        echo "Has elegido el número ".$_REQUEST["numero2"];
+    }
+}
+function procesarColor(){
+    echo '<br>';
+    echo "Has elegido el color ".$_REQUEST["color"];
+}
+function procesarBusqueda(){
+    if(isset($_REQUEST["buscador"])){
+        echo '<br>';
+        echo "La búsqueda que has hecho es ".$_REQUEST["buscador"];
+    }
+}
+function procesarNombre(){
+    echo '<br>';
+    echo "El nombre que has escrito es ".$_REQUEST["nombre"];
+}
+function procesarApellido(){
+    echo '<br>';
+    echo "El apellido que has escrito es ".$_REQUEST["apellidos"];
+}
+function procesarEmail(){
+    
+    if(isset ($_REQUEST["email"])){
+        echo '<br>';
+        echo "El email introducido es ".$_REQUEST["email"];
+    }
+}
+function procesarFecha(){
+    if(isset($_REQUEST["fecha"])){
+        echo '<br>';
+        echo "La fecha introducida es ".$_REQUEST["fecha"];
+    }
+}
+function procesarNumeros(){
+    echo '<br>';
+    echo "El número introducido es ".$_REQUEST["numeroRango"];
+}
+function procesarWeb(){
+    echo '<br>';
+    echo "La web introducida es ".$_REQUEST["direccion"];
+}
+function procesarHora(){
+    echo '<br>';
+    echo "La hora introducida es de ".$_REQUEST["hora1"]." a ".$_REQUEST["hora2"]." horas";
+}
+
+
+procesarNumero1();
+procesarNumero2();
+procesarColor();
+procesarBusqueda();
+procesarNombre();
+procesarApellido();
+procesarEmail();
+procesarFecha();
+procesarNumeros();
+procesarWeb();
+procesarHora();
+
+
+
+
+?>
+</center>
+</body>
+</html>
