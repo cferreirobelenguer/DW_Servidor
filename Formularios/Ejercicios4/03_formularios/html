@@ -1,0 +1,87 @@
+
+
+
+<!-- 3- Crear el fichero 03.html donde se defina un formulario que 
+    incluya diversos controles html 5 y que sea procesado por el archivo 03.php 
+    que mostrará mediante la función print_r($_REQUEST) y var_dump($_REQUEST);
+    la lista de todos los valores recibidos.-->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 3 formularios</title>
+    <style>
+        #titulo{
+            background-color: blue;
+            color: aliceblue;
+            text-align: center;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="titulo">
+        <h1>FORMULARIO CON CONTROLES HTML5</h1>
+    </div>
+    <center>
+        <form action="03_formulario.php" method="request">
+            <p>
+                <label for="numero1">NUMERO 1 (number): </label>
+                <input type="number" name="numero1">
+            </p>
+            <p>
+                <label for="numero2">NUMERO 2 (range [10-100]): </label>
+                10<input type="range" name="numero2" min="10" max="100" step="2">100<br>
+            </p>
+            <p>
+                <label for="color_">COLOR favorito (COLOR): </label>
+                <select name="color">
+                    <option style="background-color: black;color:black;">negro</option>
+                    <option style="background-color: blue;color:blue;">azul</option>
+                    <option style="background-color: green;color:green;">verde</option>
+                    <option style="background-color: red;color:red;">rojo</option>
+                </select>
+            </p>
+            <p>
+                <label for="site-search">Buscar (search): </label>
+                    <input type="search"  name="buscador" aria-label="Search through site content">    
+            </p>
+            <p>
+                <label for="nombre_">Nombre (text): </label>
+                <input type="text" name="nombre">
+            </p>
+            <p>
+                <label for="apellidos_">Nombre (text): </label>
+                <input type="text" name="apellidos">
+            </p>
+            <p>
+                <label for="apellidos_">Email (email): </label>
+                <input type="text" name="email">
+            </p>
+            <p>
+                <label for="fecha_">Fecha de nacimiento : </label>
+                <input type="date" name="fecha">
+            </p>
+            <p>
+                <label for="numeroRango_">Edad (number) (de 0 a 150) : </label>
+                <input type="number"  name="numeroRango" min="0" max="150">
+            </p>
+            <p>
+                <label for="direccion_">Página personal (url) : </label>
+                <input type="url" name="direccion" placeholder="https://example.com"
+                pattern="https://.*" size="30"
+                required>
+            </p>
+            <p>
+                <label for="hora1_">Horario: De: </label>
+                <input type="time" name="hora1">
+                <label for="hora2_"> a </label>
+                <input type="time" name="hora2">
+            </p>
+            <button id="submit" name="submit_">Enviar</button>
+        </form>
+    </center>
+</body>
+</html>
