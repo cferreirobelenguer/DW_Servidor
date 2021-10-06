@@ -1,0 +1,35 @@
+
+
+<?php
+
+echo "Su nombre es ".$_GET["nombre"]; //Muestra el valor que ha recibido de la petición
+echo "Su edad es ".$_GET["valor"];
+if(isset ($_GET ["casilla"])){
+    echo "<br> Has marcado la casilla";
+}
+//Para indicar que el campo está vacío es if(empty($_GET["option"])); sin embargo cuando usamos
+//isset indica que el campo está lleno
+//htmlspecialschar lo que hace es no interpretar determinados caracteres
+//strip_tags quita los espacios en blanco
+
+
+if(isset ($_GET ["opcion"])){
+    echo "<br> Has elegido ".$_GET["opcion"]."<br>";
+}
+
+
+echo "<br> Has elegido el color ".$_GET["color"]."<br>";
+
+echo "Has seleccionado los colores ";
+for ($i=0;$i<count($_GET["colores"]);$i++){
+    echo $_GET["colores"][$i]."<br>";
+}
+//var_dump($_GET); También podría mostrarse los resultados en array con vardump
+
+echo "He recibido los siguientes datos <br>";
+    foreach($_GET as $clave=>$valor){
+        echo $clave." con valor = ".$valor."<br>";
+    }
+
+
+?>
