@@ -6,7 +6,7 @@ DEFINE("datos",[]);
 $datos=["usuario1"=>545,"usuario2"=>554,"usuario3"=>564];
 $validacion=false;
 function validarDatos(&$datos,&$validacion){
-    
+    if ((array_key_exists($_REQUEST["nombre"], $datos)) && ($_REQUEST["contraseña"] == $datos[$_REQUEST["nombre"]])) {
     $nombre=$_GET["nombre"];
     $contra=$_GET["contraseña"];
     
@@ -30,6 +30,54 @@ function validarDatos(&$datos,&$validacion){
             echo "La contraseña con la que se ha identificado es ".$contra;
             echo '<br>';
         }
+    }else{
+        
+        echo "Acceso denegado".'<br>';
+        echo "Por favor, vuelva a intentarlo";
+        ?>
+      <!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 1</title>
+    <style>
+        #identificarse{
+            background-color: blue;
+            margin:10px;
+            padding:10px;
+            color: aliceblue;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="identificarse">
+        <h1>Autentificación</h1>
+    </div>
+<center>
+    <fieldset>
+        <legend>Datos de identificación</legend>
+        <form action="01_formularios.php" method="get">
+            <p>
+                <label for="nombre_">Nombre</label>
+                <input type="text" name="nombre" required >
+            </p>
+            <p>
+                <label for="contraseña_">Contraseña</label>    
+                <input type="password" name="contraseña" placeholder="Contraseña segura" size=20>
+            </p>
+            <p>
+                <button id="boton">Identificarse</button>
+            </p>    
+        </form>
+    </fieldset>
+</center>
+</body>
+</html>
+        <?php
+    }
 
 }
 validarDatos($datos,$validacion);
