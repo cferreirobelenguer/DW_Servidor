@@ -1,0 +1,88 @@
+
+
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Procesamiento ejercicio 4</title>
+    <style>
+        h1{
+            background-color:blue;
+            text-align:center;
+            color:cornsilk;
+            padding:40px;
+            font-family: Arial;
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Procesando formulario</h1>
+    <?php
+    function procesarNombre(){
+        $nombre=$_GET["nombre"];
+        echo "Nombre: ".$nombre;
+    }
+    function procesarContraseña(){
+        $contraseña=$_GET["contraseña"];
+        echo "Clave: ".$contraseña;
+    }
+    function procesarRadio(){
+        echo "Semáforo: ",$_GET["color"];
+    }
+    function procesarCheckbox(){
+        
+        if(isset($_GET["publi"])){
+            $publicidad="SI";
+        }else{
+            $publicidad="NO";
+        }
+        echo "Publicidad: ".$publicidad." publicidad";
+    }
+    function procesarMultiCheck(){
+        echo "Has elegido ".count($_GET["idiomas"])." idiomas <br>";
+        foreach($_GET["idiomas"] as $valor){
+            echo $valor.'<br>';
+        }
+    }
+    function procesarEstudios(){
+        echo "Año de fin de estudios: ".$_GET["año"];
+    }
+    function procesarCiudades(){
+        echo "<p>Lista de los códigos postales de provincias: ";
+        foreach($_GET["ciudades"]as $valor){
+            if($valor=="Asturias"){
+                echo "33";
+            }elseif($valor=="Gerona"){
+                echo "17<br>";
+            }elseif($valor=="Madrid"){
+                echo "28<br>";
+            }elseif($valor=="Sevilla"){
+                echo "41<br>";
+            }
+        }
+    }
+    function procesarComentario(){
+        echo "Comentario: ".$_GET["area"];
+    }
+    procesarNombre();
+    echo "<br>";
+    procesarContraseña();
+    echo "<br>";
+    procesarRadio();
+    echo "<br>";
+    procesarCheckbox();
+    echo "<br>";
+    procesarMultiCheck();
+    procesarEstudios();
+    procesarCiudades();
+    procesarComentario();
+
+
+
+    ?>
+</body>
+</html>
