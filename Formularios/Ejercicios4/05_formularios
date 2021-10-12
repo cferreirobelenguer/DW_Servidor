@@ -1,0 +1,105 @@
+
+
+
+<!-- 5. Elaborar un programa 05.php que muestre y procese el siguiente formulario enviado por el método POST y genere los siguientes tipos de respuestas en función de los datos recibidos:
+
+•	Se indicará Bienvenida o Bienvenido en función del sexo.
+•	Se añadirá Dña. o D. si tiene más de 55 años
+•	La lista de hobbys se mostrará tratando los casos cuando no se ha seleccionado ningún  hobby o cuando se ha seleccionado uno solo.
+•	Filtrar las entradas con datos que se van a mostrar para evitar los ataques de inyección de código.
+-->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 5</title>
+    <style>
+        .titulo{
+            color:white;
+            text-shadow: 0.1em 0.1em 0.2em black;
+            padding:30px;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="titulo">
+        <h1>DATOS PERSONALES</p>
+    </div>
+    <?php 
+    
+    function procesarEdad(){
+        if($_POST["edad"]=="Mayor de 55"){
+            if($_POST["sexo"]=="hombre"){
+                echo "Bienvenido Don ".$_POST["nombre"];
+            }else{
+                echo "Bienvenida Doña ".$_POST["nombre"];
+            }
+        }else{
+            if($_POST["sexo"]=="hombre"){
+                echo "Bienvenido ".$_POST["nombre"];
+            }else{
+                echo "Bienvenida ".$_POST["nombre"];
+            }
+        }
+    }
+    function procesarHobbys(){
+        
+        if(!empty($_POST["hobbies"])){
+            echo "La lista de hobbies es: <br>";
+            if(count($_POST["hobbies"])==1){
+                echo "su única afición es ";
+                
+            }
+            foreach($_POST["hobbies"] as $valor){
+                echo $valor.'<br>';
+            }
+        }else{
+            echo "no tiene aficiones de nuestra lista";
+        }
+    }
+
+    if((!empty($_POST["nombre"]))&&(!empty($_POST["apellidos"]))&&(!empty($_POST["edad"]))&&(!empty($_POST["sexo"]))){
+        procesarEdad();
+        echo '<br>';
+        procesarHobbys();
+    ?>
+
+    <?php
+    }else{
+
+        ?>
+        <form action="05.php" method="post">
+        <p>
+            <label for="nombre_">Nombre: </label>
+            <input type="text" name="nombre">
+        </p>
+        <p>
+            <label for="apellidos_">Apellidos: </label>
+            <input type="text" name="apellidos">
+        </p>
+        <p>Edad: </p>
+            <select name="edad">
+                <option>Mayor de 55</option>
+                <option>Menor de 55</option>
+            </select>
+        <p>Sexo: </p>
+            Hombre<input type="radio" name="sexo" value="hombre">
+            Mujer<input type="radio" name="sexo" value="mujer">
+        <p> Hobbies: </p>
+            lectura<input type="checkbox" name="hobbies[]" value="lectura">
+            ver la tele<input type="checkbox" name="hobbies[]" value="tele">
+            hacer deporte<input type="checkbox" name="hobbies[]" value="deporte">
+            Salir de marcha<input type="checkbox" name="hobbies[]" value="marcha">
+        <input type="submit" value="Enviar">
+    </form>
+    <?php
+    }
+
+
+    
+    ?>
+</body>
+</html>
