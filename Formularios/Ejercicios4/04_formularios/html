@@ -1,0 +1,83 @@
+
+
+
+<!--4. Elaborar el  formulario siguiente (04. html) y procesar los datos enviados que un script php (04.php) 
+    que muestres los valores recibidos según el siguiente formato:-->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 4</title>
+        <style>
+            .formulario{
+                background-color: blue;
+                text-align: center;
+                margin: 20px;
+                color: cornsilk;
+                padding: 20px;
+                font-family: Arial;
+            }
+
+        </style>
+</head>
+<body>
+    <div class="formulario">
+        <h1>Formulario con múltiples campos</h1>
+    </div>
+    <h4>CAMPOS DE TEXTO:</h4>
+    <form action="04_php.php" method="get">
+        <p>
+            <label for="nombre_">Nombre: </label>
+            <input type="text" name="nombre">
+        </p>
+        <p>
+            <label for="contraseña_">Contraseña: </label>
+            <input type="text" name="contraseña">
+        </p>
+        <hr>
+        <h4>CAMPOS DE TEXTO:</h4>
+        <p>
+        Rojo <input type="radio" name="color" value="red">
+        Naranja <input type="radio" name="color" value="orange">
+        Verde <input type="radio" name="color" value="green">
+        </p>
+        <hr>
+        <h4>CHECKBOX:</h4>
+        <p>
+            Quiero recibir publicidad <input type="checkbox" name="publi" value="Quiero recibir publicidad ">
+        </p>
+        <h4>MULTI CHECKBOX:</h4>
+            Inglés <input type="checkbox" name="idiomas[]" value="Inglés" >
+            Francés <input type="checkbox" name="idiomas[]" value="Francés" >
+            Alemán <input type="checkbox" name="idiomas[]" value="Alemán">
+        <hr>
+        <h4>SELECT: </h4>
+        <h5>Simple: </h5>
+        Año de finalización de estudios: <select name="año">
+            <option value="2016">2016</option>
+            <option value="2017">2017</option>
+            <option value="2018">2018</option>
+            <option value="2019">2019</option>
+            <option value="2020">2020</option>
+            <option value="2021">2021</option>
+        </select>
+        <h5>Múltiple: </h5>
+        Ciudades: <select name="ciudades[]" multiple size=4> 
+            <option>Asturias</option>
+            <option selected="selected" value="Gerona">Gerona</option>
+            <option>Madrid</option>
+            <option selected="selected" value="Sevilla">Sevilla</option>
+            
+        </select>
+        <hr>
+        <h4>TEXTAREA: </h4>
+        <textarea name="area" value="Este formulario es muy completo" row="50px" col="100px">EScriba sus comentarios: </textarea>
+        <hr>
+        <p>BOTONES:</p>
+        <input type="reset" name=resetear value="Resetear el formulario">
+        <input type="submit" name="enviar" value="Enviar formulario al servidor">
+    </form>
+</body>
+</html>
