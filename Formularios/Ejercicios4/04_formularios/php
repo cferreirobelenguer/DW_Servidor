@@ -1,6 +1,4 @@
 
-
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -23,11 +21,11 @@
     <h1>Procesando formulario</h1>
     <?php
     function procesarNombre(){
-        $nombre=$_GET["nombre"];
+        $nombre=limpiar($_GET["nombre"]);
         echo "Nombre: ".$nombre;
     }
     function procesarContraseña(){
-        $contraseña=$_GET["contraseña"];
+        $contraseña=limpiar($_GET["contraseña"]);
         echo "Clave: ".$contraseña;
     }
     function procesarRadio(){
@@ -68,6 +66,13 @@
     function procesarComentario(){
         echo "Comentario: ".$_GET["area"];
     }
+    function limpiar($entrada){
+        $salida = trim($entrada); // Elimina espacios antes y después de los datos
+        $salida = stripslashes($salida); // Elimina backslashes \
+        $salida = htmlspecialchars($salida); // Traduce caracteres especiales en entidades HTML
+        return $salida;
+    }
+
     procesarNombre();
     echo "<br>";
     procesarContraseña();
