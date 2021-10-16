@@ -3,7 +3,7 @@
 
 <!-- Tarea subir imágenes al servidor con límite de tamaño de cliente de 200KB y
 límite de tamaño de servidor de 300KB, no pueden duplicarse, mostrar su información
-y los mensajes de error correspondientes-->
+y los mensajes de error correspondientes, tiene que ser PNG o JPEG-->
 
 <!DOCTYPE html>
 <html lang="es">
