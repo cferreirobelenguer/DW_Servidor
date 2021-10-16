@@ -1,0 +1,33 @@
+
+
+
+<!-- Tarea subir imágenes al servidor con límite de tamaño de cliente de 200KB y
+límite de tamaño de servidor de 300KB, no pueden duplicarse, mostrar su información
+y los mensajes de error correspondientes-->
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Subida de ficheros a un servidor Web</h2>
+    <form enctype="multipart/form-data" action="imagen.php" method="POST">
+        <p>
+            <label for="nombre">Indique su nombre: </label>
+            <input type="text" name="nombre">
+        </p>
+        
+        <p>
+            <input type="hidden" name="MAX_FILE_SIZE" value="200000">
+            <label>Elija los archivos a subir: </label><br>
+            <input type="file" name="imagen[]" accept="image/jpeg image/png" value="" multiple>
+            
+        </p>
+            <input type="submit" name="subir" value="Subir imágenes">
+        </form>
+</body>
+</html>
