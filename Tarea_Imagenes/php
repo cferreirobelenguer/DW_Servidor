@@ -1,0 +1,90 @@
+
+
+
+<?php
+echo 'ARRAY CON LA INFORMACIÓN DE LAS IMÁGENES: <br>';
+print_r($_FILES);
+
+echo '<hr>';
+//Se imprime el nombre escrito en el formulario
+echo 'NOMBRE DEL USUARIO: <br>';
+echo "Nombre: ".limpiar($_POST["nombre"]).'<hr>';
+$directorio="C:/Users/User/Desktop/ficheros";
+$tamaño=0;
+$sumaTamaño=0;
+$tamañoEsperado=300000;
+$limiteArchivoCliente=200000;
+echo 'MENSAJE DE PROCESAMIENTO DE IMÁGENES: <br>';
+//Función que limpia el nombre del formulario
+function limpiar($entrada){
+	$salida=trim($entrada); //Elimina espacios antes y después de los datos
+	$salida=stripslashes($salida); //Elimina backlashes
+	$salida=htmlspecialchars($salida); //Traduce cacteres especiales en entidades html
+	return $salida;
+}
+
+//Calculamos la suma del tamaño de los archivos subidos
+foreach($_FILES['imagen']['size'] as $clave=>$tamaño){
+	$sumaTamaño+=$tamaño;
+}
+
+if (isset($_FILES['imagen']['name'])){
+	
+	$cantidad= count($_FILES["imagen"]["tmp_name"]);
+	foreach($_FILES['imagen']['size'] as $clave=>$tamaño){
+		//Comprobamos si cada imagen individual es ifual a 2KB
+		if($tamaño<=$limiteArchivoCliente){
+			
+			//Comprobamos si la suma del tamaño es igual a 3KB
+			if($sumaTamaño<=$tamañoEsperado){
+				//Comprobamos si el fichero es una imagen png o jpeg
+				
+					for ($i=0; $i<$cantidad; $i++){
+	    				if ($_FILES['imagen']['type'][$i]=='image/png' || $_FILES['imagen']['type'][$i]=='image/jpeg'){
+	    					//Subimos el fichero al servidor en el directorio especificado en la variable directorio
+							
+							move_uploaded_file($_FILES['imagen']['tmp_name'][$i],$directorio."/". $_FILES['imagen']['name'][$i]);
+								$subida=true;	
+						
+	    				}else{
+            			$subida=false;
+        				}
+					
+    				}
+				
+			}else{
+				echo "Límite de tamaño superado en servidor<br>";
+			}
+		}else{
+			echo "Límite de tamaño superado en cliente<br>";
+		}
+	}
+	
+}else{
+    echo "Alguno de los archivos no existe<br>";
+}
+
+//Comprobamos si la subida se ha realizado e imprimimos el mensaje
+if(!$subida){
+	echo "Archivo no guardado correctamente<br>";
+}else{
+	echo "Subida realizada correctamente <br>";
+}
+
+echo "<hr>DATOS DE LAS IMAGENES: <br>";
+						foreach($_FILES['imagen']['name'] as $clave =>$nombreImagen){
+							echo "Nombre de imagen: ".$nombreImagen.'<br>';
+						}
+						foreach($_FILES['imagen']['type'] as $clave =>$tipoImagen){
+							echo "Formato de imagen: ".$tipoImagen.'<br>';
+						}
+						foreach($_FILES['imagen']['error'] as $clave =>$errorImagen){
+							echo "Error de imagen: ".$errorImagen.'<br>';
+						}
+						foreach($_FILES['imagen']['size'] as $clave =>$tamañoImagen){
+							echo "Tamaño de imagen: ".$tamañoImagen.'<br>';
+						}
+						echo '<hr>';
+
+
+?>
