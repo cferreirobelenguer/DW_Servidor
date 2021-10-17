@@ -1,6 +1,5 @@
 
 
-
 <?php
 
 echo 'ARRAY CON LA INFORMACIÓN DE LAS IMÁGENES: <br>';
@@ -10,13 +9,10 @@ echo '<hr>';
 //Se imprime el nombre escrito en el formulario
 echo 'NOMBRE DEL USUARIO: <br>';
 echo "Nombre: ".limpiar($_POST["nombre"]).'<hr>';
-$directorio="C:/Users/User/Desktop/ficheros";
+
 $tamaño=0;
-$sumaTamaño=0;
-$tamañoEsperado=300000;
-$limiteArchivoCliente=200000;
 $directorioTotal="";
-$subida=false;
+
 echo 'MENSAJE DE PROCESAMIENTO DE IMÁGENES: <br>';
 //Función que limpia el nombre del formulario
 function limpiar($entrada){
@@ -26,6 +22,11 @@ function limpiar($entrada){
 	return $salida;
 }
 function procesoSubida(){
+	$directorio="C:/Users/User/Desktop/ficheros";
+	$tamañoEsperado=300000;
+	$subida=false;
+	$limiteArchivoCliente=200000;
+	$sumaTamaño=0;
 //Calculamos la suma del tamaño de los archivos subidos
 foreach($_FILES['imagen']['size'] as $clave=>$tamaño){
 	$sumaTamaño+=$tamaño;
