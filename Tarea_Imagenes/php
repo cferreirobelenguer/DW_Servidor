@@ -2,6 +2,7 @@
 
 
 <?php
+
 echo 'ARRAY CON LA INFORMACIÓN DE LAS IMÁGENES: <br>';
 print_r($_FILES);
 
@@ -14,6 +15,8 @@ $tamaño=0;
 $sumaTamaño=0;
 $tamañoEsperado=300000;
 $limiteArchivoCliente=200000;
+$directorioTotal="";
+$subida=false;
 echo 'MENSAJE DE PROCESAMIENTO DE IMÁGENES: <br>';
 //Función que limpia el nombre del formulario
 function limpiar($entrada){
@@ -22,7 +25,7 @@ function limpiar($entrada){
 	$salida=htmlspecialchars($salida); //Traduce cacteres especiales en entidades html
 	return $salida;
 }
-
+function procesoSubida(){
 //Calculamos la suma del tamaño de los archivos subidos
 foreach($_FILES['imagen']['size'] as $clave=>$tamaño){
 	$sumaTamaño+=$tamaño;
@@ -42,10 +45,12 @@ if (isset($_FILES['imagen']['name'])){
 					for ($i=0; $i<$cantidad; $i++){
 	    				if ($_FILES['imagen']['type'][$i]=='image/png' || $_FILES['imagen']['type'][$i]=='image/jpeg'){
 	    					//Subimos el fichero al servidor en el directorio especificado en la variable directorio
+							$directorioTotal=$directorio."/".$_FILES['imagen']['name'][$i];
+							if(!file_exists($directorioTotal)){
 							
-							move_uploaded_file($_FILES['imagen']['tmp_name'][$i],$directorio."/". $_FILES['imagen']['name'][$i]);
+							    move_uploaded_file($_FILES['imagen']['tmp_name'][$i],$directorio."/". $_FILES['imagen']['name'][$i]);
 								$subida=true;	
-						
+							}
 	    				}else{
             			$subida=false;
         				}
@@ -86,5 +91,6 @@ echo "<hr>DATOS DE LAS IMAGENES: <br>";
 						}
 						echo '<hr>';
 
-
+	}
+	procesoSubida();
 ?>
