@@ -1,5 +1,4 @@
 
-
 <div>
 <b> Detalles:</b><br>
 <table>
@@ -64,7 +63,12 @@ function contarLetras(){
             
             if($Repe2>$MaxRepe2){
                 $MaxRepe2=$Repe2;
-                $letra=$valor;
+                if($MaxRepe2==1){
+                    $letra="No se repite ninguna letra";
+                }else{
+                  $letra=$valor;  
+                }
+                
             }
            
         }
@@ -93,7 +97,12 @@ function palabraRepe(){
             
              if($Repe>$maxRepe){
             $maxRepe=$Repe;
-            $palabra=$valor;
+            if($maxRepe==1){
+                $palabra="No se repite ninguna palabra";
+            }else{
+               $palabra=$valor; 
+            }
+            
             }
             
         }
