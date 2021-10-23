@@ -1,0 +1,18 @@
+
+
+<?php
+function usuarioOk($usuario, $contraseña){
+   //Limpiamos nombre y contraseña
+   if((strlen($_REQUEST['nombre'])>=8)&&($_REQUEST['contraseña']==strrev($_REQUEST['nombre']))){
+        htmlspecialchars($_REQUEST['nombre']);
+        stripslashes($_REQUEST['nombre']);
+        trim($_REQUEST["nombre"]);
+        htmlspecialchars($_REQUEST['contraseña']);
+        stripslashes($_REQUEST['contraseña']);
+        trim($_REQUEST["contraseña"]);
+      return true;
+   }else{
+      return false;
+   }
+   
+}
