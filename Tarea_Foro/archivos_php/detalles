@@ -1,0 +1,111 @@
+
+
+<div>
+<b> Detalles:</b><br>
+<table>
+
+<tr><td>Longitud:          </td><td><?= mostrarLongitud()?></td></tr>
+<tr><td>Nº de palabras:    </td><td><?= contarPalabras() ?></td></tr>
+<tr><td>Letra + repetida:  </td><td><?= contarLetras() ?></td></tr>
+<tr><td>Palabra + repetida:</td><td><?= palabraRepe() ?></td></tr>
+</table>
+</div>
+
+<?php 
+
+function mostrarLongitud(){
+    if(!empty($_REQUEST['tema']) && isset($_REQUEST['comentario']) ){
+        htmlspecialchars($_REQUEST['tema']);
+        stripslashes($_REQUEST['tema']);
+        htmlspecialchars($_REQUEST['comentario']);
+        stripslashes($_REQUEST['comentario']);
+
+        $longitud=strlen($_REQUEST['comentario']);
+        echo $longitud;
+    }else{
+        $longitud=0;
+        echo $longitud;
+    }
+
+}
+function contarPalabras(){
+    if(!empty($_REQUEST['tema']) && isset($_REQUEST['comentario']) ){
+        htmlspecialchars($_REQUEST['comentario']);
+        stripslashes($_REQUEST["comentario"]);
+        $conteoPalabras=str_Word_count($_REQUEST['comentario']);
+        echo $conteoPalabras;
+    }else{
+        $longitud=0;
+        echo $longitud;
+    }
+}
+
+function contarLetras(){
+    if(isset($_REQUEST['tema']) && isset($_REQUEST['comentario']) ){
+        $cadena=$_REQUEST['comentario'];
+        $letrasUnicas=[];
+        $letrasTotales=[];
+        $MaxRepe2=0;
+        //array con chars
+        for ($i=0;$i<strlen($cadena);$i++){
+            //Se quitan los espacios
+            if($cadena[$i]!=" "){
+                array_push($letrasTotales,$cadena[$i]);
+            }
+            
+        }
+        
+       //Se crea un array con las letras sin repetirse
+       $letrasUnicas=array_unique($letrasTotales);
+        
+       //Se cuenta cada vez que cada letra se repite y se calcula el valor máximo
+        foreach($letrasUnicas as $valor){
+            $Repe2=substr_count($cadena,$valor);
+            
+            if($Repe2>$MaxRepe2){
+                $MaxRepe2=$Repe2;
+                $letra=$valor;
+            }
+           
+        }
+        echo $letra;
+        
+    }else{
+        
+        echo $caracteresRepes="No hay contenido en comentario";
+    }
+}
+
+function palabraRepe(){
+    if(isset($_REQUEST['tema']) && isset($_REQUEST['comentario']) ){
+        $cadena=$_REQUEST['comentario'];
+        $Repe=0;
+        $maxRepe=0;
+        
+        //Se crea un array con las palabras que forman el comentario
+        $palabras=explode(" ",$cadena);
+        //Se crea un array con las palabras sin repetirse
+        $palabras2=array_unique($palabras);
+        
+        //Se cuenta cada vez que cada palabra se repite y se calcula el valor máximo
+        foreach($palabras2 as $clave=>$valor){
+            $Repe=substr_count($cadena,$valor);
+            
+             if($Repe>$maxRepe){
+            $maxRepe=$Repe;
+            $palabra=$valor;
+            }
+            
+        }
+       
+        echo $palabra;
+        
+    }else{
+        
+        echo $caracteresRepes="No hay contenido en comentario";
+    }
+}
+
+
+
+?>
