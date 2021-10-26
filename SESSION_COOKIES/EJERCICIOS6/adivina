@@ -1,0 +1,93 @@
+
+
+<?php
+
+/* 2. Realizar el programa  adivina.php que haciendo uso de variables de sesión implemente un juego donde el usuario tenga que adivinar un número entre 1 y 20 teniendo 5 oportunidades para acertar. El programa le informará si el valor es inferior o superior al generado.
+Cada vez que se accede el programa decrementará el número de oportunidades, si estas son cero indicará que el usuario ha perdido y que no puede realizar más intentos. 
+
+El programa ofrecerá en todo momento la posibilidad de generar una nueva partida.*/
+
+session_start();
+
+if(isset($_SESSION['numeroAleatorio'])){
+    $numeroAleatorio=$_SESSION['numeroAleatorio'];
+}else{
+    $numeroAleatorio=random_int(1,20);
+
+    $_SESSION['numeroAleatorio']=$numeroAleatorio;
+}
+if(isset($_SESSION['oportunidades'])){
+    $oportunidades=$_SESSION['oportunidades'];
+}else{
+    $oportunidades=5;
+    $_SESSION['oportunidades']=$oportunidades;
+}
+
+echo $numeroAleatorio;
+?>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juego de adivinar número</title>
+</head>
+<body>
+    <h1>ADIVINA EL NÚMERO</h1>
+    <form action="adivina.php" method="GET">
+        <input type="text" name="numero">
+        <h3>¿Quiere reanudar la partida?</h3>
+        SI<input type="radio" name="opcion" value=1>;
+        NO<input type="radio" name="opcion" value=2>;
+        <input type="submit" value="Enviar">
+   
+        <?php
+                
+        
+            if($_GET['opcion']==1){
+                echo "Ha elegido reanudar la partida";
+                session_destroy();
+            }else{
+                $numeroUsuario=$_GET['numero'];
+                if(isset($_SESSION['numeroAleatorio'])){
+                    if($_SESSION['oportunidades']!=0){
+                        if($numeroUsuario!=$_SESSION['numeroAleatorio']){
+                            if($numeroUsuario>$_SESSION['numeroAleatorio']){
+                                
+                                    echo "El número introducido es mayor<br>";
+                                    $_SESSION['oportunidades']--;
+                                    echo "Estás en el intento número ".$_SESSION['oportunidades']."<br>";
+                                }
+
+                            }
+                            if($numeroUsuario<$_SESSION['numeroAleatorio']){
+                                
+                                    echo "El número introducido es menor<br>";
+                                    $_SESSION['oportunidades']--;
+                                    echo "Estás en el intento número ".$_SESSION['oportunidades']."<br>";
+                                }
+                            
+                    
+                        }else if($numeroUsuario==$_SESSION['numeroAleatorio']){
+                            echo "Adivinaste el número<br>";
+                            $_SESSION['oportunidades'];
+                            echo "Adivinaste el número en el intento número ".$_SESSION['oportunidades']."<br>";
+                    
+                        }
+                    }else if($_SESSION['oportunidades']==0){
+                    
+                        echo "El usuario ha perdido, no tienes más oportunidades";
+                        session_destroy();
+                    
+                    }
+            
+            }
+                
+
+            
+        ?>
+         </form> 
+    
+</body>
+</html>
