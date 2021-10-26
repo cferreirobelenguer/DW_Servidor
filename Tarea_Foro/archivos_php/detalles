@@ -71,10 +71,20 @@ function contarLetras(){
                 }
                 
             }
-           
+
+           $repetidos=[];
+            foreach($letrasUnicas as $valor){
+            if(substr_count($cadena,$valor)==$MaxRepe2){
+                $letra=$valor;
+                array_push($repetidos,$valor);
+                }
+            }
         }
-        echo $letra;
-        
+        //Muestra en un array el valor o los valores más repetidos
+        array_unique($repetidos);
+        foreach($repetidos as $valor){
+            echo $valor;
+        }
     }else{
         
         echo $caracteresRepes="No hay contenido en comentario";
@@ -105,10 +115,23 @@ function palabraRepe(){
             }
             
             }
+            $repetidos=[];
+            foreach($palabras2 as $valor){
+            if(substr_count($cadena,$valor)==$maxRepe){
+                $palabra=$valor;
+                array_push($repetidos,$palabra);
+                }else if($maxRepe==1){
+                    $palabra="No se repite ninguna palabra";
+                }
+            }
             
         }
-       
-        echo $palabra;
+        //Muestra en un array el valor o los valores más repetidos
+       array_unique($repetidos);
+            foreach($repetidos as $valor){
+                echo $valor;
+            }
+        
         
     }else{
         
