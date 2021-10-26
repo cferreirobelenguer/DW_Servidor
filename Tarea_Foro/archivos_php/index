@@ -29,6 +29,7 @@ else {
             // Chequear usuario
             if ( isset($_REQUEST['nombre']) && isset($_REQUEST['contraseña']) && 
                  (usuarioOK($_REQUEST['nombre'], $_REQUEST['contraseña'] ))==true) {
+                 //Se crea la sesión si se cumplen los requisitos de inicio de sesión
                      session_start();
                      $_SESSION['sesion']=$_REQUEST['nombre'];
                      echo "Sesión iniciada ".$_SESSION['sesion'];
