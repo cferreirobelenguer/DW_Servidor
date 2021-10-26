@@ -14,6 +14,7 @@
 <div id="content">
 
 <?php 
+session_start();
 // PRIMERA APROXIMACIÓN AL MODELO VISTA CONTROLADOR. 
 // Funciones auxiliars Ej- usuarioOK
 
@@ -29,11 +30,10 @@ else {
             // Chequear usuario
             if ( isset($_REQUEST['nombre']) && isset($_REQUEST['contraseña']) && 
                  (usuarioOK($_REQUEST['nombre'], $_REQUEST['contraseña'] ))==true) {
-                 //Se crea la sesión si se cumplen los requisitos de inicio de sesión
-                     session_start();
+                     
                      $_SESSION['sesion']=$_REQUEST['nombre'];
-                     echo "Sesión iniciada ".$_SESSION['sesion'];
-               echo " Bienvenido <b>".$_REQUEST['nombre']."</b><br>";
+                    echo "Sesión iniciada ".$_SESSION['sesion'];
+                    echo " Bienvenido <b>".$_REQUEST['nombre']."</b><br>";
                include_once  'app/comentario.html';
             }
             else {
@@ -46,6 +46,7 @@ else {
             if(isset($_SESSION['sesion'])){
             echo " Nueva opinión <br>";
             include_once  'app/comentario.html';
+            
             }
             break;
         case "Detalles": // Mensaje y detalles
@@ -53,16 +54,18 @@ else {
             echo "Detalles de su opinión";
             include_once 'app/comentariorelleno.php';
             include_once 'app/detalles.php';
+            
             }
             break;
         case "Terminar": // Formulario inicial
             if(isset($_SESSION['sesion'])){
             include_once 'app/entrada.php';
+            session_destroy();
             }
     }
     
 }
-session_destroy();
+
 ?>
 </div>
 </div>
