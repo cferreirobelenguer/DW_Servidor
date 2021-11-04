@@ -1,6 +1,5 @@
 
 
-
 <?php
 /*EJERCICIO CASINO:
 1 FORMULARIO: SE APUESTA DINERO INICIAL
@@ -15,7 +14,7 @@ session_start();
 $contador=1;
 //DINERO APOSTADO
 //Si no existe la sesión de dinero se crea y se limpia los datos del formulario, el dinero tiene que ser mayor a 0
-if(!isset($_SESSION["dinero_"])){
+if(isset($_POST["dinero_"])){
     $dinero=$_POST["dinero"];
     if($dinero>0){
         $dinero=htmlspecialchars($dinero);
@@ -24,10 +23,6 @@ if(!isset($_SESSION["dinero_"])){
         $_SESSION["dinero_"]=$dinero;  
     }
     
-//Si existe se asigna a sesión el valor que había
-}elseif(isset($_SESSION["dinero_"])){
-    
-    $dinero=$_SESSION["dinero_"];
 }
 // Si existe el cookie lo muestro
 if(isset($_COOKIE["veces"])){
