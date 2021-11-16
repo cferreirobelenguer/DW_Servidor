@@ -47,7 +47,7 @@ function volcarDatostxt($tvalores)
     //print_r($tvalores);
     foreach ($tvalores as $lineas) {
 
-        $lineas = implode($lineas);
+        $lineas = implode("|",$lineas)."\n";
         //echo $lineas;
         fwrite($fich2, $lineas);
     }
