@@ -3,7 +3,7 @@ include_once "Producto.php";
 include_once "config.php";
 
 /*
- * Acceso a datos con BD Usuarios y Patrón Singleton 
+ * Acceso a datos con BD Productos y Patrón Singleton 
  * Un único objeto para la clase
  */
 class AccesoDatos
@@ -64,7 +64,7 @@ class AccesoDatos
     }
 
 
-    // Devuelvo la lista de Usuarios
+    // Devuelvo la lista de Productos
     public function getProductos(): array
     {
         $tproductos = [];
@@ -78,7 +78,7 @@ class AccesoDatos
         return $tproductos;
     }
 
-    // Devuelvo un usuario o false
+    // Devuelvo un producto o false
     public function getProducto(String $pro)
     {
         $Producto = false;
