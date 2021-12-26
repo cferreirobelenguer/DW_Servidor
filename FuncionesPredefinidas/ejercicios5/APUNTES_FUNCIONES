@@ -1,0 +1,322 @@
+FUNCIONES SIN PARÁMETRO Y CON PARÁMETRO
+_________________________________________
+
+
+/* FUNCIONES:
+Una función es un conjunto de instrucciones agrupadas bajo un nombre concreto
+y que pueden reutilizarse solamente invocando a la función tantas veces como
+queramos.
+
+SINTAZIS
+
+function nombreDeMiFuncion($parametro){
+  //BLOQUE / CONUNTO DE INSTRUCCIONES
+  
+ }
+ PARA LLAMAR A LA FUNCIÓN: 
+ 
+ nombreDeMiFuncion($mi_parametro);
+ 
+ */
+ //Crear función que imprima 4 cosas en pantala EJEMPLO:
+ 
+ function muestraNombres(){
+ 
+  echo "Victor Robles <br>";
+  echo "Victor Rocles <br>";
+  echo "Victor Robles <br>";
+  echo "Victor Robles <br>";
+  
+  //Invocar funcion sin parámetros
+  
+  muestraNombres();
+  
+  
+  //EJEMPLO 2: Función que genere la tabla de multiplicar de un número
+  
+  function tabla ($numero){
+      echo "<h3>Tabla de multiplicar del número: $numero </h3>");
+      
+      for($i=1;$i<=10;$i++){
+        $operacion=$numero*$i;
+        echo "$numero x $i = $operacion";
+        
+      }
+  
+  }
+  //Comprueba si la variable existe
+  if(isset($_GET['numero'])){
+    tabla($_GET['numero']);
+   }else{
+    echo "No hay número";
+   }
+   
+   //Se puede invocar la función tabla pasando como parámetro diferentes números.
+   
+   
+PASAR VARIOS PARÁMETROS A UNA FUNCIÓN /PARÁMETROS OBLIGATORIOS
+_______________________________________________________________
+
+function calculadora($numero1,$numero2){
+  //Conjunto de instrucciones a ejecutar
+  $suma=$numero1+$numero2;
+  $resta=$numero1-$numero2;
+  $multi=$numero1*$numero2;
+  $division=$numero1/$numero2;
+  
+  echo "Suma: " $suma <br/>";
+  echo "Resta "$resta <br/>";
+  echo "Multiplicación "$multi <br/>";
+  echo "Division "$division <br/>";
+  echo "<hr/>";
+  
+  }
+  
+  calculadora(10,30);
+  calculadora(12,55);
+  calculadora(15,32);
+  
+  
+  PARÁMETROS OPCIONALES
+  ________________________
+  
+  function calculadora($numero1,$numero2,$negrita=false){
+  //Conjunto de instrucciones a ejecutar
+  $suma=$numero1+$numero2;
+  $resta=$numero1-$numero2;
+  $multi=$numero1*$numero2;
+  $division=$numero1/$numero2;
+  
+  $cadena_texto="";
+  
+  if($negrita){
+    $cadena_texto.= "<h1>";
+  }
+  
+  $cadena_texto.="Suma: " $suma <br/>";
+  $cadena_texto.= "Resta "$resta <br/>";
+  $cadena_texto.= "Multiplicación "$multi <br/>";
+  $cadena_texto.= "Division "$division <br/>";
+  $cadena_texto.= "<hr/>";
+  return $cadena_texto;
+  
+  }
+  
+  
+  echo calculadora(10,30);
+  //Los resultados se pondrían en negrita
+  echo calculadora(12,55,true);
+  echo calculadora(15,32);
+  
+  
+  RETURN
+  _______
+  
+  Una función normalmente no puede imprimir cosas por ella sola, la función tiene que hacer algo y devolver un resultado.
+  Una buena práctica es que la función haga un return.
+  
+  function devuelveElNombre($nombre){
+  
+    return "El nombre es: $nombre";
+  
+  }
+  //Hace falta imprimir el resultado
+  echo devuelveElNombre("Victor Robles");
+  
+  _______________________________________
+  
+  Otro ejemplo:
+  
+  function getNombre($nombre){
+    $texto="El nombre es: $nombre";
+    return $texto;
+  }
+  function getApellidos($apellidos){
+    $texto="El apellido es: $apellidos";
+    return $texto;
+  }
+  
+  //Con esto llamo a dos funciones dentro de otra función
+  function devuelveElNombre($nombre,$apellidos){
+    $texto=getNombre($nombre);
+            ."<br/>".
+             getApellidos($apellidos");
+     return $texto;
+  }
+  
+  echo devuelveElNombre("Victor","Robles");
+  
+  
+  VARIABLES GLOBALES Y LOCALES
+  ____________________________
+  
+ Variables globales: son aquellas que se declaran fuera de una función y están disponibles para su uso dentro y fuera de las funciones.
+ 
+ Variables locales: son las que se definen dentro de una función y no pueden ser usadas fuera de la función, sólo están disponibles dentro
+ a no ser que haga un return.
+ //Variable global
+ $frase="Ni los genios son tan genios ni los mediocres tan mediocres";
+ 
+ echo $frase;
+ 
+ function holaMundo(){
+ //Para poder usar la variable global dentro de la función hay que usar global,hay que declararla de esa manera dentro de la función
+  global $frase;
+  echo "<h1>$frase</h1>";
+  
+  //La variable year sólo está dentro del ámbito de función. La única manera de usar year en ámbito local es hacer un return de year en esta función
+  $year=2029;
+  echo "<h1>$year</h1>";
+ }
+ 
+ holaMundo();
+ 
+ 
+ 
+ FUNCIONES VARIABLES
+ ___________________
+ 
+ function buenosDias(){
+  echo "Hola! Buenos dias:)";
+ }
+ 
+ function buenasTardes(){
+  return "Hey!! Que tal ha ido la comida??";
+ }
+ 
+ function buenasNoches(){
+  return "¿Te vas a dormir ya? Buenas noches!!";
+ }
+ 
+ $horario="buenasNoches";
+ $horario();
+ //Directamente me imprime la función buenasNoches, por eso es una función variable, se llama a la función a través de una variable
+ 
+ $horario="Noches";
+ $miFuncion="buenas".$horario;
+ echo $miFuncion;
+ //Con esto estamos llamando a la función buenasNoches
+ 
+ 
+ FUNCIONES PREDEFINIDAS
+ ______________________
+  //Debuggear
+ var_dump() ->Es una función predefinida, si yo le paso una variable me da sus datos, su longitud
+ 
+ //Fechas
+ echo date('d-m-y');
+ //Hay multitud de formatos de date, en la documentación de php se pueden ver
+ 
+ //Time :fecha en formato unix, que es una fecha que no se va a repetir jamás
+ echo time();
+ 
+ //Matemáticas
+ //Calcula la raíz cuadrada de 10
+ echo "Raiz cuadrada de 10: ".sqrt(10);
+ 
+ //Sacar un número aleatorio
+ echo "Número aleatorio: ".rand(1,40);
+ 
+ rand($min,$max) ->Saca un número entre esos dos rangos
+ 
+ //Sacar el número PI
+ echo "Número PI".pi();
+ //Daría com resultado 3.1416
+ 
+ //Redondear
+ echo "Redondear: ".round(7.891234);
+  //Devuelve 8
+  round(7.891234,1); //Aquí le indico que sólo me ponga un decimal
+  //Puedo indicarle la precisión, el número de decimales que va a llevar
+  
+  
+  
+  FUNCIONES INTERNAS DEL LENGUAJE DE PHP
+  _______________________________________
+   //Consigue el tipo de una variable
+  gettype($nombre);
+  //Devuelve string
+  
+  
+  //Funciones para comprobar si una variable es de un tipo o otro
+  if(is_string($nombre)){
+    echo "ESA VARIABLE ES UN STRING";
+  }
+  
+  if(is_float($nombre){
+    echo "La variable nombre no es un número con decimales";
+   }
+   
+   //ISSET nos dice si existe una variable o no en nuestro programa
+   
+   if(isset($edad)){
+    echo "La variable existe";
+    }else{
+    echo "La variable no existe";
+    }
+    
+    
+    //TRIM LIMPIA LOS ESPACIOS POR DELANTE Y DETRÁS, LIMPIA EL CONTENIDO DE LA VARIABLE
+    
+    $frase=      mi contenido     ;
+    var_dump(trim($frase)); //Elimina los espacios por delante y detrás
+    
+    
+    //Eliminar variables o indices de arrays
+    
+    $year=2020;
+    unset($year); //Elimina del código la variable year
+    //Si yo intentara hacer un var_dump de year nos diría que no existe
+    
+    
+    //EMPTY comprueba si una variable está vacía, no existe o si está nula
+    
+    $texto="";
+    
+    if(empty($texto)){
+      echo "La variable texto está vacía";
+      }else{
+      echo "La variable tiene contenido";
+     }
+     
+     También detecta false como vacía.
+      Si se pone un string con muchos espacios también se considera como que tiene contenido.
+      
+      
+      //strlen Cuenta caracteres de una cadena o un string
+      
+      $cadena="12345";
+      echo strlen($cadena);
+      //Me devuelve que tengo 5 caracteres
+      
+      //strpos Encontrar caracter, o una palabra
+      
+      $frase="La vida es bella";
+      echo strpos($frase,"vida"); //Primero se pone la frase donde busca, luego la palabra o letra que quiere buscar
+      //Nos da la posición
+  
+      
+      //str_replace(lo que quiero buscar, lo que reemplazo, lo que quiero reemplazar); Reemplazar contenido de un string, reemplazar palabras 
+      $frase=str_replace("vida","moto",$frase);
+      
+      echo $frase;
+      
+      
+      //Convertir a mayúsculas y minúsculas
+      echo strtolower($frase);  //Convierte a minúsculas
+      echo strtoupper($frase);  //Convierte a mayúsculas
+      
+      
+      
+      
+      
+ 
+  
+  
+  
+  
+ 
+ 
+ 
+ 
+  
