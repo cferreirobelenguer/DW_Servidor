@@ -1,0 +1,46 @@
+
+
+INCLUDE
+_______
+
+PHP nos permite incorporar código de otro fichero e ir incluyéndolo en cualquier página.
+
+Para hacer include podemos usar:
+
+include
+include_once
+require
+requiere_one
+Con include se puede incluir el archivo varias veces.
+
+<?php include 'includes/cabecera.php';
+?>
+
+//permite leer el contenido de un fichero y situarlo en otro
+
+Se usa para no repetir código, tener código mucho más reducido y optimizado.
+
+La diferencia entre include e include_once es que si el fichero ya ha sido incluido no lo incluye otra vez.
+La sintaxis es la misma:
+
+<?php include_once 'includes/cabecera.php';
+?>
+
+
+REQUIRE
+_______
+
+Es igual que include salvo en que si se carga mal el fichero, va a parar la ejecución completamente.
+<?php require 'includes/cabecera.php';
+?>
+//Es mucho más estricto
+
+require_once no permite incluir varias veces un archivo.
+
+<?php require_once 'includes/cabecera.php';
+?>
+
+
+
+
+
