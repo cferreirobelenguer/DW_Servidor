@@ -1,0 +1,219 @@
+
+ARRAYS
+______
+
+Un array es una colección de datos de variables, es una caja donde puedo meter muchas variables dentro, y puedo
+acceder a ellas con un índice numérico o alphanumérico.
+
+$peliculas=array('Batman','Spiderman','El señor de los anillos');
+//Una variable que contiene muchos datos dentro
+
+Para poder acceder a los valores primero hay que hacer un var_dump para comprobar el contenido del array.
+
+var_dump($peliculas);
+
+Al hacer var_dump te dice el tamaño y el contenido del array.
+
+ACCEDER A LAS POSICIONES DEL ARRAY
+____________________________________
+
+Si yo quiero acceder a uno de los elementos:
+
+var_dump($peliculas[2]);
+
+Otra forma de definir arrays
+____________________________
+
+$cantantes=['2pac','Drake','Jennifer Lopez'];
+
+Ejemplo sacar Batman e imprimirlo por pantalla:
+
+echo $peliculas[0]; //Imprime Batman
+
+Ejemplo imprimir Jennifer Lopez:
+
+echo $cantantes[2];
+
+
+
+RECORRER LOS DATOS DEL ARRAY CON UN BUCLE
+_________________________________________
+
+BUCLE FOR
+__________
+
+Podemos recorrer el array con el bucle for.
+
+echo "<h1>Listado de peliculas</h1>";
+
+echo "<ul>";
+for($i=0;$i< count($peliculas);$i++){
+    echo "<li>".$pelicula[$i]."</li>";
+  }
+echo "</ul>";
+
+//Con esto se recorre todos los elementos de peliculas
+
+BUCLE FOREACH
+______________
+
+//Recorrer con Foreach
+
+echo "<ul>";
+foreach($cantantes as $cantante){
+    echo "<li>".$cantante."</li>";
+ }
+echo "</ul>";
+
+
+
+ARRAYS ASOCIATIVOS
+__________________
+
+Los índices de los arrays no sólo pueden ser numéricos sino también puede ser alfanuméricos.
+
+$personas=array(
+    'nombre'=>'Victor',
+    'apellidos'=>'Robles',
+    'web'=>'victorroblesweb.es'
+    );
+    
+ var_dump($personas);
+ 
+ //Se ve que tengo un array y que los índice son palabras, son arrays asociativos porque estoy asociando un nombre a un índice del array
+ 
+ 
+ ARRAYS MULTIDIMENSIONALES
+ __________________________
+ 
+ Tiene varias dimensiones, es un array con varios arrays dentro.
+ 
+ //Arrays multidimensionales
+ 
+ $contactos=array(
+    array(
+        'nombre'=>'Antonio',
+        'email'=>'antonio@antonio.com'
+    ),
+    array(
+        'nombre'=>'Luis',
+        'email'=>'luis@luis.com'
+    ),
+    array(
+        'nombre'=>'Salvador',
+        'email'=>'salva@salva.com'
+    ),
+    );
+    
+    var_dump($contactos);
+    
+    Por ejemplo si queremos acceder a Luis, está dentro del índice 1 del primer array.
+    echo $contactos[1]['nombre'];
+    
+    Si queremos acceder a Salvador a primera dimensión es la posición 2 y la segunda el índice nombre
+    
+    echo $contactos[2]['nombre'];
+    
+    
+    foreach($contactos as $key=> $contacto){
+        var_dump($contacto['nombre']);
+        
+       }
+       
+       //De esta manera se pueden recorrer los arrays multidimensionales
+       
+     
+     FUNCIONES PARA ARRYAS
+     ______________________
+     
+     MÉTODO PARA ORDENAR UN ARRAY POR ORDEN ALFABÉTICO:
+     __________________________________________________
+     asort sólo sirve para ordenar alfabéticamente.
+     
+    $cantantes=['2pac','Drake','Jennifer Lopez','Alfredo'];
+    
+    asort($cantantes);
+    var_dump($cantantes);
+    
+   ORDENAR DE FORMA INVERSA
+   _________________________
+   
+   arsort($cantantes);
+   
+   ORDENAR ALFABÉTICAMENTE Y NUMÉRICAMENTE
+   _______________________________________
+   
+   Sort sirve para ordenr alfabéticamente y numéricamente.
+   
+   sort($cantantes);
+   
+   $numeros=[1,2,5,8,3,4];
+   sort($numeros);
+   
+   Nos lo ordena asi: 1,2,3,4,5,8
+   
+   FUNCIÓN PARA AÑADIR ELEMENTOS A UN ARRAY
+   _________________________________________
+   
+   //Se pueden añadir así: 
+  
+   $cantantes[]="Natos";
+   
+   //o con array_push
+   
+   array_push($cantantes,"Waor");
+  //Se añade al final del arreglo Waor
+  
+  FUNCIÓN PARA ELIMINAR ELEMENTOS DE UN ARRAY
+  ____________________________________________
+  
+  Puedo usar array_pop para eliminar el último elemento de un array
+  
+  array_pop($cantantes);
+  
+  FUNCIÓN PARA QUITAR UN ÍNDICE CONCRETO
+  _______________________________________
+  //Eliminar elementos de array
+  
+  unset($cantantes[2]);
+  
+  FUNCIÓN PARA SACAR UN DATO ALEATORIO DE UN ARRAY
+  ________________________________________________
+  
+  echo array_rand($cantantes);
+  
+  FUNCIÓN PARA DAR LA VUELTA A UN ARRAY
+  ______________________________________
+
+  array_reverse($numeros);
+ //Saca el orden inverso 854321
+ 
+ 
+ FUNCIÓN PARA BUSCAR DENTRO DE UN ARRAY
+ _________________________________________
+ 
+ $resultado=array_search('Drake',$cantantes); //Nos dice que Drake está en el índice 1
+ 
+ Nos devuelve el índice
+ En caso de que no exista la búsqueda nos devuelve false
+ 
+ 
+ FUNCIÓN PARA CONTAR NÚMERO DE ELEMENTOS
+ _______________________________________
+ 
+Me saca el número de elementos que tengo dentro de mi array
+
+echo count($cantantes);
+
+echo sizeof($cantantes);
+
+Ambos sirven para contar los elementos.
+
+
+ 
+ 
+   
+   
+ 
+
+
