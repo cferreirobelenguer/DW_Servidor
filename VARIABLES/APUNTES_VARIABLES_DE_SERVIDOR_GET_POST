@@ -1,0 +1,40 @@
+
+VARIABLES SUPERGLOBALES
+_______________________
+
+Son por ejemplo $_GET, $_POST,$_REQUEST...
+
+VARIABLES SUPERGLOBALES PARA SACAR INFORMACIÓN DEL SERVIDOR
+____________________________________________________________
+
+//Variables de servidor
+
+echo $_SERVER['SERVER_ADDR'];
+//Esto nos saca la dirección IP de mi servidor web 
+
+echo $_SERVER['SERVER_NAME'];
+//Esto nos saca el dominio de mi servidor web
+
+echo $_SERVER['SERVER_SOFTWARE'];
+//Esto nos muestra el software del servidor
+
+echo $_SERVER['HTTP_USER_AGENT'];
+//Me saca el navegador web sobre el que estoy accediendo a esta página web
+
+echo $_SERVER['REMOTE_ADDR'];
+//Me va a sacar la dirección IP del cliente
+
+
+VARIABLE GET
+_____________
+
+
+
+
+
+
+VARIABLE POST
+_____________
+
+
+
