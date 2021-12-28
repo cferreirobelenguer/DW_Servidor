@@ -1,0 +1,45 @@
+
+Las constantes son como las variables, un contenedor de datos, pero la diferencia
+es que el valor de la constante nunca puede variar.
+
+A una constante le meto un número y ese número no se puede modificar.
+
+<?php
+
+define('nombre','Victor Robles');
+define('web','victorroblesweb.es');
+
+La constante se muestra sin el dolar.
+
+echo nombre;
+
+echo web;
+
+//Imagínate que trato de modificar el contenido de web: esto no se podría hacer,pero sí puedo asignar ese valor a una variable y modificar la variable n la constante
+
+$web='victorroblesweb.es/academy';
+$web='victorroblesweb.es/cursos';
+echo $web;
+
+
+?>
+
+
+CONSTANTES PREDEFINIDAS
+________________________
+
+echo PHP_VERSION
+//Da la versión de php
+
+echo PHP_EXTENSION_DIR
+//Nos dicen donde están las extensiones de mi php instaladas
+
+echo __LINE__;
+//Nos saca el número de la línea donde estoy imprimiendo el valor
+
+echo __FILE__;
+//Nos dice la ruta completa del archivo
+
+echo __FUNCTION__;
+//Nos saca el nombre de la función que contiene esta instrucción
+
