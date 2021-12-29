@@ -1,0 +1,53 @@
+
+SESIONES
+________
+
+Sirven para persistir la información mientras el usuario está navegando en la página web y poder
+compartir datos entre todas las páginas de nuestra aplicación que estemos desarrollando.
+
+Es el periodo de tiempo durante el cual el usuario ve un número de página determinado de su dominio
+de la web donde esté subida, sin necesidad de identificarse cada vez que recargue la página. La sesión
+se mantiene, hay unos datos que están persistiendo en la navegación de la página web.
+
+La sesión persiste hasta que el usuario cierre sesión o cierre el navegador. Las sesiones se almacenan 
+en el servidor web y no en el navegador. Esto hace que sean súper seguras porque no se está guardando nada en el cliente
+ni en local sino que se guarda todo en el servidor web y es invisible en el lado de cliente. Los datos no pueden ser
+vistos ni modificados por el cliente.
+
+Primero hay que iniciar la sesión, es lo primero de todo que hay que hacer con session_start();
+
+<?php
+
+    session_start();
+    
+    //Esto es una variable local
+    $variable_normal="Soy una cadena de texto";
+    
+    //Esto es una variable de sesión
+    $_SESSION['variable_persistente']="HOLA SOY UNA SESIÓN ACTIVA";
+    
+    echo $_SESSION['variable_persistente'];  //Me muestra HOLA SOY UNA SESIÓN ACTIVA
+ ?>
+   __________________________________
+   //Si yo me creo otro fichero
+   
+   <?php
+   
+   session_start();
+   //Si yo imprimo la sessión anterior me la muestra, puedo usar esta sesión y mostrar el contenido de esa sesión
+   //durante toda la navegación
+   
+   echo $_SESSION['variable_persistente'];
+   
+   ?>
+   
+  //Si yo cierro el navegador y lo abro me mantiene la sesión
+  //Podemos hacer que esa sesión se borre con session_destroy();
+  
+  <?php
+  
+    session_start();
+    session_destroy();
+    ?>
+    
+    
