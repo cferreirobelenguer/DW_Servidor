@@ -1,0 +1,15 @@
+
+FORMULARIOS
+____________
+
+Los formularios permiten que le usuario introduzca información y la envían al servidor.
+
+<!DOCTYPE HTML>
+<html lang="es">
+    <head>
+      <meta charset="utf-8"/>
+      <tittle>Formulatios PHP Y HTML</title>
+    </head>
+    <body>
+        <h1>Formulario</h1>
+        
