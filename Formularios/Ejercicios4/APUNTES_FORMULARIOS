@@ -12,4 +12,68 @@ Los formularios permiten que le usuario introduzca información y la envían al 
     </head>
     <body>
         <h1>Formulario</h1>
-        
+        <form action="" method="POST" enctype="multipart/form-data">
+            <label for="nombre">Nombre:<l/label><p><input type="text" name="nombre"/></p> //$_POST["nombre"] cogemos los datos a través de nombre
+            <label for="apellido">Apellido:</label> <p><input type="text" name="apellido" autofocus="autofocus"/></p>   //Con autofocus hace foco en el campo apellido
+            <p>
+                <textarea name="resultado" disabled></textarea>  //Con disabled el campo queda deshabilitado , no se puede escribir pero si puede devolver resultados
+            </p>
+            <label for="descripcion">Descripcion:<l/label><p><input type="text" name="descripcion" maxlength="5"/></p>  //Con maxlength se pone el máximo de digitos que se pueden escribir
+            //Al igual que minlength que establece el tamaño mínimo que se puede poner
+            //pattern permite hacer expresiones regulares dentro de los input para validar,
+            //por ejemplo si solo quiero mayúsculas o espacios sería pattern="[A,Z ]+"
+            //required lo que hace es requerir que ese campo tenga información dentro
+            //placeholder permite poner un mensaje en la caja, cuando usuario vaya a escribir los datos en la caja el mensaje desaparecede, ejemplo: placeholder="Mete tu apellido"
+            //value="" es para rellenar los campos con texto real
+            
+            <label for="boton">Botón: </label>
+            <p><input type="text" name="boton" value="CLICKAME"/></p>  //Es un botón 
+            
+            //Permite elegir entre dos opciones el checkbox , en este caso hombre y mujer, se ponen los valores en value y se pone el mismo name
+            <label for="sexo">Sexo: </label>
+            <p><input type="checkbox" name="sexo" value="hombre"/>
+                <input type="checkbox" name="sexo" value="mujer" checked="checked"/></p>  //Con checked el campo viene marcado por defecto
+             
+            <label for="color">Color: </label>
+            <p><input type="color" name="color"/></p>  //Campo de colores hexadecimales
+            
+            <label for="fecha">Fecha: </label>
+            <p><input type="date" name="fecha"/></p>   //Campo de fecha
+            
+            <label for="correo">Correo: </label>
+            <p><input type="email" name="correo"/></p>    //Campo de correo
+            
+            <label for="archivo">Archivo: </label>
+            <p><input type="file" name="archivo" multiple="multiple"/></p>  //Con file se pueden subir archivos y con multiple permite subir varios archivos
+            
+            <label for="numero">Numero: </label>
+            <p><input type="number" name="numero"/></p>   //Permite seleccionar números
+            
+            <label for="contraseña">Contraseña: </label>
+            <p><input type="password" name="contra"/></p> //Permite seleccionar contraseña
+            
+            <label for="continente">Continente: </label>
+            <p>
+                Sudamerica<input type="radio" name="continente" value="America del Sur"/>
+                Europa<input type="radio" name="continente" value="Europa"/>
+                Asia<input type="radio" name="continente" value="Asia"/>
+            </p>   //Permite seleccionar uno o varios elementos
+            
+            <label for="web">Página web: </label>
+            <p><input type="url" name="web"/></p> //Permite escribir direcciones web
+            
+            Peliculas:    //Select permite seleccionar varias opciones , los valores se reciben en el backend a través de value
+            <select name="peliculas">
+                <option value="spiderman">Spiderman</option>
+                <option value="batman" >Batman</option>
+                <option value="la jungla de cristal" >La jungla de Cristal</option>
+                <option value="gran torino" >Gran torino</option>
+            </select>  
+            
+            <p>
+                //Permite generar un campo mucho más grande
+                <textarea name="texto"></textarea>
+            </p>
+            
+        </form>
+  
