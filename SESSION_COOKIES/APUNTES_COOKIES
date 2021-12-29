@@ -1,0 +1,86 @@
+
+COOKIES
+_______
+
+La cookie se almacena en el cliente, se guardan unos ficheros de caché y unos ficheros temporales de las cookies.
+
+Sirven para almacenar datos relacionados con los usuarios durante la navegación de la página web.
+Son un mecanismo por el cual se almacenan datos del usuario en el navegador y en el servidor. 
+
+Están guardadas en nuestro equipo tanto si se ha salido del navegador. Son útiles para almacenar valores temporales
+de un usuario. Se almacenan en pequeños ficheros de disco duro del usuario. Sólo pueden almacenar una cantidad limitada de datos.
+
+Estas cookies se pasan al servidor cada vez que se carga la página y el servidor se encarga que la cookie funcione.
+
+Se usan para rastreo de la información. Son más inseguras que las sesiones.
+
+CREAR COOKIE
+____________
+<?php
+
+  // Crear cookie
+  //setcookie("nombre","valor que solo puede ser texto",caducidad,ruta,dominio);
+  
+  //cookie básica
+  setcookie("micookie","valor de mi galleta");
+  
+  //Cookie con expiración, ejemplo un año
+  setcookie("unyear","valor de mi cookie de 365 días", time()+(60*60*24*365));
+  
+  //Cuando pase el año esa cookie ya no va a funcionar
+  
+  ?>
+  
+  <a href="ver_cookies.php">Ver las Galletas</a>
+  
+  _________________________________
+  
+  //Para mostrar el valor de las cookies tengo que usar $_COOKIE, es una vairble
+  superglobal y es un array asociativo
+  
+  <?php
+  
+  //Primero comprobamos si existen las cookies
+  
+  if(isset($_COOKIE['micookie'])){
+    echo "<h1>".$_COOKIE['micookie']."</h1>";
+  
+  }else{
+    echo "No existe la cookie";
+  
+  }
+  
+  if(isset($_COOKIE['unyear'])){
+    echo "<h1>".$_COOKIE['unyear']."</h1>";
+  
+  }else{
+    echo "No existe la cookie";
+  
+  }
+  
+  //Se almacenan en el navegador como un fichero y este fichero se envía cada vez que cargamos la web y
+  una vez que cargamos la web.
+ 
+  ?>
+  
+  ELIMINAR COOKIE
+  _________________
+  
+  //Podemos usar unset para eliminar la cookie
+  
+  if(isset($_COOKIE['micookie'])){
+  
+    unset($_COOKIE['micookie'];
+    
+    //También hay que caducar la cookie sino no funciona
+    //Si se pone valor negativo en el time esa cookie es vieja y está caducada, con lo cual ya se borra la cookie
+    
+    setcookie('micookie','',time()-100);
+  }
+  
+  
+  HACER REDIRECCIONES
+  _____________________
+  //header es una función para modificar las cabeceras, con location lo que hago es redireccionar a otro sitio
+  
+  header('Location:ver_cookies.php');
