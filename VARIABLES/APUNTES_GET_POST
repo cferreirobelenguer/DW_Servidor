@@ -1,0 +1,114 @@
+GET Y POST se usan para recoger datos.
+
+GET
+____
+
+Los valores de GET aparecen en la url así: ?nombre=valor&apellido=hola
+
+Por ejemplo, un formulario que pida nombre y apellidos y se recojan los datos:
+
+<html land="es">
+  <head>
+    <meta charset="utf-8">
+    <tittle>Formulario en PHP</tittle>
+  </head>
+  
+  <body>
+    <h1>Formulario en PHP</h1>
+    <form method="GET" action="recibir.php">
+    <p>
+        <label for="nombre">Nombre</label>
+        <input type="text" name="nombre"/>
+    </p>
+    <p>
+        <label for="apellidos">Apellido</label>
+        <input type="text" name="apellidos/>
+    </p>
+    <input type="submit" value="enviardatos"/>
+    </form>
+  </body>
+
+
+Si yo meto datos aquí empieza a meter en la url parámetros GET: ?nombre=fdas&apellidos=fdas
+Los parámetros GET siempre van en la URL separados el primero por un interrogante ? y el segundo por un &
+
+
+<?php
+//$_GET es un array que contiene el contenido escrito por el usuario en el input
+//Recibo el contenido recibido por GET de nombre y apellidos
+echo "<h1>".$_GET['nombre']."</h1>";
+
+echo "<h1>".$_GET['apellidos']."</h1>";
+
+
+_________________________________________________________________________________________
+
+POST
+_____
+
+La información no está visible en la URL sino en las cabeceras de la web, es más seguro. No se visualiza en la URL.
+
+Toda la información del formulario se almacena por HTTP POST y usaremos $_POST para coger los datos que 
+escribe el usuario.
+
+
+<html land="es">
+  <head>
+    <meta charset="utf-8">
+    <tittle>Formulario en PHP</tittle>
+  </head>
+  
+  <body>
+    <h1>Formulario en PHP</h1>
+    <form method="POST" action="recibir.php">
+    <p>
+        <label for="nombre">Nombre</label>
+        <input type="text" name="nombre"/>
+    </p>
+    <p>
+        <label for="apellidos">Apellido</label>
+        <input type="text" name="apellidos/>
+    </p>
+    <input type="submit" value="enviardatos"/>
+    </form>
+  </body>
+
+
+<?php
+//$_POST es un array que contiene el contenido escrito por el usuario en el input
+//Recibo el contenido recibido por GET de nombre y apellidos
+echo "<h1>".$_POST['nombre']."</h1>";
+
+echo "<h1>".$_POST['apellidos']."</h1>";
+
+
+_______________________________________________________________________________________________________
+
+REQUEST
+________
+
+Es un array asociativo que por defecto contiene el contenido de $_GET, $_POST y $_COOKIE
+
+Nos permite capturar variables enviadas desde formularios con los métodos GET o POST.
+
+EJEMPLO:
+
+<form name="formulario" method="get" action="ejemploRequest.php">
+    Nombre:<input type="text" name="nombre" value="">
+    <input type="submit"/>
+</form>
+<form name="formulario" method="post" action="ejemploRequest.php">
+    Nombre:<input type="text" name="nombre" value="">
+    <input type="submit"/>
+</form>
+
+El ejemplo1 envía datos por GET mientras que el ejemplo2 envía datos por POST. Ahora bien, la acción o destino
+donde se enviarán los datos es la misma en los dos casos, la dirección ejemploRequest.php.
+
+<?php 
+    $nombre=$_REQUEST["nombre"];
+    echo $nombre;
+ ?>
+ 
+ 
+ 
