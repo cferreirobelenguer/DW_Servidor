@@ -1,0 +1,161 @@
+
+RECIBIR LA INFORMACIÓN DE LOS FORMULARIOS
+__________________________________________
+<h1>Formulario HTML</h1>
+<form action="guardar.php" action="GET">
+    Titulo:<br>
+    <input type="text" name="titulo"/>
+    Descripción:<br>
+    <textarea name="descripcion"></textarea>
+    <input type="submit" value="ENVIAR"/>
+</form>
+
+Creamos un archivo llamado guardar.php para recoger los datos del formulario por GET
+
+<?php 
+
+//Si existen los datos se muestran
+
+if(isset($_GET['titulo'] &&(isset($_GET['descripcion'])){
+    echo "<h1>.$_GET['titulo']."</h1>";
+    echo "<h2>".$_GET['descripcion']."</h2>";
+}
+?>
+
+
+
+VALIDAR FORMULARIOS CON PHP
+____________________________
+
+<!DOCTYPE HTML>
+<html lang="es">
+  <head>
+    <meta charset="utf-8"/>
+    <tittle>Validación de formularios PHP</tittle>
+  </head>
+  <body>
+      <h1>Validar formularios en PHP</h1>
+      
+      <?php
+        if(isset($_GET['error'])){
+          $error=$_GET['error'];
+          if($error=='faltan_datos'){
+              echo '<strong style="color:red">Introduce todos los datos en todos los campos del formulario</strong>';
+      
+      
+      ?Z
+      <form method="POST" action="procesar_formulario.php">
+        <label for="nombre">Nombre</label><br/>
+        <input type="text" name="nombre" required="required" pattern="[A-Za-z]+"><br/>
+        
+        <label for="apellidos">Apellidos</label><br/>
+        <input type="text" name="apellidos" required="required" pattern="[A-Za-z]+><br/>
+        
+        <label for="edad">Edad</label><br/>
+        <input type="number" name="edad" required="required" pattern="[0-9]+><br/>
+        
+        <label for="email">Email</label><br/>
+        <input type="text" name="email" required="required" ><br/>
+        
+        <label for="pass">Contraseña</label><br/>
+        <input type="password" name="pass" required="required" ><br/>
+        
+        <input type="submt" value="ENVIAR"/>
+        
+      </form>
+</body>
+
+_________________________________________
+Ahora vamos al archivo procesarformulario.php
+
+
+<?php 
+
+$error='fantan_valores';
+
+if(empty($_POST['nombre'] && empty($_POST['apellidos']) &&
+   empty($_POST['edad'] $$ empty($_POST['email'] && empty($_POST[pass'])){
+   
+    $error='ok';
+    $nombre=$_POST['nombre'];
+    $apellidos=$_POST['apellidos'];
+    $edad=(int)$_POST['edad'];
+    $pass=$_POST['pass'];
+    
+    //Si no es  un string nombre
+    if(!is_string($nombre) || preg_match("/[0-9]/",$nombre)){
+        $error='nombre';
+        
+     }
+     //Si no es un string apellido
+      if(!is_string($apellidos) || preg_match("/[0-9]/",$apellidos)){
+        $error='apellidos';
+        
+     }
+     //Si no es un número edad
+      if(!is_int($edad) || !filter_var($edad,FILTER_VALIDATE_INT){)
+        $error='edad';
+        
+     }
+      //Si no es un número edad
+      if(!is_string($email) || !filter_var($email,FILTER_VALIDATE_EMAIL){)
+        $error='email';
+        
+     }
+     if(empty($pass) && strlen($pass)<5){
+        $error='password';
+        
+        }
+        
+     
+}else{
+    error='faltan_valores';
+    
+}
+
+if($error!='ok'){
+  header("Location:index.php?error=$error");
+ }
+?>
+<!DOCTYPE HTML>
+<html lang="es">
+  <head>
+    <meta charset="utf-8"/>
+    <tittle>Validación de formularios PHP</tittle>
+  </head>
+  <body>
+  <?php 
+    if(isset($_GET['error']){
+        $error=$_GET['error'];
+        if($error=='faltan_valores'){
+            echo '<strong style="color:red">Introduce todos los datos en los campos</strong>';
+           }
+           
+           if($error=='faltan_valores'){
+            echo '<strong style="color:red">Introduce todos los datos en los campos</strong>';
+           }
+           if($error=='nombre'){
+            echo '<strong style="color:red">Introduce bien el nombre</strong>';
+           }
+           if($error=='apellidos'){
+            echo '<strong style="color:red">Introduce bien los apellidos</strong>';
+           }
+           if($error=='edad'){
+            echo '<strong style="color:red">Introduce una edad correcta</strong>';
+           }
+           if($error=='email'){
+            echo '<strong style="color:red">El correo es erróneo</strong>';
+           }
+           if($error=='password'){
+            echo '<strong style="color:red">Introduce una contraseña de más de 5 letras</strong>';
+           }
+         
+        }
+    <?php if($error=='ok'):?>
+    <h1>Datos validados correctamente</h1>
+      <p><?=$nombre?></p>
+      <p><?=$apellidos?></p>
+      <p><?=$edad?></p>
+      <p><?=$email?></p>
+      
+
