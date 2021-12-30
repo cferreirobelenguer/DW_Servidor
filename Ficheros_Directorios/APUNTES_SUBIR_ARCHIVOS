@@ -1,0 +1,78 @@
+
+
+SUBIR ARCHIVOS
+______________
+
+<?php
+  <!DOCTYPE HTML>
+  <html lang="es">
+    <head>
+      <meta charset="utf-8">
+      <title>Subir archivos PHP</title>
+    </head>
+    <body>
+      <h1>Subir imagenes con PHP</h1>
+      <form action="upload.php" method="POST" enctype="multipart/form-data">
+        <input type="file" name="archivo" />
+        <input type="submit" value="ENVIAR"/>
+      </form>
+      
+ ?>
+ ____________________________________
+ En el archivo upload.php
+ 
+ <?php
+ 
+ $archivo=$_FILES['archivo'];
+ var_dump($archivo);
+/*
+Devuelve un array con el nombre de la imagen, el tipo de imagen, el nombre temporal de la imágen, si hay algún error y el tamaño
+$_FILES devuelve un array con los datos del archivo
+
+array(size=5)
+  'name'=> string '85c.jpg' (length=7)
+  'type'=> 'image/jpeg' (length=10)
+  'tmp_name'=>string 'C:\wamp64\tmp\php173.tmp' (length=24)
+  'error'=> int 0
+  'size'=> int 40395
+  
+  Se puede configurar en configuración php:
+  upload_max_filesize es el tamaño máximo del archivo que puedo subir.
+  post_max_size es lo máximo que puedo enviar*/
+  
+  $nobre=$archivo['name'];
+  $tipo=$archivo['type'];
+  
+  if($tipo==='image/jpg'||$tipo=='image/jpeg'||$tipo=='image/png'||$tipo=='image/git'){
+      
+      if(is_dir('images')){
+        mkdir('images',0777);
+       }
+       move_uploaded_file($archivo['tmp_name'],'images/'.$nombre);
+       header("Refresh:5; URL=index.php");
+       echo "<h1>Imágen subida correctamente</h1>");
+       //Se suben las imágenes al directorio
+   }else{
+   //Refresca al formulario principal a los 5 segundos
+   header("Refreash:5;URL:index.php");
+      echo "<h1>Sube una imagen con un formato correcto, por favor...</h1>";
+  
+  LISTADO DE LAS IMÁGENES SUBIDAS EN LA CARPETA DE IMAGENES
+  __________________________________________________________
+  
+  <h1>Listado de imagenes</h1>
+  <?php
+      $gestor=opendir('./images');
+      if($gestor){
+          while(($image=readdir($gestor))!==false){
+          //. es el directorio actual 
+            if($image!='.' $$ $image != '..'){
+                echo "<img src='images/$image' width='200px'/><br/>";
+            }
+          }
+        }
+   ?>
+   
+   
+              
+              
