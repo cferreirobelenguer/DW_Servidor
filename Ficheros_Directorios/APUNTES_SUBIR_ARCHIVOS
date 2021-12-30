@@ -63,14 +63,14 @@ array(size=5)
   <h1>Listado de imagenes</h1>
   <?php
       $gestor=opendir('./images');
-      if($gestor){
-          while(($image=readdir($gestor))!==false){
+      if($gestor):
+          while(($image=readdir($gestor))!==false):
           //. es el directorio actual 
-            if($image!='.' $$ $image != '..'){
+            if($image!='.' $$ $image != '..'):
                 echo "<img src='images/$image' width='200px'/><br/>";
-            }
-          }
-        }
+            endif;
+          endwhile;
+        endif;
    ?>
    
    
