@@ -1,0 +1,90 @@
+
+ABRIR Y CERRAR FICHEROS DE TEXTO
+________________________________
+Tenemos la r de lectura, la x de ejecución y la w de escritura.
+
+LECTURA DE ARCHIVO
+____________________
+
+//Abrimos el archivo
+$abrir_archivo=fopen ("fichero_texto.txt","r");
+
+//Leer contenido
+//Para mostrar todas las líneas del archivo tengo que hacer un while y recorrer el archivo
+  while(!feof($archivo)){
+    $contenido=fgets($archivo);
+    echo $contenido;
+  }
+  
+
+//Cerramos el archivo
+fclose($archivo);
+
+
+ESCRITURA DE ARCHIVO
+_____________________
+
+//Los permisos a+ permiten leer y escribir
+//Abrimos archivo
+$archivo=fopen"fichero_texto.txt","a+");
+
+//Escribir contenido
+
+fwrite($archivo,"\nSoy un texto metido desde php");
+
+fclose($archivo);
+
+
+COPIAR FICHERO
+_______________
+
+Se utiiza la función copy
+
+//Copiar
+copy('fichero_texto.txt','fichero_copiado.txt') or die("Error al copiar");
+
+//Renombrar
+rename('fichero_copiado.txt','archivito_recopiadito.txt');
+
+//Eliminar
+unlink('archivito_recopiadito.txt') or die('Error al borrar');
+
+COMPROBAR SI EXISTE UN FICHERO
+______________________________
+
+if(file_exists("fichero_texto.txt")){
+  echo "El archivo existe";
+  }else{
+  echo "No existe";
+  }
+ }
+ ___________________________________________________________________________________________________________
+
+TRABAJAR CON DIRECTORIOS
+_________________________
+
+<?php
+if(!is_dir('mi_carpeta')){
+  //Crear carpeta
+  mkdir('mi_carpeta',0777) or die('No se puede crear la carpeta');
+}else{
+  echo "Ya existe la carpeta";
+  
+  }
+  
+  
+  //Borrar directorios
+  rmdir('mi_carpeta');
+  
+  //Leer el contenido de mi carpeta
+  if($gestor==opendir('./mi_carpeta')){
+      while(false!==($archivo=readdir($gestor))){
+        if($archivo!='.' && $archivo!='..'){
+            echo $archivo."<br/>";
+          }
+        }
+     }
+     
+     
+          
+
