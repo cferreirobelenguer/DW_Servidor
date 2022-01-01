@@ -1,0 +1,148 @@
+
+PROGRAMACIÓN ORIENTADA A OBJETOS EN PHP POO
+____________________________________________
+Una clase es un molde mediante el cual podemos crear objetos con características similares.
+Dentro de una clase vamos a tener atributos o propiedades.
+Los atributos son las caraterísticas del objeto
+Los métodos son las acciones del objeto, se interactúa con los atributos de las clases
+
+
+<?php
+
+  //Definir una clase: molde para crear más objetos de tipo coche con características parecidas
+  class Coche{
+    
+    //Atributos o propiedades (variables) características de nuestra clase
+    public $color="rojo";
+    public $modelo="Ferrari";
+    public $velocidad=300;
+    public $marca="Aventador";
+    public $caballaje=500;
+    public $plazas=2;
+    
+    //Métodos, son acciones que hace el objeto
+    
+    //Muestra el color
+    public function getColor(){
+    //this busca en esta clase la propiedad X
+      return $this->color;
+    }
+    
+    //Modifica el color
+    public function setColor($color){
+      $this->color=$color;
+    }
+    
+    //Aumenta la velocidad
+    public function acelerar(){
+      $this->velocidad++;
+    }
+    
+    //Disminuye la velocidad
+    public function frenar(){
+      $this->velocidad--;
+    }
+    
+    //Muestra la velocidad
+    public function getVelocidad(){
+      return $this->velocidad;
+    }
+    
+   }
+   
+   //Crear objeto o instanciar la clase sin parámetros
+   $coche= new Coche();
+   $coche2= new Coche();
+   
+   //Para obtener los valores usamos los métodos
+   
+   $coche2->setColor("Verde");  //Cambiamos el color de coche 2
+   $coche2->etModelo("Gallargo");
+   
+   echo $coche->getVelocidad();  //Muestra velocidad
+   
+   $coche->setColor("Amarillo");  //Cambia el color de coche a Amarillo
+   
+   echo "El color del coche es ".$coche->getColor()."<br/>";
+   
+   $coche->acelerar();
+   $coche->frenar();
+   
+   echo "Velocidad del coche: ".$coche->getvelocidad();
+   
+    ?>
+    
+    
+    CONSTRUCTOR
+    ___________
+    
+    El constructor se usa para dar un valor a los atributos y propiedades de un objeto, es el primer método que se ejecuta y se llama automáticamente
+    al crearlo. Es un método mágico que se encarga de settear la información,pero nunca devuelve datos. El constructir siempre debe ser público.
+    Una buena práctica es settear los valores dentro del constructor.
+    
+     class Coche{
+    
+    //Atributos o propiedades (variables) características de nuestra clase
+    public $color;
+    public $modelo;
+    public $velocidad;
+    public $marca;
+    public $caballaje;
+    public $plazas;
+    
+    //Asignamos valores a los atributos dentro del constructor
+    public function ___construct($color,$marca,$modelo,$velocidad,$caballaje,$plazas){
+      $this->color=$color;
+      $this->marca=$marca;
+      $this->modelo=$modelo;
+      $this->velocidad=$velocidad;
+      $this->caballaje=$caballaje;
+      $this->plazas=$plazas;
+    }
+    //Métodos, son acciones que hace el objeto
+    
+    //Muestra el color
+    public function getColor(){
+    //this busca en esta clase la propiedad X
+      return $this->color;
+    }
+    
+    //Modifica el color
+    public function setColor($color){
+      $this->color=$color;
+    }
+    
+    //Aumenta la velocidad
+    public function acelerar(){
+      $this->velocidad++;
+    }
+    
+    //Disminuye la velocidad
+    public function frenar(){
+      $this->velocidad--;
+    }
+    
+    //Muestra la velocidad
+    public function getVelocidad(){
+      return $this->velocidad;
+    }
+   }
+    ?>
+    
+    __________________________ç
+    
+    <?php
+    //Archivo php en el que vamos a llamar a los métodos del objeto
+    require 'coche.php';
+    
+    //Creamos el objeto
+    $coche=new Coche("Amarillo","Renault","Clio",150,200,5);
+    
+    
+    ?>
+    
+    
+    
+    
+    
+    
