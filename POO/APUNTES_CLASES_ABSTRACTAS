@@ -1,0 +1,31 @@
+
+CLASES ABSTRACTAS
+__________________
+Clase que no se puede instancias (no se puede crear objetos en ella), pero si se puede usar para heredar de ella,
+puede definir características y también puede definir funcionalidad de las clases que las hereden.
+Cada método que yo defina en la clase abstracta va a tener que ser definido también en la clase hija para poder 
+utilizarse.
+Una propiedad no puede ser abstracta.
+
+
+<?php
+
+abstract class Ordenador{
+    public $encendido;
+    
+    abstract public function encender(){
+      $this->encendido=true;
+    }
+    abstract public function apagar(){
+      $this->encendido=false;
+    }
+}
+
+class PcAsus(){
+  
+    public $software;
+    
+    public function arrancarSoftware(){
+      $this->software=true;
+    }
+ }
