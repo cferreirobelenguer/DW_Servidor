@@ -13,19 +13,29 @@ Una propiedad no puede ser abstracta.
 abstract class Ordenador{
     public $encendido;
     
-    abstract public function encender(){
-      $this->encendido=true;
-    }
+    abstract public function encender();
+    //Este método abstracto hay que definirlo en la clase hija 
+    
     abstract public function apagar(){
       $this->encendido=false;
     }
 }
 
-class PcAsus(){
+class PcAsus extends Ordenador{
   
     public $software;
     
     public function arrancarSoftware(){
       $this->software=true;
     }
+    //En la clase hija se define la funcionalidad del método abstracto encender
+    public function encender(){
+        $this->encendido=true;
+    }
  }
+ 
+ $ordenador=new PcAsus();
+ 
+ $ordenador->arrancarSoftware();
+ $ordenador->encender();
+ $ordenador->apagar();
