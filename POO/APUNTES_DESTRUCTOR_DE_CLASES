@@ -1,0 +1,30 @@
+MÉTODO MÁGICO
+DESTRUCTOR DE CLASES
+_____________________
+
+Sirve para cuando ya la referencia a esta clase u objeto desaparezco destruirlo.
+
+
+<?php
+
+class Usuario{
+
+  public $nombre;
+  public $email
+  
+  public function __construct(){
+  
+    echo "Instancia del objeto creada";
+  }
+  
+  public function __destruct(){
+    echo "Destruyendo el objeto";
+  }
+ }
+  
+  $usuario=new Usuario();
+  
+  for(&i=0;$i<=200;$i++){
+    echo $i."<br/>";
+  }
+  
