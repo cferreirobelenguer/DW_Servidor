@@ -143,6 +143,79 @@ Los métodos son las acciones del objeto, se interactúa con los atributos de la
     
     
     
+    VISIBILIDAD DE ATRIBUTOS Y MÉTODOS
+    _____________________________________
     
+    Hay tres tipos de visibilidad de atributos y métodos:
     
+    public: podemos acceder a él desde cualquier lugar, dentro de la clase actual, dentro de clases que hereden esta clase
+    o incluso fuera de la clase
     
+    protected: se puede acceder a él desde la clase que los define y desde clases que hereden esta clase
+    
+    private: únicamente se puede acceder dese esta clase
+    
+    class Coche{
+      public $color;
+      protected $marca;
+      private $modelo;
+      
+       public function ___construct($color,$marca,$modelo,$velocidad,$caballaje,$plazas){
+      $this->color=$color;
+      $this->marca=$marca;
+      $this->modelo=$modelo;
+      $this->velocidad=$velocidad;
+      $this->caballaje=$caballaje;
+      $this->plazas=$plazas;
+    }
+      public function setMarca($marca){
+        $this->marca=$marca;
+      }
+      
+      public function setModelo($modelo){
+        $this->marca=$modelo;
+      }
+       public function getMarca(){
+        return $this->marca;
+      }
+      
+      public function getModelo(){
+        return $this->modelo;
+      }
+      //Le paso por parámetro un objeto de tipo Coche para que nos muestre la información de ese objeto
+      
+      public function mostrarInformacion(Coche $miObjeto){
+      
+      //Si yo le exijo pasarle por parámetro un tipo de dato de tipo concreto sólo va a permitirme pasar datos de ese tipo.
+      if(is_object($miObjeto)){
+        $informacion="<h1>Información del coche </h1>";
+        $informacion.="<br/>Color: ".$miObjeto->Color;
+        $informacion.="<br/>Modelo: ".$miObjeto->modelo;
+        $informacion.="<br/>Velocidad: ".$miObjeto->velocidad;
+        }else{
+          $informacion="Tu dato es este: ".$miObjeto;
+         }
+        
+        return $informacion;
+      }
+      ?>
+    
+    <?php
+    
+    requiere_once 'coche.php';
+    
+    $coche=new Coche("Amarillo","Renault", "Clio", 150,200,5);
+    $coche1=new Coche("Verde","Seat",, "Panda", 250,200,5);
+    $coche2=new Coche("Azul", "Citroen", "Xara", 100,200,4);
+    $coche3=new Coche("Rojo", "Mercedes", "Clase A",350,100,3);
+    
+    $coche->color="ROSA";
+    
+    //No permite modificarlo porque es protected , haría falta un método set para modificarlo
+    //$coche->marca="Audi";
+    $coche->setMarca("Audi");   //Con esto si funcionaría
+    
+    $coche->getModelo();  //Al ser modelo privado haría falta la función get para poder ver el atributo fuera de la clase
+    
+    //Llamamos a la función que muestra la información
+    echo $coche->mostrarInformacion($coche1);
