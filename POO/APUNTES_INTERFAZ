@@ -1,0 +1,57 @@
+INTERFAZ
+_________
+
+
+Es un contrato mediante el cual definimos qué métodos y en qué orden van a estar en una clase.
+Nosotros vamos a definir una interfaz diciendo qué métodos van a tener las clases y luego cuando implementemos esa interfaz en una clase 
+tienen que estar esos métodos correctamente en esa clase.
+
+<?php
+
+interface Ordenador{
+
+  public function encender();
+  public function apagar();
+  public function reiniciar();
+  public function desfragmentar();
+  public function detectarUSB();
+ }
+ 
+ class iMac implements Ordenador{
+ 
+  public $modelo;
+  
+  function getModelo(){
+    return $this->modelo;
+  }
+  
+  function setModelo($modelo){
+    $this->modelo=$modelo;
+  }
+  public function encender(){
+    return "encendido";
+  }
+  public function apagar(){
+    return "apagado";
+  }
+  public function reiniciar(){
+    return "reiniciado";
+  }
+  public function desfragmentar(){
+    return "desfragmentado";
+  }
+  public function detectarUSB(){
+    return "USB detectado";
+  }
+  
+  
+  
+  
+ }
+ 
+ $maquintos=new iMac();
+ 
+ $maquintoss->setModelo('Macbook PRO 2019');
+ echo $maquintos->getModelo();
+ 
+ 
