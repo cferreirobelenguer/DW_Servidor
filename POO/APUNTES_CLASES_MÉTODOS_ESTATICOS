@@ -1,0 +1,59 @@
+
+Propiedades o métodos estáticos: son propiedades o métodos normales simplemente que para llamarlos yo no 
+necesito crear un objeto, es más práctico llamar a un método o propiedad que es de una clase estática.
+Cuando una propiedad no es estática se accede a ella con self::.
+Para acceder a las propiedades o métodos estáticas un objeto siempre será con :: y nunca con ->.
+
+
+<?php
+
+  class Configuracion{
+    public static $color;
+    public static $newsletter;
+    public static $entorno;
+    
+    //Getter y Setter
+    public static function getColor($color){
+      return self::$color=$color;
+    }
+    public static function getNewsletter($newsletter){
+      return self::$newsletter=$newsletter;
+    }
+    public static function getEntorno($entorno){
+      return self::$entorno=$entorno;
+    }
+    public static function setColor($color){
+      self::$color=$color;
+    }
+    public static function setNewsletter($newsletter){
+      self::$newsletter=$newsletter;
+    }
+    public static function setentorno($entorno){
+      self::$entorno=$entorno;
+    }
+  
+  }
+  ?>
+  ____________________________________________
+
+<?php
+
+requiere_once'configuracion.php';
+
+  Configuracion::setColor("blue");
+  Configuracion::setEntorno("localhost");
+  Configuracion::setNewsletter(true);
+  
+  echo Configuracion::$color."<br/>";
+  echo Configuracion::$entorno."<br/>";
+  echo Configuracion::$newsletter."<br/>";
+  
+  //También puedo instanciar objetos en clases estáticas
+  
+  $configuracion=new Configuracion();
+  $configuracion::$color="rojo";
+  echo $configuracion::$color;
+  
+  
+  
+  ?>
