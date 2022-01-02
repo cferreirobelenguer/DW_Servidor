@@ -1,0 +1,122 @@
+
+HERENCIA
+________
+
+Nos permite compartir funcionalidades entre clases, características, atributos y métodos entre clases, con el fín
+de repetir el menor número de código.
+
+<?php
+
+  class Persona{
+  
+  public $nombre;
+  public $apellidos;
+  public $altura;
+  public $edad;
+  
+  //Funciones Getter
+  public function getNombre(){
+    return $this->nombre;
+   }
+  public function getApellidos(){
+    return $this->apellidos;
+  }
+  public function getAltura(){
+    return $this->altura;
+  }
+  public function getEdad(){
+    return $this->edad;
+  }
+  //Funciones Setter
+  public function setNombre(){
+    $this->nombre=$nombre;
+  }
+  public function setApellidos(){
+    $this->apellidos=$apellidos;
+  }
+  public function setAltura(){
+    $this->altura=$altura;
+  }
+  public function setEdad(){
+    $this->edad=$edad;
+  }
+  
+  public function hablar(){
+    return "Estoy hablando";
+  }
+  
+  public function caminar(){
+    return "Estoy caminando";
+  }
+  
+ }
+ 
+ //Un informático es una persona igualmente pero tiene características propias de informático
+ class Informatico extends Persona{
+ 
+  public $lenguajes;
+  public $experienciaProgramador;
+  
+  public function __construct(){
+    $this->lenguajes="HTML,CSS Y JS";
+    $this->experienciaProgramador=10;
+  }
+  
+  public function sabeLneguajes(){
+    $this->lenguajes=$lenguajes;
+    
+    return $this->lenguajes;
+  }
+ 
+ //Puedo heredar los métodos de la clase persona
+  public function programar(){
+    return "Soy programador";
+  }
+  public function repararOrdenador(){
+    return "Reparar ordenadores";
+  }
+  public function hacerOfimatica(9{
+    return "Estoy escribiendo en Word";
+  }
+  
+}
+
+//Esta clase hereda de Informatico
+class TecnicoRedes extends Informatico{
+  public $auditarRedes;
+  public $experienciaRedes;
+  
+  public function __construct(){
+  //Llama al método construct de la clase padre
+    parent::__construct();
+    $this->auditarRedes="experto";
+    $this->experienciaRedes=5;
+  }
+  
+  public function auditoria(){
+    return "Estoy auditando una red";
+  }
+
+}
+_________________________________________________________
+//Creamos index.php para comprobar los métodos de ambas clases
+
+<?php
+  require_once 'clases.php';
+  
+  $persona=new Persona();
+  
+ // $persona->setNombre("Victor");  //Nombre coge el valor de Victor
+  
+  //Con el objeto informatico de la clase Informatico se pueden usar los métodos de la clase Persona porque los hereda
+  $$informatico=new Informatico();
+  
+  //$informatico->setAltura(1.90);
+  //echo $informatico->sabeLneguajes("HTML,CSS,PHP,JS,ETC");
+  
+  $tecnico =new TecnicoRedes();
+  
+  
+  
+  
+  
