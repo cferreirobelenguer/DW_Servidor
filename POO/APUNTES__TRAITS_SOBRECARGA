@@ -1,0 +1,50 @@
+
+TRAITS SOBRECARGA
+_________________
+
+Es crear un método para que lo usen las tres clases, sin embargo no quiero que las tres clases
+hereden de la clase padre.
+Trait nos permite crear una serie de elementos para compartirlos en varias clases.
+
+<?php
+
+trait Utilidades{
+  public function mostrarNombre(){
+    echo "<h1>El nombre es ".$this->nombre."</h1>";
+
+class Coche{
+  public $nombre;
+  public $marca;
+  
+  use Utilidades;
+ }
+ 
+class Persona{
+  public $nombre;
+  public $apellidos;
+  
+  use Utilidades;
+ }
+ 
+ class VideoJuego(){
+  public $nombre;
+  public $anio;
+  
+  use Utilidades;
+ }
+ 
+ $coche=new Coche();
+ $coche->nombre="Ferrari";
+ $coche->mostrarNombre();
+ 
+ $persona=new Persona();
+ $persona->nombre="Ferrari";
+ $persona->mostrarNombre();
+ 
+ $videojuego=new VideoJuego();
+ $videojuego->nombre="Ferrari";
+ $videojuego->mostrarNombre();
+ 
+ 
+ 
+ 
