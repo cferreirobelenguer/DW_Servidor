@@ -1,0 +1,66 @@
+
+MÉTODO MÁGICO
+
+MÉTODO toString()
+_________________
+
+
+Nos permite controlar cómo se comporta un objeto cuando lo tratamos como un String.
+
+<?php
+
+class Usuario{
+
+  public $nombre;
+  public $email;
+  
+  public function __construct(){
+    $this->nombre="Victor Robles";
+    $this->email="victor@victor.com";
+    
+  }
+  
+  public function __toString(){
+    return "Hola, ".$this->nombre." estás registrado con ".$this->email;
+  }
+}
+$usuario=new Usuario();
+echo $usuario->email;
+
+MÉTODO MÁGICO
+CALL
+______________
+
+Cuando un método no existe usamos este método 
+
+<?php
+
+class Persona{
+
+  private $nombre;
+  private $edad;
+  private $ciudad;
+  
+  public function __construct($nombre,$edad,$ciudad){
+    $this->nombre=$nombre;
+    $this->edad=$edad;
+    $this->ciudad=$ciudad;
+  }
+  
+  public function __call($name, $arguments){
+      $prefix_metodo=substr($name,0,3);
+      
+      if(prefix_metodo=substr($name,0,3);
+      if($prefix_metodo=="get"){
+        $nombre_metodo=substr(strtolower($name),3);
+        }
+        return $nombre_metodo;
+  }
+  
+}
+
+$persona=new Persona("Paco",66,"Madrid");
+echo  $persona->getNombre();
+
+//Cuando el programa detecta que se llama a un método que no existe
+//se ejecuta automáticamente la función call
