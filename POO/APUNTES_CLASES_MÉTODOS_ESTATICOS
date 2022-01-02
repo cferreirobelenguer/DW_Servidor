@@ -12,6 +12,7 @@ Para acceder a las propiedades o métodos estáticas un objeto siempre será con
     public static $newsletter;
     public static $entorno;
     
+    
     //Getter y Setter
     public static function getColor($color){
       return self::$color=$color;
