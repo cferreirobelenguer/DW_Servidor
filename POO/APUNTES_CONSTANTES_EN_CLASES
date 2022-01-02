@@ -1,0 +1,36 @@
+
+CONSTANTES DENTRO DE UNA CLASE DE PHP
+________________________________________
+
+
+<?php 
+
+class Usuario{
+  const URL_COMPLETA="http://localhost";
+  public $email;
+  public $password;
+  
+  function getEmail(){
+    return $this->email;
+  }
+  
+  function getPassword(){
+    return $this->password;
+  }
+  
+  function setEmail($email){
+    $this->email=$email;
+  }
+  
+  function setPassword($password){
+    $this->password=$password;
+  }
+ }
+  $usuario=new Usuario();
+  
+  //Así puedo acceder a las constantes
+  echo $usuario:URL_COMPLETA;
+  
+  echo Usuario:URL_COMPLETA;
+  //Es una instancia definida a nivel de Clase con lo cual podemos acceder a ella desde el objeto o desde la clase
+  
