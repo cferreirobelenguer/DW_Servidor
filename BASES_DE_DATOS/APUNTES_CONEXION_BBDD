@@ -1,3 +1,25 @@
+CREACIÓN DE LA BASE DE DATOS:
+
+Nos situamos en phpmyadmin.
+Le damos a nueva.
+En la sección crear base de datos ponemos el nombre de la base de datos.
+En cotejamiento hay que poner utf8_general_ci (para meterle tildes,etc)
+Le damos a crear.
+En estructura vamos a crear una tabla, le ponemos el nombre y el número de columnas.
+Por ejemplo la llamamos notas y queremos que de columnas tenga id, titulo,descripcion,color (4 columnas)
+Le damos a continuar.
+Al darle a continuar nos lleva a las columnas y rellenamos el nombre de cada columna, el tipo (int,varchar,medium text,etc), longitud 255 , indice primary si es cave primaria, cotejamiento, atributos, etc
+En el caso del ejercicio id es clave primaria y hay que seleccionar la opción de autoincrementar para que se vaya incrementando progresivamente.
+Y así con todas las columnas.
+Cuando ya lo tengamos todo le damos a guardar.
+Ya hemos creado la tabla pero falta insertar los datos:
+Le damos a insertar:
+El valor del id en este caso le dejamos nulo ya que se va a ir autoincrementando.
+Y ponemos valores a titulo,descripcion y color.
+Si queremos crear más filas le damos a insertar otra vez y volvemos a meter datos y así constantemente y le damos a continuar para confirmar.
+
+
+
 EJERCICIO EXPLICADO:
 
 Se puede hacer mediante funciones o mediante programación orientada a objetos.
