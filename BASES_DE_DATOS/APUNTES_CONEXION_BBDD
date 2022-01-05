@@ -1,0 +1,87 @@
+EJERCICIO EXPLICADO:
+
+Se puede hacer mediante funciones o mediante programación orientada a objetos.
+En este caso se va a hacer mediante funciones:
+La conexión se establece mediante mysqli_connect
+$host es la conexión del servidor
+$user es el usuario de mysql que en este caso es root
+$password es la contraseña de mysql
+$database es la base de datos
+2 campos opcionales que son el puerto y socket:
+$port son el puerto
+$socket 
+En xamp no hay que poner contraseña, sino no funciona. En linux si. En caso de que no tenga contraseña se ponen unas comillas vacías
+Esto sería la conexión con mysql
+$conexion=mysqli_connect("localhost","root","","phpmysql");
+
+Se puede comprobar que la conexión es correcta con mysqli_connect_errno()
+//Comprobar si la conexión es correcta
+if(mysqli_connect_errno()){
+  echo "La conexión a la base de datos MySQL ha fallado: ".mysqli_connect_error();
+}else{
+    echo "Conexión realizada correctamente";
+}
+
+Una cosa muy recomendable es setear la codificación de caracteres para que si hay algún dato que viene co ñ nos lo devuelva correctamente.
+Hay que hacer una consulta para configurar la codificación de caracteres.
+La consulta se hace con mysqli_query:
+//Consulta para cofigurar la codificacion de caracteres
+mysqli_query($conexion,"SET NAMES,'utf8'");
+
+CREAR CONSULTA: siempre se hace con mysqli_query(se pone la conexión, y la consulta mysql);
+//consulta SELECT desde PHP
+mysqli_query($conexion,"SELECT*FROM notas");
+
+Una vez creada la consulta, para poder ver los datos hay que llevar la consulta a un array asociativo con mysqli_query:
+
+Podemos consultar solo una fila o iterar todas las filas.
+En caso de que queramos sólo consultar un dato sería asi:
+//Array asociativo con el resultado de la consulta
+//Con esto me devuelve sólo una nota
+//$notas=mysqli_fetch_assoc($query);
+
+Si queremos iterar todos los datos debemos hacerlo con un while:
+//Si yo quiero que me devuelva todas las notas tendría que hacer un while
+//Por cada iteración le doy un valor a $nota
+while($nota=mysqli_fetch_assoc($query)){
+    //var_dump($nota);
+    echo "<h2>".$nota['titulo']."</h2><br/>";
+    echo $nota['descripcion']."<br/>";
+}
+
+
+EJERCICIO:
+
+<?php
+
+//Conectar a la base de datos
+$conexion=mysqli_connect("localhost","root","","phpmysql");
+
+//Comprobar si la conexión es correcta
+if(mysqli_connect_errno()){
+  echo "La conexión a la base de datos MySQL ha fallado: ".mysqli_connect_error();
+}else{
+    echo "Conexión realizada correctamente";
+}
+
+//Consulta para cofigurar la codificacion de caracteres
+mysqli_query($conexion,"SET NAMES,'utf8'");
+
+//consulta SELECT desde PHP
+$query=mysqli_query($conexion,"SELECT*FROM notas");
+
+//Array asociativo con el resultado de la consulta
+//Con esto me devuelve sólo una nota
+//$notas=mysqli_fetch_assoc($query);
+
+//Si yo quiero que me devuelva todas las notas tendría que hacer un while
+//Por cada iteración le doy un valor a $nota
+while($nota=mysqli_fetch_assoc($query)){
+    //var_dump($nota);
+    echo "<h2>".$nota['titulo']."</h2><br/>";
+    echo $nota['descripcion']."<br/>";
+}
+
+?>
+
+
