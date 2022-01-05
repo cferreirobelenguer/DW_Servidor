@@ -1,0 +1,438 @@
+
+
+
+NOTAS MYSQL PHP
+
+Se va a trabajar con phpmyadmin
+En base de datos se crea la tabla.
+
+Cuando se quiere llevar la tabla al servidor hay que exportarla en la sección de exportar.
+Cuando se da a exportar salen todas las tablas con las filas correspondiente.
+Se crea una base de datos y se da a importar y se guarda la base de datos.
+
+En el navegador se hace la petición
+
+Si no viene instalada en phpmyadmin hay que añadir esta extensión en linux:
+sudo apt-get install php-my
+
+Se puede trabajar con mysqli o PDO.
+
+msqli se trabaja basada en objetos o procedimientos. Nosotros vamos a trabajar con objetos.
+
+Se crea un objeto mysqli y se llama a atributos o métodos que tiene ese objeto.
+
+$mysqli = new mysqli($hostname, $usuario, $password,$basededatos);
+if ( mysqli_connect_errno() ) {
+echo "Error de conexión a la BD: ".mysqli_connect_error();
+exit();
+}
+
+INSERT: inserta nuevos elementos en una tabla
+UPDATE: actualiza campos de una tabla
+DELETE: elimina registros de la tabla
+
+Con query se modifican, crean o eliminan tablas de la bbdd.
+multi_query : en una orden sólo permite varias consultas. No se suele utilizar
+Se suele usar una query normal para realizar consultas.
+
+
+________________________________________________________________________________________________________________________
+
+SEGURIDAD:
+
+Usuario puede dar información.
+Hay que evitar SQL injección.
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link href="default.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+	<div id="container" style="width: 380px;">
+		<div id="header">
+			<h1>ACCESO AL SISTEMA</h1>
+		</div>
+		<div id="content">
+
+<?php
+if ($_SERVER['REQUEST_METHOD'] == "GET") {
+    // Muestro el formulario de acceso
+    ?>   
+  <form name='entrada' method="POST">
+				<table style="border: node;">
+					<tr>
+						<td>identificador:</td>
+						<td><input type="text" name="login" size="20"></td>
+					</tr>
+					<tr>
+						<td>Contraseña:</td>
+						<td><input type="password" name="passwd" size="20"></td>
+					</tr>
+				</table>
+				<input type="submit" name="orden" value="Entrar">
+			</form>   
+<?php
+} else { // Proceso los datos
+
+
+Cuando yo creo la consulta usuario tiene login y password
+
+Se crea la conexión
+
+ $conex = new mysqli("localhost", "root", "root", "Prueba"); // Abre una conexión
+
+Se comprueba la conexión
+
+if ($conex->connect_errno) {
+        // Comprueba conexión
+        printf("Conexión fallida: %s\n", mysqli_connect_error());
+        exit();
+    }
+
+Obtengo login y password
+
+ $login = $_POST['login'];
+ $passwd = $_POST['passwd'];
+
+Creo la consulta 
+$query = "SELECT Nombre FROM Usuario WHERE login = '$login' and passwd = '$passwd'";
+
+
+Se ejecuta la consulta ESTA EJECUCIÓN GENERA ERROR DE INYECCIÓN DE CÓDIGO, NO ES LA CORRECTA
+
+
+echo "<br> $query <br>";
+
+Hay un error de posible inyección de código
+
+ // ERROR - POSIBLE INYECCIÓN DE CÓDIGO 
+    ///////////////////////////////////////////////////////
+    //////////////////////////////////////////////
+
+LA FORMA CORRECTA ES USAR SENTENCIAS PREPARADAS
+LA FORMA CORRECTA ES ESTA:
+TODAS LAS FILAS CUMPLEN QUE 1 ES IGUAL A 1
+
+
+	 $result = $conex->query( $query);
+    if ($fila = $result->fetch_assoc()) {
+        echo " $fila[Nombre]: Bienvenido al sistema SIN SEGURIDAD <br>";
+    } else {
+        echo "El identificador y/o la contraseña no son correctos.<br>";
+    }
+
+MEDIDAS DE SEGURIDAD: 
+ESCAPE_STRING DEVUELVE CARACTERES LIMPIOS
+
+ // 1º MEDIDA Filtrar: escapa caracteres peligrosos
+    $login = $conex->escape_string($_POST['login']);
+    $passwd = $conex->escape_string($_POST['passwd']);
+    $query = "SELECT Nombre FROM Usuario WHERE login = '$login' and passwd = '$passwd'";
+    echo "<br> $query <br>";
+
+    // 2º MEDIDA Utilizar: Sentencia preparada
+USAR SENTENCIA PREPARADA, HAY UNOS VALORES Y LOS VINCULO, ESTA ORDEN SE ENVÍA A SQL LA ANALIZA Y MIRA SI ESTÁ BIEN.
+CUANDO SE COMPRUEBA QUE ESTÁ BIEN SE EJECUTA.
+SI YO LA EJECUTO VARIAS VECES SOLO TENGO QUE PONER EXECUTE.
+SI LA VOY A USAR UNA VEZ CON QUERY ES SUFICIENTE PERO SI LA USO VARIAS VECES SE USA CON EXECUTE.
+
+    $stmt = $conex->prepare("SELECT * FROM Usuario WHERE login = ? and passwd = ?");
+//CON SS SE INDICA EL TIPO DE VALOR QUE SE PONE, SE DICE QUE LOGIN Y PASSWD SON STRING, ES OBLIGATORIO, YA
+QUE SINO SE ENTIENDE QUE NO HAY DATOS VINCULADOS Y LA APLICACIÓN NO FUNCIONARÍA
+SI FUERA UN INT SE PONDRÍA I.
+
+SE PREPARA LA SENTENCIA. VINCULO LOS DATOS Y LA EJECUTO.
+
+SI DEVUELVE FALSO INDICA QUE LA CONSULTA ESTÁ MAL Y SI DEVUELVE VERDADERO QUE LA CONSULTA ESTÁ BIEN
+    $stmt->bind_param("ss", $login, $passwd);
+
+CUANDO LE DOY A EXECUTE YA OBTENGO LOS DATOS Y LO EJECUTO CON ARRAY ASOCIATIVO EN ESTE CASO.
+
+    $stmt->execute();
+    if ($result = $stmt->get_result()) {
+        // No uso un while por que lo normal es que haya una sola fila
+        if ($fila = $result->fetch_assoc()) {
+            echo " $fila[Nombre]: Bienvenido al sistema <br>";
+        } else {
+            echo "El identificador y/o la contraseña no son correctos.<br>";
+        }
+    } else {
+        echo " ERROR de consulta a la BD " . $conex->error . "<br>";
+    }
+}
+
+?>
+</div>
+		<p>
+	
+	</div>
+</body>
+</html>
+__________________________________________________________________________________________________________________________________
+
+
+HAY 4 FORMAS DE ACCESO A DATOS DE BBDD: NORMALMENTE SE USA EL ASOCIATIVO O EL DE OBJETO.
+
+  Ejemplos de distintas maneras de obtener los datos de una
+  consulta.
+ - Array Asociativo  fetch_assoc
+ - Array Posiciones  fetch_row 
+ - Array Asociativo o con posiciones fetch_array
+ - Array de objetos  fetch_object 
+ 
+
+_____________________________________________________________________________________________
+
+EJEMPLO 1:
+
+
+Creo la conexión
+
+echo " Conectando a la base de datos <br>";
+$conex = new mysqli("192.168.105.96", "root", "root", "Empresa"); // Abre una conexión
+
+Miro si la conexión es correcta
+
+if (mysqli_connect_errno()) {
+    // Comprueba conexión
+    printf("Conexión fallida: %s\n", mysqli_connect_error());
+    exit();
+}
+
+Si va todo bien hago la consulta
+
+$query = "SELECT EMP_NO,APELLIDO FROM EMPLEADOS";
+
+Si la consulta es correcta que se la tabla de resultados se obtenga fetch los valores
+
+Se puede obtener los resultados en un array asociatio.
+Cada elemento en fila y cada nombre del campo va a corresponder al dato.
+Para acceder devuelvo resultado y me devuelve un array asociativo de los atributos que he definido en la consulta.
+
+if ($result = $conex->query( $query)) {
+    // Apunta a la primera fila, no es necesaria en este caso
+   //Con esto me sitúo dentro de los resultados
+    $result->data_seek(0);
+    // Extrae fila apuntada y apunta a la siguiente
+    // Obtiene un array asociativo
+    while ( $fila = $result->fetch_assoc()) {
+        // Muestra sus datos
+        printf ("Nº: %s Apellido: %s <br>", $fila['EMP_NO'], $fila['APELLIDO'] );
+    }
+
+Y finalmente se liberan los recursos de la consulta:
+
+   $result->close(); // libera recursos de la consulta
+}
+$conex->close(); // cierra conexión
+?>
+
+
+__________________________________________________________________________________________________________
+
+EJEMPLO 2:
+
+
+
+Creo la conexión
+
+echo " Conectando a la base de datos <br>";
+$conex = new mysqli("192.168.105.96", "root", "root", "Empresa"); // Abre una conexión
+
+Compruebo la conexión
+
+if ($conex->connect_errno) {
+    // Comprueba conexión
+    printf("Conexión fallida: %s\n", mysqli_connect_error());
+    exit();
+}
+
+Ejecuto la consulta
+
+$query = "SELECT EMP_NO,APELLIDO, SALARIO FROM EMPLEADOS";
+
+AQUI USAMOS ARRAT ASOCIATIVO POR NOMBRE DE CAMPO, SE GENERA UNA TABLA HTML, SE USA FETCH_ASSOC SE BUSCA POR CAMPOS
+
+ // Array Asociativo por nombre de campo
+    echo "<table border=1><th>Nº</th><th>Apellido</th><th>Salario</tr>";
+    while ( $fila = $result->fetch_assoc()) {
+        echo "<tr>";
+        echo "<td>$fila[EMP_NO]</td>";
+        echo "<td>$fila[APELLIDO]</td>";
+        echo "<td>$fila[SALARIO]</td>";
+        echo "</tr>";
+    }
+    echo "</table>
+
+// Array Asociativo por posición del campo, AQUÍ SE USA LA BÚSQUEDA POR POSICIÓN QUE ES FETCH_ROW, SE
+VA POSICIONANDO EN LOS DATOS, EN VEZ DE CLAVES SON POSICIONES.
+
+  // Array Asociativo por posición del campo
+    echo "<hr>";
+    $result->data_seek(0); // Voy a al inico 
+    echo "<table border=1><th>Nº</th><th>Apellido</th><th>Salario</tr>";
+    while ( $fila = $result->fetch_row() ) {
+        echo "<tr>";
+        echo "<td>$fila[0]</td>";
+        echo "<td>$fila[1]</td>";
+        echo "<td>$fila[2]</td>";
+        echo "</tr>";
+    }
+    echo "</table>";
+
+TE DEJA ELEGIR ENTRE NUMÉRICO O CLAVE
+
+ // Array Asociativo por posición o por nombre
+    echo "<hr>";
+    $result->data_seek(0); // Voy a al inico
+    echo "<table border=1><th>Nº</th><th>Apellido</th><th>Salario</tr>";
+    while ( $fila = $result->fetch_array() ) {
+        echo "<tr>";
+        echo "<td>$fila[0]</td>";
+        echo "<td>$fila[APELLIDO]</td>";
+        echo "<td>$fila[2]</td>";
+        echo "</tr>";
+    }
+    echo "</table>";
+
+
+//  Array de objetos con con atributos con el valor del campo
+    //  En este caso no indicamos la clase del objeto que se crea (stdClass)
+EL RESULTADO ES UN OBJETO Y ACCEDO A CADA UNO DE LOS ATRIBUTOS
+
+ echo "<hr>";
+    $result->data_seek(0); // Voy a al inico
+    echo "<table border=1><th>Nº</th><th>Apellido</th><th>Salario</tr>";
+    while ( $obj = $result->fetch_object() ) {
+        echo "<tr>";
+        echo "<td>$obj->EMP_NO</td>";
+        echo "<td>$obj->APELLIDO</td>";
+        echo "<td>$obj->SALARIO</td>";
+        echo "</tr>";
+    }
+    echo "</table>";
+
+
+FETCH_ALL RECUPERA TODOS LOS DATOS, DEVUELVE UN ARRAY, RECORRO ESE ARRAY POR FILAS Y PONGO EL VALOR.
+USAMOS FOREACH PARA RECORRER LOS DATOS
+
+// Un tabla con todos los resultados
+    echo "<hr>";
+    $result->data_seek(0);
+    $todos = $result->fetch_all();
+    echo "<table border=1><th>Nº</th><th>Apellido</th><th>Salario</tr>";
+    foreach ($todos as $fila){
+        echo "<tr>";
+        foreach ($fila as $valor){
+            echo "<td>$valor</td>";
+        }
+        echo "</tr>";
+    }
+    echo "</table>";
+
+LIBERO LOS RECURSOS DE LA CONSULTA
+
+   $result->close(); // libera recursos de la consulta
+}
+$conex->close(); // cierra conexión
+?>
+
+
+
+__________________________________________________________________________________________________________
+
+
+EN CRUD COGE LOS DATOS POR EL LOGIN QUE ES LA CLAVE PRIMARIA, EL IDENTIFICADOR ES EL LOGIN
+
+PATRON SINGLETON: SOLO VA A HABER UNA ÚNICA COPIA DEL OBJETO, SE APLICA ESE PATRÓN DE DISEÑO Y UNA CLASE SÓLO PUEDE CREAR
+UN OBJETO. LA ÚNICA FORMA DE EVITAR QUE SE CREAN VARIOS OBJETOS ES MEDIANTE:
+
+  public static function getModelo(){
+        if (self::$modelo == null){
+            self::$modelo = new AccesoDatos();
+        }
+        return self::$modelo;
+    }
+    
+EN ESTE CASO SOLO SE CREA UN OBJETO, LA ÚNICA FORMA DE ACCEDER AL MODELO ES GETMODELO Y SI NO EXISTE O CREA SINO DEVUELVE EL RESULTADO
+DE MODELO. 
+ESTO ES UN CASO DE SINGLETON. EL CONSTRUCTOR ES PRIVADO, SÓLO SE PUEDE CREAR UN OBJETO.
+
+GETUSUARIO LO PIDE DETALLES , LO QUE HACE ES PREPARA LA CONSULTA, OBTENGO LA CONSULTA
+SI ES FALSE ES QUE FALLA LA CONSULTA Y SE TERMINA EL PROGRAMA. SINO SE EJECUTA CON EXECUTE Y+SE MUESTRAN LOS DATOS CON FETCH_OBJECT.
+
+EL NOMBRE TIENE QUE SER IGUAL QUE EN LA BBDD SINO NO FUNCIONA.
+NOMBRE ES $USER
+CON GET_RESULT SE CHEQUEA SI EL RESULTADO HA SIDO CORRECTO.
+
+************
+GETUSUARIOS PREPARA LA CONSULTA DE LA LISTA DE USUARIOS TOTAL
+
+ $stmt_usuarios  = $this->dbh->prepare("select * from Usuarios");
+
+************
+
+GETUSUARIO PREPARA LA CONSULTA DE USUARIOS POR LOGIN
+
+$stmt_usuario   = $this->dbh->prepare("select * from Usuarios where login =?");
+        if ( $stmt_usuario == false) die ($this->dbh->error);
+
+EJECUTA LA CONSULTA
+OBTENGO LOS RESULTADOS
+TENGO EL ARRAY Y VOY METIENDO LOS OBJETOS DE LA FUNCIÓN CON FETCH_OBJECT
+
+************
+
+GETMODELO ES PARA ACCEDER A LA BBDD
+Y GETUSUARIO PREPARA LA CONSULTA Y OBTENGO LA CONSULTA
+
+public static function getModelo(){
+        if (self::$modelo == null){
+            self::$modelo = new AccesoDatos();
+        }
+        return self::$modelo;
+    }
+    
+
+************
+
+MODUSUARIO MODIFICA EL USUARIO EN LA BBDD
+EL NOMBRE DE LOS CAMPOS TIENE QUE CORRESPONDER CON LA POSICIÓN DE LA CONSULTA.
+
+ $stmt_moduser   = $this->dbh->prepare("update Usuarios set nombre=?, password=?, comentario=? where login=?");
+        if ( $stmt_moduser == false) die ($this->dbh->error);
+
+EJECUTO LA CONSULTA Y COMO ES UNA CONSULTA DE MODIFICACIÓN SE CHEQUEA CUÁNTAS FILAS EN LA BBDD HAN SIDO AFECTADAS
+EN ESTE CASO 1.
+
+************
+
+ADDUSUARIO ES PARA AÑADIR USUARIOS
+
+HAY QUE TENER EN CUENTA LA POSICIÓN DE LOS VALORES
+
+ $stmt_creauser  = $this->dbh->prepare("insert into Usuarios (login,nombre,password,comentario) Values(?,?,?,?)");
+        if ( $stmt_creauser == false) die ($this->dbh->error);
+
+************
+
+BORRARUSUARIO ES PARA ELIMINAR LOS USUARIOS
+
+ $stmt_boruser   = $this->dbh->prepare("delete from Usuarios where login =?");
+        if ( $stmt_boruser == false) die ($this->dbh->error);
+
+************
+       
+CLOSEMODELO CIERRA LA CONEXIÓN ANULANDO TODOS LOS OBJETOS RELACIONADOS CON LA CONEXIÓN
+
+  // Cierro la conexión anulando todos los objectos relacioanado con la conexión PDO (stmt)
+    public static function closeModelo(){
+        if (self::$modelo != null){
+            $obj = self::$modelo;
+            // Cierro la base de datos
+            $obj->dbh->close();
+            self::$modelo = null; // Borro el objeto.
+        }
+    }
