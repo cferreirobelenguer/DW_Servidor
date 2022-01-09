@@ -1,0 +1,34 @@
+
+
+MODELO VISTA CONTROLADOR MVC
+_____________________________
+
+El modelo vista controlador que es un patrón de diseño  de software, sus siglas son MVC, y se encarga de separar la lógica
+de negocio de la interfaz del usuario. Separa la funcionalidad como tal de lo que se demuestra al usuario.
+
+Facilita desarrollar funcionalidades, mantenibilidad y escalabilidad de la aplicación. Favorece a no mezclar lenguajes de programación.
+Favorece mucho el MVC a separarlo todo en función de la tarea que tiene que hacer, no mezclar lenguaje y no mezclar partes de aplicación,
+hacer buenas prácticas y no hacer código espagueti.
+
+El MVC divide las aplicaciones en 3 niveles de astracción: 
+
+1. Modelo que es la lógica de negocio, clases o métodos que se comunican con la base de datos o hace una funcionalidad o lógica compleja.
+2. La vista que es la encargada de mostrar la información al usuario de forma gráfica.
+3. Controlador, es el intermediario entre la vista y el modelo y se encarga de controlar las interacciones que hace el usuario con la vista.
+Por ejemplo si el usuario hace una petición, el controlador se encarga de recibir ese llamado o petición , procesar esa información, después 
+le pide los datos al modelo y devuelve nuevos datos o una vista nueva para que se le muestre al usuario.
+El controlador lo que hace es crear objetos, llamar a métodos, llamar a funciones, hacer lógica y recibir datos de formularios, enviar datos
+a la vista para que se le muestre al usuario.
+
+Funcionamiento básico de patrón MVC:
+1. El usuario realiza una petición.
+2. El controlador captura la petición.
+3. Hace la llamada al modelo correspondiente.
+4. El modelo será el encargado de interactuar con la base de datos.
+5. El controlador recibe la información y envía a la vista.
+6. La vista muestra la información. Después el controlador le vuelve a enviar al cliente los datos con toda la vista de la aplicación.
+
+En el modelo se hacen las consultas a las bases de datos.
+Controlador se encarga de hacer un poco de lógica, y de llamar a modelos y vistas. El controlador va a ser la parte central que va a unir el 
+modelo con la parte que se conecta a la base de datos con la vista que es lo que se le imprime al usuario.
+En la vista vamos a tener código PHP y HTML pero a modo de imprimir cosas y mostrar cosas al usuario.
