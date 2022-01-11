@@ -1,53 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link href="default.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="container" style="width: 380px;">
+<div id="header">
+<h1>CLIENTESPLUS</h1>
+</div>
+<div id="content">
 <?php
+if (isset ($_POST['puntos']) && is_numeric($_POST['puntos'])){
+    $puntos= $_POST['puntos'];
+} else {
+    echo " Introduzca un valor de puntos correcto.<br>";
+    exit();
+}
 
-/*Acceso a bbdd de telefonia*/
+$conex = new mysqli("localhost", "root", "root", "telefonia"); // Abre una conexión
+if ($conex->connect_errno) {
+    // Comprueba conexión
+    printf("Conexión fallida: %s\n", mysqli_connect_error());
+    exit();
+}
+$conex->set_charset("utf8");
+$stmt = $conex->prepare("SELECT * FROM clientes WHERE puntos >= ?");
+$puntos= $conex->escape_string($puntos); // No es necesario
+$stmt->bind_param("i",$puntos);
 
-class verpuntos{
-    private static $modelo=null;
-    private $dbh=null;
-    private $stmt=null;
-
-    /* MOSTRAR LOS NOMBRES Y PUNTOS DE LOS CLIENTES QUE TIENEN IGUAL O MAYOR CANTIDAD DE PUNTOS QUE LOS SOLICITADOS.
-    MOSTRANDO ERROR SI NO HAY NINGÚN CLIENTE QUE TENGA ESA CANTIDAD IGUAL O SUPERIOR*/
-    private static $select1=("SELECT * FROM clientes WHERE puntos>=?");
-    public static function initModelo(){
-        if(self::$modelo==null){
-            self::$modelo=new verpuntos();
-        }
-        return self::$modelo;
+$stmt->execute();
+$result = $stmt->get_result();
+if ( $result ){
+    if ($result->num_rows > 0){
+    echo "</table>";
+    echo "<hr>";
+    echo "<table border=1><th>Teléfono</th><th>Nombre</th><th>Puntos</tr>";
+    while ( $fila = $result->fetch_array() ) {
+        echo "<tr>";
+        echo "<td>$fila[0]</td>";
+        echo "<td>$fila[1]</td>";
+        echo "<td>$fila[2]</td>";
+        echo "</tr>";
     }
-
-    private function __construct(){
-        try{
-        $dsn="mysql:host=localhost;dbname=telefonia;charset=utf8";
-        //Conexión a la bbdd
-        $this->dbh=new PDO($dsn,"root","");
-        $this->dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        }catch(PDOException $e){
-            //Mensaje en caso de error de conexión
-            echo "Error de conexión ".$e->getMessage();
-            exit();
-        }
-
-    }
-    public function consulta1(int $puntos):array{
-        $resu=[];
-        //Preparo la consulta
-        $stmt=$this->dbh->prepare(self::$select1);
-        //Le doy unos valores
-        $stmt->bindValue(1,$puntos);
-        //Devuelvo una tabla asociativa
-        $stmt->setFetchMode(PDO::FETCH_ASSOC);
-        if($stmt->execute()){
-            while($fila =$stmt->fetch()){
-                $resu[]=$fila;
-            }
-        }
-        //Obtengo un valor que es el resultado de recorrer las filas de la consulta
-        return $resu;
-    }
-    //Evito que se pueda clonar el objeto
-    public function __clone(){
-        trigger_error('La clonación no permitida',E_USER_ERROR);
+    echo "</table>";   
+    } else {
+        echo " No se encuentran clientes con esos puntos.<br>";
     }
 }
+?>
+</div>
+</div>
+</body>
+</html>
+
+
+
+
