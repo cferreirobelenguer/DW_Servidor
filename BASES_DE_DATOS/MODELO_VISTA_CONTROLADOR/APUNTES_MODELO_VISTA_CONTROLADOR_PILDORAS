@@ -1,0 +1,25 @@
+
+MODELO VISTA CONTROLADOR:
+
+Es un patrón de diseño que hay que seguir a la hora de construir nuestras aplicaciones. Separa
+la lógica del programa, todo lo relacionado a las bases de datos y las consultas de lo que sería
+la interfaz de usuario. Las aplicaciones se convierten es más funcionales, fácil de mantener y escalables.
+Nuestras aplicaciones son capaces de desempeñar funciones más avanzadas.
+
+CONCEPTO DE LA MODULARIZACIÓN:
+
+Consiste en construir en pequeñas partes un programa complejo.
+
+Se divide la aplicación en tres partes:
+
+MODELO: clases y métodos que comunican con la bbdd
+VISTA: aquí va todo lo referente con la interfaz que mostrará la información del usuario
+CONTROLADOR: intermediario entre la vista y modelo. Gestiona la información que vincula la vista y el modelo.
+
+ESQUEMA DE FUNCIONAMIENTO BÁSICO DE MVC:
+
+Partimos del usuario que está delante del ordenador e interactúa con la vista, hace una petición por ejemplo
+pulsando el botón de enviar, la interfaz recoge esa petición de información del usuario y envía la petición al
+intermediario (controlador), el controlador demanda esos datos a la otra capa que es el modelo. El modelo recibe esa
+demanda de datos y a través de las consultas sql envía los datos al intermediario que es el controlador , 
+el controlador los recibe y envía esa información a la vista y el usuario lo ve.
