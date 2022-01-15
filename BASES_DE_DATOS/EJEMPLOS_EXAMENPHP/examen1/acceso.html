@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Control de acceso de e-comercio</h1>
+    <!--Petición por get a controlPedido.php
+    El controlador coge los datos por get de nombre y clave que hacen falta como parámetro
+    para la función getClient de AccesoDatos();-->
+    <form method="GET" action="controlPedido.php">
+        <p>Nombre</p>
+        <input type="text" name="nombre"><br>
+        <p>Contraseña</p>
+        <input type="text" name="clave"><br><br>
+        <input type="submit" value="ENTRAR">
+    </form>
+</body>
+</html>
