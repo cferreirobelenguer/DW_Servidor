@@ -33,11 +33,12 @@ class AccesoDatos
     //Constructor que crea la conexión a la bbdd
     private function __construct()
     {
-
+        //La conexión siempre debe ir encerrada en un bloque try catch
         try {
             //Se configura la conexión
             $dsn = "mysql:host=localhost;dbname=etienda;charset=utf8";
             $this->dbh = new PDO($dsn, "root", " ");
+            //Se especifica el modo de error estableciendo el atributo error mode
             $this->dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         } catch (PDOException $e) {
             //En caso de error se muestra mensaje
@@ -50,18 +51,23 @@ class AccesoDatos
     {
         //Se llama a la consulta de actualización de veces tomando como parámetro el nombre introducido por el usuario
         $this->updateClientTimes($nombre);
-        
+
+        //Se llama a PDO->prepare() para crear la instancia de PDOStatement
         //Se llama a la consulta de obtener la tabla de clientes por nombre y clave
         $stmt = $this->dbh->prepare(self::$getClientQuery);
         //Se toman los parámetros de nombre y clave que se necesitan para obtener la tabla de clientes
+        //binParam se usa para pasar variables
         $stmt->bindParam(1, $nombre);
         $stmt->bindParam(2, $clave);
 
+        //Se ejecuta la sentencia
+        //Execute evita los ataques de injección de SQL y otros problemas
         $stmt->execute();
         //El registro es cada cliente, en este caso se pide un registro específico por eso se hace el while porque el while
         //lee una fila y todos los atributos correspondientes de la bbdd a esa fila.
         //Se lee el registro de ese cliente específico
         //Se pasa cada columna a un array asociativo
+        //Se usa fetch para sacar un sólo registro
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
             //Se crea un objeto de cliente
             $client = new Cliente();
@@ -77,13 +83,20 @@ class AccesoDatos
 
     public function getClientOrders($codCliente)
     {
+        //Se llama a PDO->prepare() para crear la instancia de PDOStatement
         //Se llama a la consulta de obtener los clientes por cod_cliente
         $stmt = $this->dbh->prepare(self::$getClientOrders);
         //Se coge como parámetro el codigo de cliente
         $stmt->bindParam(1, $codCliente);
-
+        //Se ejecuta la sentencia
+        //Execute evita los ataques de injección de SQL y otros problemas
         $stmt->execute();
         //Se pasa a array asociativo
+        //Se usa fetchAll para sacar varios registros
+        /*
+        *Para la consulta de datos también se puede emplear directamente PDOStatement::fetchAll(), que devuelve un array con 
+        todas las filas devueltas por la base de datos con las que poder iterar.
+        */
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         //SE CREA EL ARRAY
         $orders = [];
