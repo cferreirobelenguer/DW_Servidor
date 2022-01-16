@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BASE DE DATOS ETIENDA</title>
+</head>
+<body>
+    <!--Se pide al usuario cod_cliente por petición POST y se llama al controlador
+    que es el que va a recoger ese dato que va a ser el parámmetro
+    necesario para realizar la consulta-->
+    <h2>BUSCAR LA TABLA DE PEDIDOS POR CÓDIGO DE CLIENTE</h2>
+    <form action="controlador.php" method="post">
+        <p>
+            <label for="">Introduce código de cliente</label>
+            <input type="text" name="codigo"/>
+        </p>
+        <input type="submit" value="ENVIAR DATOS" />
+        
+    </form>
+</body>
+</html>
