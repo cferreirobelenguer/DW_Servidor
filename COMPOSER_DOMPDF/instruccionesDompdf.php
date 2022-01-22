@@ -1,7 +1,10 @@
 
 
-
 <?php
+//Hay que instalar dompdf de este link: https://github.com/dompdf/dompdf/releases
+//Es un zip que se tiene que extraer
+//Extraerlo en htcdocs en el documento php donde vamos a trabajar
+
 //Se almacena el html en memoria
 ob_start();
 ?>
@@ -22,6 +25,7 @@ ob_start();
 //El html se almacena en una variable
 $html=ob_get_clean();
 //echo $html;
+//Se incluye dompdf en el documento php
 include_once './libreria/dompdf/autoload.inc.php';
 //Se crea un objeto dompdf
 use Dompdf\Dompdf;
@@ -31,7 +35,8 @@ $dompdf=new Dompdf();
 $options= $dompdf->getOptions();
 $options->set(array('isRemoteEnabled' => true));
 $dompdf->setOptions($options);
-$dompdf->loadHtml("Hola mundo");
+$dompdf->loadHtml($html);
+//$dompdf->loadHtml("Hola Mundo");
 //Formato de impresión del pdf
 $dompdf->setPaper('letter');
 //$dompdf->setPaper('A4','landscape');
