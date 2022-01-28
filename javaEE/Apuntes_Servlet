@@ -1,0 +1,58 @@
+
+SERVLET
+_______
+
+Se usa mucho en frameworks java Spring y en MVC en java.
+Programas java que se ejecutan en un servidor web.
+El servlet recibe petición del cliente (navegador) y realiza su tarea ¿Qué tarea?
+. Generar una respuesta HTML
+. Llamar a otros servlet. A veces un servlet se comunica con otros servlet
+. Utilizar cookies y sesiones
+. Enlace (controlador) entre el cliente y BBDD
+ 
+ DIFERENCIA ENTRE SERVLET Y JSP
+ ______________________________
+ 
+ JSP: HTML + CODIGO JAVA
+ SERVLET: sólo tiene código java, no hay código html. Cuando nos tiene que dar una respuesta nos tiene que generar un código html. (el html va aparte, lo general el servlet)
+ 
+ ESQUEMA DE FUNCIONAMIENTO SERVLET
+ _________________________________
+ Navegador cliente--->Request(petición http)----->Servidor 
+                  <---Response(respuesta)--------
+ 
+ Cliente manda una petición al Servlet, y el Servlet genera una respuesta. Genera de forma dinámica un documento html que no existe, lo construye de la nada.
+ 
+ Este documento es enviado como respuesta al cliente. Y vemos en nuestro navegador ese documento html como respuesta.
+ESta en juego una petición request y una respuesta o reponse. 
+
+DIFERENCIA ENTRE SERVLET Y JSP QUÉ UTILIZAR EN UNOS CASOS U OTROS
+_________________________________________________________________
+
+A pesar de que ambos tienen tareas en común (cookies y sesiones, peticiones) también hay tareas exclusivas en un servlet.
+JSP se usará cuando el código de java es poco, cuando el código de java sea muy extenso entonces se escogerá un servlet.
+Si usamos un servlet como controlador, o cuando se usa un programa que comunique con otros programas se usará servlet porque jsp no puede hacerlo.
+En una aplicación compleja es frecuente que ambos trabajen juntos.
+
+PASOS A SEGUIR PARA CREAR UN SERVLET
+______________________________________
+
+Creación de clase que herede de HttpServlet.
+HttpServlet tiene entre otros el método doGet(request,response). Este método es el encargado de recibir la petición  (request).
+
+Establecer el formato de la respuesta (html)
+
+Generar el contenido de la respuesta (html)
+
+CLASES, INTERFACES Y MÉTODOS NECESARIOS
+_______________________________________
+HttpServlet implementa a la interfaz Servlet , si queremos crear un Servlet tenemos que heredar de esta clase.
+La interfaz Servlet implementa el método doGet que tenemos que sobreescribir y que va a recibir dos parámetros
+HttpServletRequest para procesar la petición y HttpServletResponse para procesar la respuesta.
+Los parámetros anteriores son dos interfaces.
+
+HttpServletResponse hereda a su vez de ServletResponse es la interfaz que le proporciona los métodos más importante.
+
+
+
+
