@@ -30,6 +30,7 @@ public class ServletRegistro extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//Como el formulario es mediante get se genera la respuesta en get
+		response.setContentType("text/html");
 		PrintWriter salida=response.getWriter();
 		salida.println("<html><body>");
 		salida.println("Nombre introducido: "+request.getParameter("cNombre")+"<br>");
