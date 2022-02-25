@@ -1,0 +1,217 @@
+
+JSP: CONCEPTO
+_____________
+
+Para crear un proyecto dinámico nos vamos a file new Dynamic Web Proyect.
+
+En webapp están los archivos jsp, con lo cual para crear un archivo jsp nos vamos a esa carpeta
+y vamos a new JSP File. Con JSP File se crean automáticamente las etiquetas de  JSP en html.
+
+En JSP para abrir el código JSP hay que usar <% %> .
+
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Fecha y hora</title>
+</head>
+<body>
+	La fecha y hora actuales son: <%=new java.util.Date() %>
+</body>
+</html>
+
+
+Para poder ver la respuesta del servidor se puede dar con el botón derecho a run/run of server o
+en el navegador poner http://localhost:8080/PracticasJSP/Hola%20Alumnos%20JEE.jsp
+_________________________________________________________________________________
+
+TIPOS:
+______
+
+
+En un archivo JSP podemos incluir expresiones (tienen una única línea de código):
+Se indica los resultados o llamadas de métodos
+<%=   %>
+Scriptlets no tiene el signo de igual y pueden ser varias líneas de código.
+<%    %>
+Declaraciones son declaraciones de variables o métodos, se encuentran en signos de admiración.
+<%!   %>
+
+Buena práctica es que en JSP se tenga la menor cantidad de java posible.
+
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>Ejemplos de expresioens</h1>
+	<!-- Ocupa una sola línea -->
+	Convirtiendo a mayúsculas: <%= new String("juan").toUpperCase() %>
+	<br>
+	La suma de 6 y 2 es: <%= 6+2 %>
+	<br>
+	30 es mayor que 300: <%= 30>300 %><!-- Va a dar resultado falso -->
+	<br>
+	<h1>Ejemplo de scriptlets</h1>
+	<!-- Ocupa varias líneas -->
+	<%
+		for(int i=0;i<10;i++){
+			out.println("Vuelta de bucle nº"+i+"<br>");
+		}
+	%>
+	<h1>Ejemplo de declaraciones</h1>
+	<!-- Declaración de variables o métodos -->
+	<%!
+		int resultado;
+	public int suma(int num1,int num2){
+			
+		return num1+num2;
+	}
+	%>
+	<%= suma(8,10) %>
+	
+</body>
+</html>
+
+
+_________________________________________________________________________________
+
+
+Buenas prácticas:
+
+No abusar de scriptlets y declaracioens en archivos JSP
+Evitar la programación de cientos d líneas en archivos JSP
+Modular el prorgrama separando el código Java en clases independientes
+Utilizar MVC
+
+___________________________________________________________________________________
+MODULARIZAR
+
+Una buena práctica es modularizar el código JSP: Con lo cual en src/main/java creamos una clase que va a contener el código, lo 
+ponemos static aunque no es obligatorio.
+package es.pildoras.calculosmatematicos;
+
+public class CalculosM {
+	
+	public static int suma(int num1,int num2){
+			
+		return num1+num2;
+	}
+	public static int resta(int num1,int num2){
+		
+		return num1+num2;
+	}
+	public static int multi(int num1,int num2){
+		
+		return num1+num2;
+	}
+}
+
+
+Y en jsp , al hacer la llamada a los métodos se llama por el nombre del paquete y la clase
+
+
+	La suma es <%= es.pildoras.calculosmatematicos.CalculosM.suma(8,10) %>
+	La resta es <%= es.pildoras.calculosmatematicos.CalculosM.resta(8,10) %>
+	La multiplicación es <%=es.pildoras.calculosmatematicos.CalculosM.multi(8,10) %>
+  
+ _______________________________________________________________________________________________
+  IMPORTAR CLASES:
+  ________________
+  Importar la clase: <%@ page import ="es.pildoras.calculosmatematicos.*" %>
+  
+  
+  <%@ page import ="es.pildoras.calculosmatematicos.*" %>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>Ejemplos de expresioens</h1>
+	<!-- Ocupa una sola línea -->
+	Convirtiendo a mayúsculas: <%= new String("juan").toUpperCase() %>
+	<br>
+	La suma de 6 y 2 es: <%= 6+2 %>
+	<br>
+	30 es mayor que 300: <%= 30>300 %><!-- Va a dar resultado falso -->
+	<br>
+	<h1>Ejemplo de scriptlets</h1>
+	<!-- Ocupa varias líneas -->
+	<%
+		for(int i=0;i<10;i++){
+			out.println("Vuelta de bucle nº"+i+"<br>");
+		}
+	%>
+	<h1>Ejemplo de declaraciones</h1>
+	<!-- Declaración de variables o métodos -->
+	
+	La suma es <%=CalculosM.suma(8,10) %>
+	<br>
+	La resta es <%=CalculosM.resta(8,10) %>
+	<br>
+	La multiplicación es <%=CalculosM.multi(8,10) %>
+	
+</body>
+</html>
+
+
+____________________________________________________________________________________________________________
+
+REQUEST: OBTENER LOS DATOS QUE HA INTRODUCIDO UN USUARIO A UN FORMULARIO
+_________________________________________________________________________
+
+new/file/HTML file
+
+En el archivo html se crea el formulario indicando los parámetros de cada caja con name, y llamando en el form
+con action al jsp donde vamos a recibir los datos:
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<form action="RecibeDatos.jsp">
+		Nombre:<input type="text" name="nombre"></br><br><br>
+		Apellido:<input type="text" name="apellido"></br><br><br>
+		<input type="submit" value="REGISTRATE"/>
+	</form>
+</body>
+</html>
+
+Creamos en webapp el archivo jsp que va a recibir los datos y usamos getParameter('variable') para recibir los datos
+
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1 style="text-align:center">Datos de Usuario</h1>
+	Nombre de usuario: <%=request.getParameter("nombre") %></br>
+	Apellido de usuario: <%=request.getParameter("apellido") %></br>
+</body>
+</html>
+
+
+
+
+
+
+
+
+  
