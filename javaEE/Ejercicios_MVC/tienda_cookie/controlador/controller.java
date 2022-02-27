@@ -29,13 +29,12 @@ public class controller extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		AccesoDatos ac = AccesoDatos.initModelo();
 		String camiseta=request.getParameter("carrito");
-		//Cookie que coge el valor de la camiseta
-		Cookie nuevo = new Cookie("productoelegido",camiseta);
-		response.addCookie(nuevo);
+		
 		if(camiseta!=null) {
 			tiendas resultado=ac.buscarFoto(camiseta);
 			if(resultado!=null) {
-				
+				Cookie nuevo = new Cookie("productoelegido",resultado.getProductos());
+				response.addCookie(nuevo);
 				request.setAttribute("imagenElegida", nuevo.getValue()); //Lo usamos para pasar el mensaje a la vista
 				request.setAttribute("ciudadProducto", "de la ciudad "+resultado.getLocalidad()); //Lo usamos para pasar el mensaje a la vista
 				request.getRequestDispatcher("/WEB-INF/carritoCompra.jsp").forward(request, response);
