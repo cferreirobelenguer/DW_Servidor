@@ -29,8 +29,7 @@ public class controller extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		AccesoDatos ac = AccesoDatos.initModelo();
 		String camiseta=request.getParameter("carrito");
-		PrintWriter out = response.getWriter();
-		Cookie [] cookies = request.getCookies ();
+		//Cookie que coge el valor de la camiseta
 		Cookie nuevo = new Cookie("productoelegido",camiseta);
 		response.addCookie(nuevo);
 		if(camiseta!=null) {
